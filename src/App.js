@@ -6,10 +6,21 @@ import Portfolio from "./pages/Portfolio/Portfolio"
 import GlobalStyle from './globalStyle';
 import Navbar from './components/Navbar/Navbar';
 
+import { ThemeProvider } from 'styled-components'
+import { colours }  from './globalStyle';
+console.log(colours)
+
+const theme = {
+  colours: colours
+}
+
+
 const App = () => {
   return (
+    <ThemeProvider theme={theme}>
+
     <div className="App">
-            <Navbar/>
+    <Navbar/>
     <GlobalStyle />
       <Routes>
         <Route path="/" element={ <Coins/> } />
@@ -18,6 +29,7 @@ const App = () => {
       </Routes>
       
     </div>
+    </ThemeProvider>
   )
 }
 

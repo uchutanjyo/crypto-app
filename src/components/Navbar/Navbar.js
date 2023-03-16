@@ -1,21 +1,39 @@
 import { Link } from "react-router-dom";
 import React from 'react'
 // import { useSelector, useDispatch } from 'react-redux'
-import { Nav, NavbarLink, Search, Container } from "./Navbar.styles";
+import { Nav, TopNav, BottomNav,InnerBottomNav, NavbarLink, Search, Container, CurrencyChange } from "./Navbar.styles";
+
+const currencys = [
+    'GBP', 'USD', 'EUR', 'CAD', 'JPY'
+]
 
 const Navbar = () => {
-
-
     return (
       <Nav>
+        <TopNav>
         <Container>
-            <NavbarLink as="a" href="#">OK</NavbarLink>
+            <NavbarLink as="a" href="#">Coins</NavbarLink>
         </Container>
         <Container>
-            <NavbarLink as="a" href="#">OK</NavbarLink>
+            <NavbarLink as="a" href="#">Portfolio</NavbarLink>
         </Container>
         <Search/>
-        <Link to="portfolio">Click to view our portfolio page</Link>
+        <CurrencyChange>
+            {currencys.map((currency) => {
+                return (
+                    <option value={currency}>{currency}</option>
+                )
+            })}
+ 
+        </CurrencyChange>
+        {/* <Link to="portfolio">Click to view our portfolio page</Link> */}
+        <Container>
+        </Container>
+        </TopNav>
+
+        <BottomNav>
+        <InnerBottomNav>dfg</InnerBottomNav>
+        </BottomNav>
       </Nav>
     );
   }
