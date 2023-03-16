@@ -8,7 +8,6 @@ import Navbar from './components/Navbar/Navbar';
 
 import { ThemeProvider } from 'styled-components'
 import { colours }  from './globalStyle';
-console.log(colours)
 
 const theme = {
   colours: colours

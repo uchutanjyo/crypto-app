@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Open-Sans, Helvetica, Sans-Serif;
     display: flex;
     justify-content: center;
+    color: whitesmoke
   }
   a {
     text-decoration: none;

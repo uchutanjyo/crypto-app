@@ -7,7 +7,7 @@ export const Wrapper = styled.section`
   align-items: center;
   background-color: ${(props) => props.theme.colours.grey};
   width: 55vw;
-  height: 100vh;
+  height: auto;
   border-radius: 1%;
   margin-bottom: 1em;
   padding-left: 3em;

@@ -32,8 +32,7 @@ const Navbar = () => {
         </TopNav>
 
         <BottomNav>
-        <InnerBottomNav>dfg</InnerBottomNav>
-        </BottomNav>
+<div>sdjfisdf</div>        </BottomNav>
       </Nav>
     );
   }

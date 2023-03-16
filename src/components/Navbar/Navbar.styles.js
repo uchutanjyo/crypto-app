@@ -28,7 +28,6 @@ export const BottomNav = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.colours.grey};
   border-radius: 5%;
-  height: 5%;
   width: 100%;
 
 `;
