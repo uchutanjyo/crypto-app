@@ -7,17 +7,17 @@ export const Nav = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
-  width: 55vw;
+  color: white;
+  width: 57vw;
   height: 25%;
-  padding: 2em;
+  
 `;
 
 export const TopNav = styled.section`
   /* padding: 4em; */
   display: flex;
   justify-content: space-between;
-  background-color: black;
+  background-color: ${(props) => props.theme.colours.dark};
   height: 55%;
   padding: 2em;
   width: 100%;
@@ -27,7 +27,7 @@ export const BottomNav = styled.div`
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme.colours.grey};
-  border-radius: 5%;
+  height: 100%;
   width: 100%;
 
 `;
@@ -56,7 +56,7 @@ export const Container = styled.div`
 export const NavbarLink = styled.button`
   /* padding: 4em; */
   /* background-color: black; */
-  color: whitesmoke;
+  color: white;
   text-decoration: none;
 `;
 
@@ -65,7 +65,7 @@ export const Search = styled.input`
   background-color: ${(props) => props.theme.colours.grey};
   width: 25%;
   height: 70%;
-  color: whitesmoke;
+  color: white ;
   border: none;
 
 `;
@@ -75,7 +75,7 @@ export const CurrencyChange = styled.select`
   background-color: ${(props) => props.theme.colours.grey};
   width: 10%;
   height: 70%;
-  color: whitesmoke;
+  color: white;
   border: none;
 `;
 

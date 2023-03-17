@@ -28,11 +28,15 @@ module.exports = {
         exclude: /node_modules/, 
         use: 'babel-loader', 
       },
+      {
+        test: /\.(sass|less|css)$/,
+        use: ["style-loader", "css-loader", 'sass-loader'],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html')
     })
-  ]
+  ],
 };

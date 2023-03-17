@@ -1,10 +1,9 @@
-// Table.js
-
-import React from "react";
+import React, { useState } from "react";
 import { useTable } from "react-table";
+import {  CoinsTable, TableRow, TableHead, TableCol, TableBody, HeaderRow, HorizLine  } from "./Table.styles";
+
 
 export default function TableSetup({ columns, data }) {
-  // Use the useTable Hook to send the columns and data to build the table
   const {
     getTableProps, // table props from react-table
     getTableBodyProps, // table body props from react-table
@@ -15,34 +14,56 @@ export default function TableSetup({ columns, data }) {
     columns,
     data
   });
+  
 
-  /* 
-    Render the UI for your table
-    - react-table doesn't have UI, it's headless. We just need to put the react-table props from the Hooks, and it will do its magic automatically
-  */
+const [filterInput, setFilterInput] = useState("");
+
+const handleFilterChange = e => {
+  const value = e.target.value || undefined;
+  setFilterInput(value);
+};
+
+
   return (
-    <table {...getTableProps()}>
-      <thead>
+  <>
+    <CoinsTable {...getTableProps()}>
+      <TableHead>
+        
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <HeaderRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
               <th {...column.getHeaderProps()}>{column.render("Header")}</th>
             ))}
-          </tr>
+          </HeaderRow>
         ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
+      </TableHead>
+ 
+
+      <TableBody {...getTableBodyProps()}>
+        
         {rows.map((row, i) => {
           prepareRow(row);
+
           return (
-            <tr {...row.getRowProps()}>
+            <>
+            <TableRow {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                console.log(cell.row)
+                if(cell.cells) {
+
+                }
+
+                return <>
+                
+                <TableCol {...cell.getCellProps()}>{cell.render("Cell")}</TableCol>
+                </>
               })}
-            </tr>
+            </TableRow>
+            </>
           );
         })}
-      </tbody>
-    </table>
+      </TableBody>
+    </CoinsTable>
+    </>
   );
 }

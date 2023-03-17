@@ -6,6 +6,7 @@ export const colours = {
   white: "#FFFFFF",
   grey: "#222A3E",
   primary5: "#F4FBF9",
+  dark: "#191b1f",
   grey: "#1f2128",
 };
 
@@ -14,11 +15,11 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: black;
-    font-family: Open-Sans, Helvetica, Sans-Serif;
+    background: #191b1f;
+    font-family: 'Noto Sans', sans-serif;
     display: flex;
     justify-content: center;
-    color: whitesmoke
+    color: white
   }
   a {
     text-decoration: none;
