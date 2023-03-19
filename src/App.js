@@ -9,16 +9,42 @@ import Navbar from './components/Navbar/Navbar'
 import { ThemeProvider } from 'styled-components'
 import { colours }  from './globalStyle';
 
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from './redux/reducers/counterSlice'
+
 const theme = {
   colours: colours
 }
 
 
+
 const App = () => {
+
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
+
   return (
     <ThemeProvider theme={theme}>
 
     <div className="App">
+
+    <div>
+      <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
+        >
+          Increment
+        </button>
+        <span>{count}</span>
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(decrement())}
+        >
+          Decrement
+        </button>
+      </div>
+    </div>
     <Navbar/>
     <GlobalStyle />
       <Routes>

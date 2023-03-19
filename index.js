@@ -9,7 +9,6 @@ import store from "./src/redux/store";
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
-console.log(store)
 
 root.render(
   <Provider store={store}>
