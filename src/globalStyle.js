@@ -16,10 +16,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: #191b1f;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     display: flex;
     justify-content: center;
-    color: white
+    color: white;
+    font-weight: bolder;
+
   }
   a {
     text-decoration: none;

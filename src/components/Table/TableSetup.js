@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTable } from "react-table";
-import {  CoinsTable, TableRow, TableHead, TableCol, TableBody, HeaderRow, HorizLine  } from "./Table.styles";
+import {  CoinsTable, TableRow, TableHead, TableCol, TableBody, HeaderRow, Span, HorizLine  } from "./Table.styles";
 
 
 export default function TableSetup({ columns, data }) {
@@ -29,10 +29,10 @@ const handleFilterChange = e => {
     <CoinsTable {...getTableProps()}>
       <TableHead>
         
-        {headerGroups.map(headerGroup => (
-          <HeaderRow {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+        {headerGroups.map((headerGroup, i) => (
+          <HeaderRow key={i} {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column, i) => (
+              <th key={i} {...column.getHeaderProps()}>{column.render("Header")}</th>
             ))}
           </HeaderRow>
         ))}
@@ -46,19 +46,15 @@ const handleFilterChange = e => {
 
           return (
             <>
-            <TableRow {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                console.log(cell.row)
-                if(cell.cells) {
-
-                }
-
+            <TableRow key={i} {...row.getRowProps()}>
+              {row.cells.map((cell, i) => {
+                // console.log(cell.row)
                 return <>
-                
-                <TableCol {...cell.getCellProps()}>{cell.render("Cell")}</TableCol>
+                <TableCol key={i} {...cell.getCellProps()}>{cell.render("Cell")}</TableCol>
                 </>
               })}
             </TableRow>
+      
             </>
           );
         })}

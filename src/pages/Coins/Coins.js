@@ -12,10 +12,9 @@ const Coins = () => {
 
     return (
       <Wrapper>
-        <Container>
+        {/* <Container>
         <Link to="portfolio">Click to view our portfolio page</Link>
-        {/* <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, repudiandae illo vero aliquid ab officiis perspiciatis quis accusamus nisi, suscipit perferendis fugiat quo nostrum sed modi alias molestias, aliquam reprehenderit.</div> */}
-        </Container>
+        </Container> */}
         <Table/>
         </Wrapper>
 

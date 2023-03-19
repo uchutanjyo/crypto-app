@@ -6,12 +6,12 @@ export const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.colours.grey};
-  width: 55vw;
   height: auto;
-  border-radius: 1%;
   margin-bottom: 1em;
   padding-left: 3em;
   padding-right: 3em;
+  padding-top: 3em;
+
 `;
 
 

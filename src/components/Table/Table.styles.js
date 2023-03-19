@@ -18,7 +18,6 @@ export const CoinsTable = styled.table`
   width: 100%;
   border-collapse: separate;
   border-spacing: 50px 75px;
-
 `;
 
 export const TableBody = styled.tbody`
@@ -38,7 +37,16 @@ export const TableHead = styled.thead`
 export const HeaderRow = styled.tr`
   
   /* background-color: black; */
-  font-size:.6em
+  font-size:.6em;
+  
+`;
+
+export const Span = styled.span`
+  
+  /* background-color: black; */
+
+    border: 1px solid;
+
 `;
 
 export const TableRow = styled.tr`
@@ -47,7 +55,8 @@ export const TableRow = styled.tr`
   border-top: 1px solid white;
   padding-bottom: 2em;
   padding-top: 2em;
-  font-size:.7em
+  font-size:.7em;
+
 `;
 
 export const TableCol = styled.td`
@@ -62,7 +71,7 @@ export const HorizLine = styled.hr`
 
 export const Slider = styled.div`
     width: ${props => props.width}%;
-    height: 100%;
+    height: 1em;
     border-radius: 50px;
     background: ${props => props.background};
 `;
@@ -70,7 +79,7 @@ export const Slider = styled.div`
 
 export const SliderWrapper = styled.div`
     max-width: 100px;
-    height: 100%;
+    height: 1em;
     border-radius: 50px;
     background: ${props => props.background};
 `;

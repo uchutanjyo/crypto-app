@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import Coins from "./pages/Coins/Coins"
 import Portfolio from "./pages/Portfolio/Portfolio"
 import GlobalStyle from './globalStyle';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar'
 
 import { ThemeProvider } from 'styled-components'
 import { colours }  from './globalStyle';

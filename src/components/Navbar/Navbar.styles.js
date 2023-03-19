@@ -7,8 +7,7 @@ export const Nav = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
-  width: 57vw;
+  width: 60vw;
   height: 25%;
   
 `;
@@ -18,16 +17,16 @@ export const TopNav = styled.section`
   display: flex;
   justify-content: space-between;
   background-color: ${(props) => props.theme.colours.dark};
-  height: 55%;
-  padding: 2em;
+  padding: 1em;
   width: 100%;
 `;
 
 export const BottomNav = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: ${(props) => props.theme.colours.grey};
-  height: 100%;
+  height: 3em;
   width: 100%;
 
 `;
@@ -35,11 +34,12 @@ export const BottomNav = styled.div`
 export const InnerBottomNav = styled.div`
   display: flex;
   align-items: center;
-  background-color: black;
-  border-radius: 5%;
+  height: 3em;
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 10%;
+  width: 60%;
+  font-size: .8em
 `;
-
-
 
 export const Container = styled.div`
   /* padding: 4em; */
@@ -54,11 +54,8 @@ export const Container = styled.div`
 `;
 
 export const NavbarLink = styled.button`
-  /* padding: 4em; */
-  /* background-color: black; */
   color: white;
-  text-decoration: none;
-`;
+  `;
 
 export const Search = styled.input`
   padding: .5em;
@@ -77,5 +74,11 @@ export const CurrencyChange = styled.select`
   height: 70%;
   color: white;
   border: none;
+`;
+
+export const BottomNavHeader = styled.div`
+  margin-right: 1em;
+  color: white;
+
 `;
 
