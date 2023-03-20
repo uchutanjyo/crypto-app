@@ -17,7 +17,6 @@ const theme = {
 }
 
 
-
 const App = () => {
 
   const count = useSelector((state) => state.counter.value)

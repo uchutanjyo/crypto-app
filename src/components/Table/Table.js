@@ -5,6 +5,9 @@ import TableSetup from "./TableSetup";
 import { TableWrapper, Slider, SliderWrapper } from "./Table.styles";
 import { testData } from "./TestData";
 
+import { getCoinsData } from "../../redux/Coins/action";
+import { useSelector, useDispatch } from "react-redux";
+
 const MarketCap = ({ value }) => {
   return (
     <>
@@ -78,38 +81,27 @@ function Table() {
     []
   );
 
+  const dispatch = useDispatch();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      // uncomment api call later (currently fake data)
-      const result =
-        //   await axios("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d");
-        testData;
-
-      // round to two decimal places for large numbers (ugly, change later)
-      result.forEach((d) => {
-        d.price_change_percentage_7d_in_currency = parseFloat(
-          d.price_change_percentage_7d_in_currency
-        ).toFixed(2);
-
-        d.price_change_percentage_1h_in_currency = parseFloat(
-          d.price_change_percentage_1h_in_currency
-        ).toFixed(2);
-
-        d.price_change_percentage_24h_in_currency = parseFloat(
-          d.price_change_percentage_24h_in_currency
-        ).toFixed(2);
-
-        d.price_change_percentage_24h_in_currency = parseFloat(
-          d.price_change_percentage_24h_in_currency
-        ).toFixed(2);
-
-        d.current_price = parseFloat(d.current_price).toFixed(2);
-      });
-      setData(result);
-    })();
+    dispatch(getCoinsData());
   }, []);
+
+  const apiData = useSelector((state) => state.coins.data);
+
+  useEffect(() => {
+    if (apiData) {
+      (async () => {
+        // uncomment api call later (currently fake data)
+        const result =
+          // testData;
+          await apiData;
+        setData(result);
+      })();
+    }
+  }, [apiData]);
 
   return (
     <TableWrapper>
@@ -118,3 +110,24 @@ function Table() {
   );
 }
 export default Table;
+
+// can't change state in this way - do later in action
+// round to two decimal places for large numbers (ugly, change later)
+// result.forEach((d) => {
+//   d.price_change_percentage_7d_in_currency = parseFloat(
+//     d.price_change_percentage_7d_in_currency
+//   ).toFixed(2);
+
+//   d.price_change_percentage_1h_in_currency = parseFloat(
+//     d.price_change_percentage_1h_in_currency
+//   ).toFixed(2);
+
+//   d.price_change_percentage_24h_in_currency = parseFloat(
+//     d.price_change_percentage_24h_in_currency
+//   ).toFixed(2);
+
+//   d.price_change_percentage_24h_in_currency = parseFloat(
+//     d.price_change_percentage_24h_in_currency
+//   ).toFixed(2);
+//   d.current_price = parseFloat(d.current_price).toFixed(2);
+// });
