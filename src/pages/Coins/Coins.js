@@ -4,7 +4,7 @@ import React from 'react'
 
 import { Wrapper, Container } from "./Coins.styles";
 import Table from "../../components/Table/Table";
-
+import Charts from "../../components/Charts/Charts";
 
 
 const Coins = () => {
@@ -15,6 +15,7 @@ const Coins = () => {
         {/* <Container>
         <Link to="portfolio">Click to view our portfolio page</Link>
         </Container> */}
+        <Charts></Charts>
         <Table/>
         </Wrapper>
 

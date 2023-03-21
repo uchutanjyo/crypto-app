@@ -1,14 +1,6 @@
 import axios from "axios";
 import {
-  GET_COINS_SUCCESS,
-  GET_COINS_PENDING,
-  GET_COINS_ERROR,
-  //   SET_ACTIVE_CATEGORY,
-  //   SET_ACTIVE_DIRECTION,
-  //   SET_ACTIVE_KEY,
-  //   SET_ACTIVE_RESULTS_PER_PAGE,
-  //   INCREMENT_PAGE_NUM,
-  //   DECREMENT_PAGE_NUM
+
 } from "./reducers.js";
 
 // refactor this soon

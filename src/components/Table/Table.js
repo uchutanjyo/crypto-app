@@ -2,32 +2,32 @@ import axios from "axios";
 import React, { useMemo, useState, useEffect } from "react";
 
 import TableSetup from "./TableSetup";
-import { TableWrapper, Slider, SliderWrapper } from "./Table.styles";
+import { TableWrapper, PercentageBar, PercentageBarWrapper } from "./Table.styles";
 import { testData } from "./TestData";
 
 import { getCoinsData } from "../../redux/Coins/action";
 import { useSelector, useDispatch } from "react-redux";
 
-const MarketCap = ({ value }) => {
+const VolOverMarketCap = ({ value }) => {
   return (
     <>
-      <SliderWrapper background="grey">
-        <Slider width={value * 0.3} background="white">
+      <PercentageBarWrapper background="grey">
+        <PercentageBar width={value * 0.3} background="white">
           &nbsp;
-        </Slider>
-      </SliderWrapper>
+        </PercentageBar>
+      </PercentageBarWrapper>
     </>
   );
 };
 
-const CirculatingSupply = ({ value }) => {
+const CirculatingSupplyOverTotalSupply = ({ value }) => {
   return (
     <>
-      <SliderWrapper background="grey">
-        <Slider width={4.5} background="white">
+      <PercentageBarWrapper background="grey">
+        <PercentageBar width={4.5} background="white">
           &nbsp;
-        </Slider>
-      </SliderWrapper>
+        </PercentageBar>
+      </PercentageBarWrapper>
     </>
   );
 };
@@ -63,13 +63,13 @@ function Table() {
           },
           {
             Header: "24h vol/Market Cap",
-            accessor: "market_cap_change_24h",
-            Cell: ({ cell: { value } }) => <MarketCap value={value} />,
+            accessor: "vol_over_market_cap",
+            Cell: ({ cell: { value } }) => <VolOverMarketCap value={value} />,
           },
           {
             Header: "Circulating / Total Sup",
-            accessor: "circulating_supply",
-            Cell: ({ cell: { value } }) => <MarketCap value={value} />,
+            accessor: "circ_supply_over_total_supply",
+            Cell: ({ cell: { value } }) => <CirculatingSupplyOverTotalSupply value={value} />,
           },
           {
             Header: "Last 7d",
@@ -110,24 +110,3 @@ function Table() {
   );
 }
 export default Table;
-
-// can't change state in this way - do later in action
-// round to two decimal places for large numbers (ugly, change later)
-// result.forEach((d) => {
-//   d.price_change_percentage_7d_in_currency = parseFloat(
-//     d.price_change_percentage_7d_in_currency
-//   ).toFixed(2);
-
-//   d.price_change_percentage_1h_in_currency = parseFloat(
-//     d.price_change_percentage_1h_in_currency
-//   ).toFixed(2);
-
-//   d.price_change_percentage_24h_in_currency = parseFloat(
-//     d.price_change_percentage_24h_in_currency
-//   ).toFixed(2);
-
-//   d.price_change_percentage_24h_in_currency = parseFloat(
-//     d.price_change_percentage_24h_in_currency
-//   ).toFixed(2);
-//   d.current_price = parseFloat(d.current_price).toFixed(2);
-// });

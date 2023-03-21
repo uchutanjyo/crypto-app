@@ -69,7 +69,7 @@ export const HorizLine = styled.hr`
 
 `;
 
-export const Slider = styled.div`
+export const PercentageBar = styled.div`
     width: ${props => props.width}%;
     height: 1em;
     border-radius: 50px;
@@ -77,7 +77,7 @@ export const Slider = styled.div`
 `;
 
 
-export const SliderWrapper = styled.div`
+export const PercentageBarWrapper = styled.div`
     max-width: 100px;
     height: 1em;
     border-radius: 50px;
