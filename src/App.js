@@ -10,7 +10,7 @@ import { ThemeProvider } from 'styled-components'
 import { colours }  from './globalStyle';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from './redux/reducers/counterSlice'
+import { decrement, increment } from './redux/Counter/reducers/counterSlice'
 
 const theme = {
   colours: colours

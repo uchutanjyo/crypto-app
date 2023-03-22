@@ -3,10 +3,10 @@ import React, { useMemo, useState, useEffect } from "react";
 
 import TableSetup from "./TableSetup";
 import { TableWrapper, PercentageBar, PercentageBarWrapper } from "./Table.styles";
-import { testData } from "./TestData";
 
 import { getCoinsData } from "../../redux/Coins/action";
 import { useSelector, useDispatch } from "react-redux";
+
 
 const VolOverMarketCap = ({ value }) => {
   return (

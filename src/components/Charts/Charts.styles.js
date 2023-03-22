@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const TableWrapper = styled.div`
+export const ChartsWrapper = styled.div`
   
   /* background-color: black; */
   display: flex;
@@ -10,6 +10,7 @@ export const TableWrapper = styled.div`
   padding-top: .5em;
   padding-left: 2em;
   padding-right: 2em;
+  margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
   width: 90%

@@ -1,8 +1,6 @@
-export const GET_COINS_PENDING = "GET_COINS_PENDING";
-export const GET_COINS_SUCCESS = "GET_COINS_SUCCESS";
-export const GET_COINS_ERROR = "GET_COINS_ERROR";
-
-import { createSlice } from "@reduxjs/toolkit";
+export const GET_PRICES_PENDING = "GET_PRICES_PENDING";
+export const GET_PRICES_SUCCESS = "GET_PRICES_SUCCESS";
+export const GET_PRICES_ERROR = "GET_PRICES_ERROR";
 
 const initialState = {
     data: [],
@@ -11,16 +9,16 @@ const initialState = {
     hasError: false,
 }
 
-function coinsReducer(state = initialState, action) {
+function pricesReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_COINS_ERROR:
+    case GET_PRICES_ERROR:
       return {
         ...state,
         isLoading: false,
         hasError: true,
         error: action.payload,
       };
-    case GET_COINS_PENDING:
+    case GET_PRICES_PENDING:
       return {
         ...state,
         data: action.payload,
@@ -28,7 +26,7 @@ function coinsReducer(state = initialState, action) {
         hasError: false,
         error: null,
       };
-    case GET_COINS_SUCCESS:
+    case GET_PRICES_SUCCESS:
       return {
         ...state,
         data: action.payload,
@@ -40,4 +38,4 @@ function coinsReducer(state = initialState, action) {
     }
 }
 
-export default coinsReducer;
+export default pricesReducer;

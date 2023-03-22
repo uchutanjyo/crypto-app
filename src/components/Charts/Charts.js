@@ -2,43 +2,83 @@ import React, { useMemo, useState, useEffect } from "react";
 
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-import PieChart from "./PieChart";
+import PriceChart from "./PriceChart";
+import VolumeChart from "./VolumeChart";
+import { ChartsWrapper } from "./Charts.styles";
+import { getPricesData } from "../../redux/Charts/action";
+import { useSelector, useDispatch } from "react-redux";
+
+import { mockPricesData } from "../../redux/MockPricesData";
 
 Chart.register(CategoryScale);
 
-const data = {
-    labels: ['Red', 'Orange', 'Blue'],
-    // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-    datasets: [
-        {
-          label: 'Popularity of colours',
-          data: [55, 23, 96],
-          // you can set indiviual colors for each bar
-          backgroundColor: [
-            'rgba(5, 255, 255, 0.6)',
-            'rgba(3, 5, 255, 0.6)',
-            'rgba(332, 1, 255, 0.6)',
-          ],
-          borderWidth: 1,
-        }
-    ]
-}
-     
-
 const Charts = () => {
-    const [chartData, setChartData] = useState(
-        data
-      );
+  const dispatch = useDispatch();
+
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
+    dispatch(getPricesData());
   }, []);
-  
 
-//   const apiData = useSelector((state) => state.coins.data);
-return (
-    <div className="App">
-      <PieChart chartData={chartData} />    </div>
+  const pricesData = useSelector((state) => state.prices.data);
+
+  const PricesChartDataOptions = {
+    labels: pricesData.prices
+      ? pricesData.prices.map((date) => {
+          return new Date(date[0]).toLocaleString(undefined, {
+            month: "short",
+            day: "numeric",
+          });
+        })
+      : [],
+    datasets: [
+      {
+        label: "Price",
+        data: pricesData.prices
+          ? pricesData.prices.map((data) => {
+              return data[1];
+            })
+          : [],
+        backgroundColor: ["rgba(5, 255, 255, 0.6)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const VolumeChartDataOptions = {
+    labels: pricesData.market_caps
+      ? pricesData.market_caps.map((date) => {
+          return new Date(date[0]).toLocaleString(undefined, {
+            month: "short",
+            day: "numeric",
+          });
+        })
+      : [],
+    datasets: [
+      {
+        label: "Volume",
+        data: pricesData.market_caps
+          ? pricesData.prices.map((data) => {
+              return data[1];
+            })
+          : [],
+        backgroundColor: ["rgba(240, 255, 24, 0.6)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <ChartsWrapper>
+        {pricesData.prices && <PriceChart chartData={PricesChartDataOptions} />}
+        {pricesData.market_caps && (
+          <VolumeChart chartData={VolumeChartDataOptions} />
+        )}
+      </ChartsWrapper>
+    </>
   );
-}
+};
 
 export default Charts;

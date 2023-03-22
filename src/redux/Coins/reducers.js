@@ -2,8 +2,6 @@ export const GET_COINS_PENDING = "GET_COINS_PENDING";
 export const GET_COINS_SUCCESS = "GET_COINS_SUCCESS";
 export const GET_COINS_ERROR = "GET_COINS_ERROR";
 
-import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
     data: [],
     isLoading: false,
