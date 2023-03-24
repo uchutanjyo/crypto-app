@@ -1,30 +1,40 @@
-import axios from "axios";
 import React, { useMemo, useState, useEffect } from "react";
 
 import TableSetup from "./TableSetup";
-import { TableWrapper, Slider, SliderWrapper } from "./Table.styles";
-import { testData } from "./TestData";
+import {
+  TableWrapper,
+  PercentageBar,
+  PercentageBarWrapper,
+  CoinImageContainer,
+} from "./Table.styles";
 
-const MarketCap = ({ value }) => {
+import { getCoinsData } from "../../redux/Coins/action";
+import { useSelector, useDispatch } from "react-redux";
+
+const CoinImage = ({ value }) => {
+  return <CoinImageContainer src={value} alt="new" />;
+};
+
+const VolOverMarketCap = ({ value }) => {
   return (
     <>
-      <SliderWrapper background="grey">
-        <Slider width={value * 0.3} background="white">
+      <PercentageBarWrapper background="grey">
+        <PercentageBar width={value * 0.3} background="white">
           &nbsp;
-        </Slider>
-      </SliderWrapper>
+        </PercentageBar>
+      </PercentageBarWrapper>
     </>
   );
 };
 
-const CirculatingSupply = ({ value }) => {
+const CirculatingSupplyOverTotalSupply = ({ value }) => {
   return (
     <>
-      <SliderWrapper background="grey">
-        <Slider width={4.5} background="white">
+      <PercentageBarWrapper background="grey">
+        <PercentageBar width={4.5} background="white">
           &nbsp;
-        </Slider>
-      </SliderWrapper>
+        </PercentageBar>
+      </PercentageBarWrapper>
     </>
   );
 };
@@ -34,10 +44,15 @@ function Table() {
     () => [
       {
         // Second group - Details
-        Header: "Coins",
+        Header: "Top 50 by Volume",
         // Second group columns
         columns: [
           { Header: "#", accessor: "1" },
+          {
+            Header: "",
+            accessor: "image",
+            Cell: ({ cell: { value } }) => <CoinImage value={value} />,
+          },
           {
             Header: "Name",
             accessor: "name",
@@ -60,13 +75,15 @@ function Table() {
           },
           {
             Header: "24h vol/Market Cap",
-            accessor: "market_cap_change_24h",
-            Cell: ({ cell: { value } }) => <MarketCap value={value} />,
+            accessor: "vol_over_market_cap",
+            Cell: ({ cell: { value } }) => <VolOverMarketCap value={value} />,
           },
           {
             Header: "Circulating / Total Sup",
-            accessor: "circulating_supply",
-            Cell: ({ cell: { value } }) => <MarketCap value={value} />,
+            accessor: "circ_supply_over_total_supply",
+            Cell: ({ cell: { value } }) => (
+              <CirculatingSupplyOverTotalSupply value={value} />
+            ),
           },
           {
             Header: "Last 7d",
@@ -78,42 +95,17 @@ function Table() {
     []
   );
 
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      // uncomment api call later (currently fake data)
-      const result =
-        //   await axios("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d");
-        testData;
-
-      // round to two decimal places for large numbers (ugly, change later)
-      result.forEach((d) => {
-        d.price_change_percentage_7d_in_currency = parseFloat(
-          d.price_change_percentage_7d_in_currency
-        ).toFixed(2);
-
-        d.price_change_percentage_1h_in_currency = parseFloat(
-          d.price_change_percentage_1h_in_currency
-        ).toFixed(2);
-
-        d.price_change_percentage_24h_in_currency = parseFloat(
-          d.price_change_percentage_24h_in_currency
-        ).toFixed(2);
-
-        d.price_change_percentage_24h_in_currency = parseFloat(
-          d.price_change_percentage_24h_in_currency
-        ).toFixed(2);
-
-        d.current_price = parseFloat(d.current_price).toFixed(2);
-      });
-      setData(result);
-    })();
+    dispatch(getCoinsData());
   }, []);
+
+  const coinsData = useSelector((state) => state.coins.data);
 
   return (
     <TableWrapper>
-      <TableSetup columns={columns} data={data} />
+      <TableSetup columns={columns} data={coinsData} />
     </TableWrapper>
   );
 }

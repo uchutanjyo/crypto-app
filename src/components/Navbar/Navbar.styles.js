@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 
 
 export const Nav = styled.section`
@@ -7,7 +7,7 @@ export const Nav = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60vw;
+  width: 65vw;
   height: 25%;
   
 `;
@@ -26,7 +26,6 @@ export const BottomNav = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.colours.grey};
-  height: 3em;
   width: 100%;
 
 `;
@@ -36,7 +35,7 @@ export const InnerBottomNav = styled.div`
   align-items: center;
   height: 3em;
   background-color: ${(props) => props.theme.colours.dark};
-  border-radius: 10%;
+  /* border-radius: 10%; */
   width: 60%;
   font-size: .8em
 `;
@@ -53,7 +52,7 @@ export const Container = styled.div`
   border-radius: 5%;
 `;
 
-export const NavbarLink = styled.button`
+export const NavbarLink = styled(Link)`
   color: white;
   `;
 

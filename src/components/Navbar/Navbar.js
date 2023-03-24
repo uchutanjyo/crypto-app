@@ -28,6 +28,9 @@ const currencys = ["GBP", "USD", "EUR", "CAD", "JPY"];
 const Navbar = () => {
   return (
     <Nav>
+                <NavbarLink to="/coin">
+            Portfolio
+          </NavbarLink>
       <TopNav>
         <Container>
           <NavbarLink as="a" href="#">
