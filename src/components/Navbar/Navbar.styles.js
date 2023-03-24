@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 
 export const Nav = styled.section`
   /* padding: 4em; */
@@ -50,7 +52,7 @@ export const Container = styled.div`
   border-radius: 5%;
 `;
 
-export const NavbarLink = styled.button`
+export const NavbarLink = styled(Link)`
   color: white;
   `;
 

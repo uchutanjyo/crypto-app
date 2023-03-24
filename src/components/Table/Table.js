@@ -1,19 +1,18 @@
-import axios from "axios";
 import React, { useMemo, useState, useEffect } from "react";
 
 import TableSetup from "./TableSetup";
-import { TableWrapper, PercentageBar, PercentageBarWrapper, CoinImageContainer } from "./Table.styles";
+import {
+  TableWrapper,
+  PercentageBar,
+  PercentageBarWrapper,
+  CoinImageContainer,
+} from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
 import { useSelector, useDispatch } from "react-redux";
 
 const CoinImage = ({ value }) => {
-  return (
-<CoinImageContainer 
-      src={value}
-      alt="new"
-      />
-  );
+  return <CoinImageContainer src={value} alt="new" />;
 };
 
 const VolOverMarketCap = ({ value }) => {
@@ -82,7 +81,9 @@ function Table() {
           {
             Header: "Circulating / Total Sup",
             accessor: "circ_supply_over_total_supply",
-            Cell: ({ cell: { value } }) => <CirculatingSupplyOverTotalSupply value={value} />,
+            Cell: ({ cell: { value } }) => (
+              <CirculatingSupplyOverTotalSupply value={value} />
+            ),
           },
           {
             Header: "Last 7d",
@@ -96,29 +97,15 @@ function Table() {
 
   const dispatch = useDispatch();
 
-  const [data, setData] = useState([]);
-
   useEffect(() => {
     dispatch(getCoinsData());
   }, []);
 
-  const apiData = useSelector((state) => state.coins.data);
-
-  useEffect(() => {
-    if (apiData) {
-      (async () => {
-        // uncomment api call later (currently fake data)
-        const result =
-          // testData;
-          await apiData;
-        setData(result);
-      })();
-    }
-  }, [apiData]);
+  const coinsData = useSelector((state) => state.coins.data);
 
   return (
     <TableWrapper>
-      <TableSetup columns={columns} data={data} />
+      <TableSetup columns={columns} data={coinsData} />
     </TableWrapper>
   );
 }

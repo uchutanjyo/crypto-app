@@ -6,19 +6,13 @@ import { Wrapper, Container } from "./Coins.styles";
 import Table from "../../components/Table/Table";
 import Charts from "../../components/Charts/Charts";
 
-
 const Coins = () => {
-
 
     return (
       <Wrapper>
-        {/* <Container>
-        <Link to="portfolio">Click to view our portfolio page</Link>
-        </Container> */}
         <Charts></Charts>
         <Table/>
         </Wrapper>
-
     );
   }
   
