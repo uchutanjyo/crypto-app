@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import PriceChart from "./PriceChart";
 import VolumeChart from "./VolumeChart";
-import { ChartsWrapper } from "./Charts.styles";
+import { ChartsWrapper, ChartWrapper } from "./Charts.styles";
 import { getPricesData } from "../../redux/Charts/action";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -15,14 +15,11 @@ Chart.register(CategoryScale);
 const Charts = () => {
   const dispatch = useDispatch();
 
-  const [chartData, setChartData] = useState([]);
-
   useEffect(() => {
     dispatch(getPricesData());
   }, []);
 
   const pricesData = useSelector((state) => state.prices.data);
-
   const PricesChartDataOptions = {
     labels: pricesData.prices
       ? pricesData.prices.map((date) => {
@@ -72,10 +69,14 @@ const Charts = () => {
   return (
     <>
       <ChartsWrapper>
+        <ChartWrapper>
         {pricesData.prices && <PriceChart chartData={PricesChartDataOptions} />}
+        </ChartWrapper>
+        <ChartWrapper>
         {pricesData.market_caps && (
           <VolumeChart chartData={VolumeChartDataOptions} />
         )}
+        </ChartWrapper>
       </ChartsWrapper>
     </>
   );

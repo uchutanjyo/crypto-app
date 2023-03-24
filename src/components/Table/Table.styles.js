@@ -10,7 +10,7 @@ export const TableWrapper = styled.div`
   padding-left: 2em;
   padding-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
-  border-radius: 3%;
+  border-radius: 1%;
   width: 90%
 `;
 
@@ -28,9 +28,7 @@ export const TableHead = styled.thead`
   
   /* background-color: black; */
   display:table-header-group;
-  flex-direction: column;
- justify-content: center;
- align-items: center;
+
   
 `;
 
@@ -84,6 +82,10 @@ export const PercentageBarWrapper = styled.div`
     background: ${props => props.background};
 `;
 
+
+export const CoinImageContainer = styled.img`
+    max-width: 3em;
+`;
 
 
 

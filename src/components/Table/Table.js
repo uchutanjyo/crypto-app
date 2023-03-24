@@ -2,11 +2,19 @@ import axios from "axios";
 import React, { useMemo, useState, useEffect } from "react";
 
 import TableSetup from "./TableSetup";
-import { TableWrapper, PercentageBar, PercentageBarWrapper } from "./Table.styles";
+import { TableWrapper, PercentageBar, PercentageBarWrapper, CoinImageContainer } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
 import { useSelector, useDispatch } from "react-redux";
 
+const CoinImage = ({ value }) => {
+  return (
+<CoinImageContainer 
+      src={value}
+      alt="new"
+      />
+  );
+};
 
 const VolOverMarketCap = ({ value }) => {
   return (
@@ -37,10 +45,15 @@ function Table() {
     () => [
       {
         // Second group - Details
-        Header: "Coins",
+        Header: "Top 50 by Volume",
         // Second group columns
         columns: [
           { Header: "#", accessor: "1" },
+          {
+            Header: "",
+            accessor: "image",
+            Cell: ({ cell: { value } }) => <CoinImage value={value} />,
+          },
           {
             Header: "Name",
             accessor: "name",
