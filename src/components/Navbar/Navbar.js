@@ -28,9 +28,6 @@ const currencys = ["GBP", "USD", "EUR", "CAD", "JPY"];
 const Navbar = () => {
   return (
     <Nav>
-                <NavbarLink to="/coin">
-            Portfolio
-          </NavbarLink>
       <TopNav>
         <Container>
           <NavbarLink as="a" href="#">
@@ -42,10 +39,14 @@ const Navbar = () => {
             Portfolio
           </NavbarLink>
         </Container>
-        <Search placeholder="Search"/>
+        <Search placeholder="Search" />
         <CurrencyChange>
           {currencys.map((currency, i) => {
-            return <option key={i} value={currency}>{currency}</option>;
+            return (
+              <option key={i} value={currency}>
+                {currency}
+              </option>
+            );
           })}
         </CurrencyChange>
         {/* <Link to="portfolio">Click to view our portfolio page</Link> */}

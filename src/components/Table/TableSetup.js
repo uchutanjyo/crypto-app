@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useTable } from "react-table";
 import {  CoinsTable, TableRow, TableHead, TableCol, TableBody, HeaderRow, Span, HorizLine  } from "./Table.styles";
+import { useDispatch } from "react-redux";
+
+import coinReducer from "../../redux/Coin/reducers";
 
 
 export default function TableSetup({ columns, data }) {
@@ -45,17 +48,15 @@ const handleFilterChange = e => {
           prepareRow(row);
 
           return (
-            <>
+         
             <TableRow key={i} {...row.getRowProps()}>
               {row.cells.map((cell, i) => {
                 // console.log(cell.row)
-                return <>
+                return (
                 <TableCol key={i} {...cell.getCellProps()}>{cell.render("Cell")}</TableCol>
-                </>
+                )
               })}
             </TableRow>
-      
-            </>
           );
         })}
       </TableBody>

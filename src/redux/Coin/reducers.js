@@ -1,9 +1,11 @@
 export const FETCH_COIN_PENDING = "FETCH_COIN_PENDING";
 export const FETCH_COIN_SUCCESS = "FETCH_COIN_SUCCESS";
 export const FETCH_COIN_ERROR = "FETCH_COIN_ERROR";
+export const SET_COIN_ID = "SET_COIN_ID"
 
 const initialState = {
     data: [],
+    coinId: '',
     isLoading: false,
     error: null,
     hasError: false,
@@ -33,6 +35,11 @@ function coinReducer(state = initialState, action) {
         isLoading: false,
         hasError: true,
       };
+      case SET_COIN_ID:
+        return {
+          ...state,
+          coinId: action.payload,
+        };
       default: return state
 
     }

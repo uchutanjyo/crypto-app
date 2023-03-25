@@ -4,8 +4,16 @@ import {
   FETCH_COIN_SUCCESS,
   FETCH_COIN_PENDING,
   FETCH_COIN_ERROR,
+  SET_COIN_ID
 } from "./reducers.js";
 
+export const setCoinId = (coinId) => async (dispatch, getState) => {
+  const state = getState();
+    dispatch({ 
+      type: SET_COIN_ID,
+      payload: coinId
+    });
+  }
 
 export const getCoinData = (coinId) => async (dispatch, getState) => {
   const state = getState();

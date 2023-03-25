@@ -9,18 +9,17 @@ const Coin = () => {
 
   const dispatch = useDispatch();
 
+  const coinData = useSelector((state) => state.coin.coinId);
+
+
 useEffect(() => {
-  dispatch(getCoinData());
+  console.log(coinData)
+  dispatch(getCoinData(coinData));
 }, []);
-
-const coinData = useSelector((state) => state.coin.data);
-
-
-console.log(coinData)
 
     return (
       <Wrapper>
-      
+      <div>{coinData && coinData}</div>
         </Wrapper>
 
     );

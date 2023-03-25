@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import TableSetup from "./TableSetup";
 import {
   TableWrapper,
@@ -9,7 +9,19 @@ import {
 } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
+import { setCoinId } from "../../redux/Coin/action";
 import { useSelector, useDispatch } from "react-redux";
+
+export const CoinNameLink = ({ value }) => {
+  const dispatch = useDispatch();
+
+  return (
+    
+      <Link to="/coin" onClick={() => dispatch(setCoinId(value))}>
+      {value}
+    </Link>
+  )
+};
 
 const CoinImage = ({ value }) => {
   return <CoinImageContainer src={value} alt="new" />;
@@ -55,7 +67,8 @@ function Table() {
           },
           {
             Header: "Name",
-            accessor: "name",
+            accessor: "id",
+            Cell: ({ cell: { value } }) => <CoinNameLink value={value} />,
           },
           {
             Header: "Price",
