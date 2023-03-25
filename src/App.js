@@ -20,6 +20,7 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <ThemeProvider theme={theme}>
+      <div className="wrapper">
     <div className="App">
     <Navbar/>
     <GlobalStyle />
@@ -29,6 +30,7 @@ const App = () => {
         {/* <Route path="contact" element={ <Contact/> } /> */}
         <Route path="coin" element={ <Coin/> } />
       </Routes>
+    </div>
     </div>
     </ThemeProvider>
   )

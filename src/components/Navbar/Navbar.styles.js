@@ -6,8 +6,6 @@ export const Nav = styled.section`
   /* padding: 4em; */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 65vw;
   height: 25%;
   
 `;
@@ -17,8 +15,8 @@ export const TopNav = styled.section`
   display: flex;
   justify-content: space-between;
   background-color: ${(props) => props.theme.colours.dark};
-  padding: 1em;
-  width: 100%;
+  padding-top: 1.5em;
+  padding-bottom: 1em;
 `;
 
 export const BottomNav = styled.div`
@@ -26,17 +24,16 @@ export const BottomNav = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.theme.colours.grey};
-  width: 100%;
-
 `;
 
 export const InnerBottomNav = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 3em;
   background-color: ${(props) => props.theme.colours.dark};
-  /* border-radius: 10%; */
-  width: 60%;
+  border-radius: 0 0 25px 25px;
+  width: 67%;
   font-size: .8em
 `;
 

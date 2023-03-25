@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
-  
-  /* background-color: black; */
   display: flex;
  justify-content: center;
   padding-bottom: .5em;
@@ -10,7 +8,7 @@ export const TableWrapper = styled.div`
   padding-left: 2em;
   padding-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
-  border-radius: 1%;
+  border-radius: 25px 25px 0 0;
   width: 90%
 `;
 
