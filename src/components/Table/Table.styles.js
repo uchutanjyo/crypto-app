@@ -22,13 +22,10 @@ export const TableBody = styled.tbody`
 
 `;
 
-export const TableHead = styled.thead`
-  
-  /* background-color: black; */
-  display:table-header-group;
-
-  
+export const TableHeaderRow = styled.thead`
+    display:table-header-group;
 `;
+
 
 export const HeaderRow = styled.tr`
   

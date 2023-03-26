@@ -59,7 +59,7 @@ function Table() {
         Header: "Top 50 by Volume",
         // Second group columns
         columns: [
-          { Header: "#", accessor: "1" },
+          { Header: "#", accessor: "" },
           {
             Header: "",
             accessor: "image",

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useTable } from "react-table";
-import {  CoinsTable, TableRow, TableHead, TableCol, TableBody, HeaderRow, Span, HorizLine  } from "./Table.styles";
+import { useTable, useFilters, useSortBy } from "react-table";
+import {  CoinsTable, TableRow, TableHeaderRow, TableCol, TableBody, HeaderRow, Span, HorizLine  } from "./Table.styles";
 import { useDispatch } from "react-redux";
-
-import coinReducer from "../../redux/Coin/reducers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function TableSetup({ columns, data }) {
@@ -16,7 +17,9 @@ export default function TableSetup({ columns, data }) {
   } = useTable({
     columns,
     data
-  });
+  },
+  useFilters,
+    useSortBy);
   
 
 const [filterInput, setFilterInput] = useState("");
@@ -26,20 +29,33 @@ const handleFilterChange = e => {
   setFilterInput(value);
 };
 
+const sortByMessage = (header) => {
+  alert(`Sort by ${header}`)
+}
 
   return (
   <>
     <CoinsTable {...getTableProps()}>
-      <TableHead>
+      <TableHeaderRow>
         
         {headerGroups.map((headerGroup, i) => (
           <HeaderRow key={i} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column, i) => (
-              <th key={i} {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th key={i} {...column.getHeaderProps(column.getSortByToggleProps())}
+       >
+                {column.render("Header")}
+                {
+                column.isSorted
+                  ? column.isSortedDesc
+                    ? <FontAwesomeIcon icon={faSortUp} style={{marginLeft: 8}}/>
+                    : <FontAwesomeIcon icon={faSortDown} style={{marginLeft: 8}}/>
+                  : ""
+              }
+                </th>
             ))}
           </HeaderRow>
         ))}
-      </TableHead>
+      </TableHeaderRow>
  
 
       <TableBody {...getTableBodyProps()}>
@@ -51,7 +67,6 @@ const handleFilterChange = e => {
          
             <TableRow key={i} {...row.getRowProps()}>
               {row.cells.map((cell, i) => {
-                // console.log(cell.row)
                 return (
                 <TableCol key={i} {...cell.getCellProps()}>{cell.render("Cell")}</TableCol>
                 )
