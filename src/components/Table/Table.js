@@ -6,17 +6,41 @@ import {
   PercentageBar,
   PercentageBarWrapper,
   CoinImageContainer,
+  DecreaseDiv,
+  IncreaseDiv
+
 } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
 import { setCoinId } from "../../redux/Coin/action";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSortUp } from "@fortawesome/free-solid-svg-icons";
+import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+
+export const IncOrDecArrow = ({ value }) => {
+  if (value.charAt(0) == "-") {
+    value = value.slice(1)
+    return (
+      <DecreaseDiv>
+      <FontAwesomeIcon icon={faSortDown} style={{marginRight: 2}}/>
+      {value}
+      </DecreaseDiv>
+  )
+  } else {
+    return (
+      <IncreaseDiv>
+      <FontAwesomeIcon icon={faSortUp} style={{marginRight: 2}}/>
+      {value}
+      </IncreaseDiv>
+  )
+  }
+ 
+};
 
 export const CoinNameLink = ({ value }) => {
   const dispatch = useDispatch();
-
   return (
-    
       <Link to="/coin" onClick={() => dispatch(setCoinId(value))}>
       {value}
     </Link>
@@ -59,9 +83,9 @@ function Table() {
         Header: "Top 50 by Volume",
         // Second group columns
         columns: [
-          { Header: "#", accessor: "" },
+          // { Header: "#", accessor: "" },
           {
-            Header: "",
+            Header: "Img",
             accessor: "image",
             Cell: ({ cell: { value } }) => <CoinImage value={value} />,
           },
@@ -77,14 +101,18 @@ function Table() {
           {
             Header: "1h",
             accessor: "price_change_percentage_1h_in_currency",
+            Cell: ({ cell: { value } }) => <IncOrDecArrow value={value} />,
+
           },
           {
             Header: "24h",
             accessor: "price_change_percentage_24h_in_currency",
+            Cell: ({ cell: { value } }) => <IncOrDecArrow value={value} />,
           },
           {
             Header: "7d",
             accessor: "price_change_percentage_7d_in_currency",
+            Cell: ({ cell: { value } }) => <IncOrDecArrow value={value} />,
           },
           {
             Header: "24h vol/Market Cap",

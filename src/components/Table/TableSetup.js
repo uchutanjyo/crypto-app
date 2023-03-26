@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
-import {  CoinsTable, TableRow, TableHeaderRow, TableCol, TableBody, HeaderRow, Span, HorizLine  } from "./Table.styles";
+import {  CoinsTable, TableRow, TableHeaderRow, TableHeader, TableCol, TableBody, HeaderRow, Span, HorizLine  } from "./Table.styles";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
@@ -41,6 +41,7 @@ const sortByMessage = (header) => {
         {headerGroups.map((headerGroup, i) => (
           <HeaderRow key={i} {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column, i) => (
+              
               <th key={i} {...column.getHeaderProps(column.getSortByToggleProps())}
        >
                 {column.render("Header")}
