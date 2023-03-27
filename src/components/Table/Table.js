@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TableSetup from "./TableSetup";
 import {
@@ -7,8 +7,8 @@ import {
   PercentageBarWrapper,
   CoinImageContainer,
   DecreaseDiv,
-  IncreaseDiv
-
+  IncreaseDiv,
+  AbovePercentageBar,
 } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
@@ -17,73 +17,52 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { formatToUnits } from "../../utils/formatToUnits";
 
 export const IncOrDecArrow = ({ value }) => {
   if (value.charAt(0) == "-") {
-    value = value.slice(1)
+    value = value.slice(1);
     return (
       <DecreaseDiv>
-      <FontAwesomeIcon icon={faSortDown} style={{marginRight: 2}}/>
-      {value}
+        <FontAwesomeIcon
+          icon={faSortDown}
+          style={{ marginRight: 4, marginBottom: 2 }}
+        />
+        {value}
       </DecreaseDiv>
-  )
+    );
   } else {
     return (
       <IncreaseDiv>
-      <FontAwesomeIcon icon={faSortUp} style={{marginRight: 2}}/>
-      {value}
+        <FontAwesomeIcon
+          icon={faSortUp}
+          style={{ marginRight: 4, marginTop: 6 }}
+        />
+        {value}
       </IncreaseDiv>
-  )
+    );
   }
- 
 };
 
 export const CoinNameLink = ({ value }) => {
   const dispatch = useDispatch();
   return (
-      <Link to="/coin" onClick={() => dispatch(setCoinId(value))}>
+    <Link to="/coin" onClick={() => dispatch(setCoinId(value))}>
       {value}
     </Link>
-  )
+  );
 };
 
 const CoinImage = ({ value }) => {
   return <CoinImageContainer src={value} alt="new" />;
 };
 
-const VolOverMarketCap = ({ value }) => {
-  return (
-    <>
-      <PercentageBarWrapper background="grey">
-        <PercentageBar width={value * 0.3} background="white">
-          &nbsp;
-        </PercentageBar>
-      </PercentageBarWrapper>
-    </>
-  );
-};
-
-const CirculatingSupplyOverTotalSupply = ({ value }) => {
-  return (
-    <>
-      <PercentageBarWrapper background="grey">
-        <PercentageBar width={4.5} background="white">
-          &nbsp;
-        </PercentageBar>
-      </PercentageBarWrapper>
-    </>
-  );
-};
-
 function Table() {
   const columns = useMemo(
     () => [
       {
-        // Second group - Details
         Header: "Top 50 by Volume",
-        // Second group columns
         columns: [
-          // { Header: "#", accessor: "" },
           {
             Header: "Img",
             accessor: "image",
@@ -101,30 +80,71 @@ function Table() {
           {
             Header: "1h",
             accessor: "price_change_percentage_1h_in_currency",
-            Cell: ({ cell: { value } }) => <IncOrDecArrow value={value} />,
-
+            Cell: ({ cell: { value } }) => (
+              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
+            ),
           },
           {
             Header: "24h",
             accessor: "price_change_percentage_24h_in_currency",
-            Cell: ({ cell: { value } }) => <IncOrDecArrow value={value} />,
+            Cell: ({ cell: { value } }) => (
+              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
+            ),
           },
           {
             Header: "7d",
             accessor: "price_change_percentage_7d_in_currency",
-            Cell: ({ cell: { value } }) => <IncOrDecArrow value={value} />,
+            Cell: ({ cell: { value } }) => (
+              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
+            ),
           },
           {
             Header: "24h vol/Market Cap",
             accessor: "vol_over_market_cap",
-            Cell: ({ cell: { value } }) => <VolOverMarketCap value={value} />,
+            Cell: ({ cell: { row } }) => {
+              const width = (
+                (row.original.circulating_supply / row.original.total_supply) *
+                100
+              ).toString();
+              return (
+                <>
+                  <AbovePercentageBar>
+                    <span>{formatToUnits(row.original.total_volume)}</span>
+                    <span>{formatToUnits(row.original.market_cap)}</span>
+                  </AbovePercentageBar>
+                  <PercentageBarWrapper background="grey">
+                    <PercentageBar width={width} background="white">
+                      &nbsp;
+                    </PercentageBar>
+                  </PercentageBarWrapper>
+                </>
+              );
+            },
           },
           {
             Header: "Circulating / Total Sup",
             accessor: "circ_supply_over_total_supply",
-            Cell: ({ cell: { value } }) => (
-              <CirculatingSupplyOverTotalSupply value={value} />
-            ),
+            Cell: ({ cell: { row } }) => {
+              const width = (
+                (row.original.circulating_supply / row.original.total_supply) *
+                100
+              ).toString();
+              return (
+                <>
+                  <AbovePercentageBar>
+                    <span>
+                      {formatToUnits(row.original.circulating_supply)}
+                    </span>
+                    <span>{formatToUnits(row.original.total_supply)}</span>
+                  </AbovePercentageBar>
+                  <PercentageBarWrapper background="grey">
+                    <PercentageBar width={width} background="white">
+                      &nbsp;
+                    </PercentageBar>
+                  </PercentageBarWrapper>
+                </>
+              );
+            },
           },
           {
             Header: "Last 7d",
