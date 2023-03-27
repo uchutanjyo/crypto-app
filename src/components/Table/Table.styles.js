@@ -78,6 +78,7 @@ export const PercentageBarWrapper = styled.div`
 
 export const CoinImageContainer = styled.img`
     max-width: 3em;
+    margin-right: 1em;
 `;
 
 export const CoinPrice = styled.div`
@@ -92,3 +93,10 @@ export const DecreaseDiv = styled.div`
 
 `;
 
+export const CoinIdDiv = styled.div`
+`;
+
+export const CoinNameDiv = styled.div`
+display: flex;
+align-items: center;
+`;

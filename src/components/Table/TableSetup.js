@@ -49,6 +49,9 @@ export default function TableSetup({ columns, data }) {
                 <th
                   key={i}
                   {...column.getHeaderProps(column.getSortByToggleProps())}
+                  {...column.getHeaderProps({style: { paddingRight: column.paddingRight, minWidth: column.minWidth, width: column.width }})}
+
+                  
                 >
                   {column.render("Header")}
                   {column.isSorted ? (

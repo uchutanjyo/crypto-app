@@ -9,6 +9,8 @@ import {
   DecreaseDiv,
   IncreaseDiv,
   AbovePercentageBar,
+  CoinIdDiv,
+  CoinNameDiv
 } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
@@ -44,11 +46,11 @@ export const IncOrDecArrow = ({ value }) => {
   }
 };
 
-export const CoinNameLink = ({ value }) => {
+export const CoinNameLink = ({ name, id }) => {
   const dispatch = useDispatch();
   return (
-    <Link to="/coin" onClick={() => dispatch(setCoinId(value))}>
-      {value}
+    <Link to="/coin" onClick={() => dispatch(setCoinId(id))}>
+      {name}
     </Link>
   );
 };
@@ -64,14 +66,29 @@ function Table() {
         Header: "Top 50 by Volume",
         columns: [
           {
-            Header: "Img",
-            accessor: "image",
-            Cell: ({ cell: { value } }) => <CoinImage value={value} />,
+            Header: "#",
+            accessor: "",
+            maxWidth: 3,
+            minWidth: 3,
+            paddingRight:50,
+            width: 3,
+            Cell: ({ cell: { row } }) => <CoinIdDiv>{parseInt(row.id) + 1} </CoinIdDiv>,
           },
           {
             Header: "Name",
             accessor: "id",
-            Cell: ({ cell: { value } }) => <CoinNameLink value={value} />,
+            // maxWidth: 200,
+            // minWidth: 200,
+            paddingRight:200,
+            width: 100,
+            Cell: ({ cell: { row } }) => {
+              return (
+                  <CoinNameDiv>
+                  <CoinImageContainer src={row.original.image} alt="new" />
+                   <CoinNameLink name={row.original.name} id={row.original.id} />
+                  </CoinNameDiv>
+              );
+            },
           },
           {
             Header: "Price",
