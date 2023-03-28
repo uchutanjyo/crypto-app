@@ -13,13 +13,6 @@ const initialState = {
 
 function coinReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_COIN_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        hasError: true,
-        error: action.payload,
-      };
     case FETCH_COIN_PENDING:
       return {
         ...state,
@@ -35,6 +28,13 @@ function coinReducer(state = initialState, action) {
         isLoading: false,
         hasError: true,
       };
+      case FETCH_COIN_ERROR:
+        return {
+          ...state,
+          isLoading: false,
+          hasError: true,
+          error: action.payload,
+        };
       case SET_COIN_ID:
         return {
           ...state,

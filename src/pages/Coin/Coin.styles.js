@@ -1,50 +1,102 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.section`
-  /* padding: 4em; */
+export const YourSummaryWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom:.5em;
+  padding-top: .5em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border-radius: 3%;
+  width: 77%
+`;
+
+export const LeftSummary = styled.div`
+  /* background-color: black; */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: ${(props) => props.theme.colours.grey};
-  height: auto;
-  margin-bottom: 1em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-top: 3em;
-
-`;
-
-
-export const Container = styled.div`
-  padding: 1em;
-  background-color: black;
+ justify-content: center;
+  padding: 2em;
   margin-right: 2em;
-  border-radius: 5%;
-  width: 20%
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 3%;
+  /* width: 90% */
 `;
 
-// export const NavbarLink = styled.button`
-//   /* padding: 4em; */
-//   /* background-color: black; */
-//   color: whitesmoke;
-//   text-decoration: none;
-// `;
+export const MiddleSummary = styled.div`
+  /* background-color: black; */
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+  padding: 2em;
+  margin-right: 2em;
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 3%;
+  /* width: 90% */
+`;
 
-// export const Search = styled.input`
-//   padding: .5em;
-//   background-color: #5A5A5A;
-//   width: 25%;
-//   height: 70%;
-//   color: whitesmoke;
-//   border: none;
+export const RightSummary = styled.div`
+  /* background-color: black; */
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+  padding: 2em;
+  margin-right: 2em;
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 3%;
+  /* width: 90% */
+`;
 
-// `;
+export const DescriptionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-bottom:.5em;
+  padding-top: .5em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border-radius: 3%;
+  width: 97%
+`;
 
-// export const CurrencyChange = styled.select`
-//   padding: .5em;
-//   background-color: #5A5A5A;
-//   width: 10%;
-//   height: 70%;
-//   color: whitesmoke;
-//   border: none;
-// `;
+export const Description = styled.div`
+  /* background-color: black; */
+  display: flex;
+  flex-direction: column;
+ justify-content: center;
+  padding: 2em;
+  margin-right: 2em;
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 3%;
+  /* width: 90% */
+`;
+
+export const TopUrls = styled.div`
+  /* background-color: black; */
+  display: flex;
+ justify-content: center;
+  padding: 2em;
+  margin-right: 2em;
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 3%;
+  /* width: 90% */
+`;
+
+export const BottomUrl = styled.div`
+  /* background-color: black; */
+  display: flex;
+ justify-content: center;
+  padding: 2em;
+  margin-right: 2em;
+  background-color: ${(props) => props.theme.colours.dark};
+  border-radius: 3%;
+  /* width: 90% */
+`;
+
+export const CoinImageWrapper = styled.img`
+    background-color: ${(props) => props.theme.colours.dark};
+    padding: 1em;
+    `;
+
+export const CoinImageContainer = styled.img`
+    max-width: 4em;
+`;

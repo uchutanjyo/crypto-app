@@ -21,7 +21,7 @@ import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { formatToUnits } from "../../utils/formatToUnits";
 
-export const IncOrDecArrow = ({ value }) => {
+const IncOrDecArrow = ({ value }) => {
   if (value.charAt(0) == "-") {
     value = value.slice(1);
     return (
@@ -46,7 +46,7 @@ export const IncOrDecArrow = ({ value }) => {
   }
 };
 
-export const CoinNameLink = ({ name, id }) => {
+const CoinNameLink = ({ name, id }) => {
   const dispatch = useDispatch();
   return (
     <Link to="/coin" onClick={() => dispatch(setCoinId(id))}>
@@ -56,8 +56,9 @@ export const CoinNameLink = ({ name, id }) => {
 };
 
 const CoinImage = ({ value }) => {
-  return <CoinImageContainer src={value} alt="new" />;
+  return <CoinImageContainer src={value} alt={value} />;
 };
+
 
 function Table() {
   const columns = useMemo(
@@ -79,8 +80,7 @@ function Table() {
             accessor: "id",
             // maxWidth: 200,
             // minWidth: 200,
-            paddingRight:200,
-            width: 100,
+            paddingRight:100,
             Cell: ({ cell: { row } }) => {
               return (
                   <CoinNameDiv>
@@ -93,10 +93,12 @@ function Table() {
           {
             Header: "Price",
             accessor: "current_price",
+            paddingRight:50,
           },
           {
             Header: "1h",
             accessor: "price_change_percentage_1h_in_currency",
+            paddingRight:50,
             Cell: ({ cell: { value } }) => (
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),
@@ -104,6 +106,7 @@ function Table() {
           {
             Header: "24h",
             accessor: "price_change_percentage_24h_in_currency",
+            paddingRight:50,
             Cell: ({ cell: { value } }) => (
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),
@@ -111,6 +114,7 @@ function Table() {
           {
             Header: "7d",
             accessor: "price_change_percentage_7d_in_currency",
+            paddingRight:50,
             Cell: ({ cell: { value } }) => (
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),

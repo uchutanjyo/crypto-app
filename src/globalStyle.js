@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
 
   }
   .wrapper {
-    width: 60vw;
+    width: 65vw;
   }
   a {
     text-decoration: none;

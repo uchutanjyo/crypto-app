@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
-
   padding-bottom: 1em;
   padding-top: .5em;
   padding-left: .5em;
   padding-right: .5em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 25px 25px 0 0;
-  width: 95%;
+  width: 97%;
 `;
 
 export const CoinsTable = styled.table`
