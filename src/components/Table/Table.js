@@ -6,8 +6,6 @@ import {
   PercentageBar,
   PercentageBarWrapper,
   CoinImageContainer,
-  DecreaseDiv,
-  IncreaseDiv,
   AbovePercentageBar,
   CoinIdDiv,
   CoinNameDiv
@@ -17,34 +15,8 @@ import { getCoinsData } from "../../redux/Coins/action";
 import { setCoinId } from "../../redux/Coin/action";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortUp } from "@fortawesome/free-solid-svg-icons";
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { formatToUnits } from "../../utils/formatToUnits";
-
-const IncOrDecArrow = ({ value }) => {
-  if (value.charAt(0) == "-") {
-    value = value.slice(1);
-    return (
-      <DecreaseDiv>
-        <FontAwesomeIcon
-          icon={faSortDown}
-          style={{ marginRight: 4, marginBottom: 2 }}
-        />
-        {value}
-      </DecreaseDiv>
-    );
-  } else {
-    return (
-      <IncreaseDiv>
-        <FontAwesomeIcon
-          icon={faSortUp}
-          style={{ marginRight: 4, marginTop: 6 }}
-        />
-        {value}
-      </IncreaseDiv>
-    );
-  }
-};
+import { IncOrDecArrow } from "../../utils/incOrDecArrow";
 
 const CoinNameLink = ({ name, id }) => {
   const dispatch = useDispatch();
