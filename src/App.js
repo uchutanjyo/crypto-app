@@ -25,10 +25,10 @@ const App = () => {
     <Navbar/>
     <GlobalStyle />
       <Routes>
-        <Route path="/" element={ <Coins/> } />
+      <Route path="/" element={ <Coin/> } />
+        {/* <Route path="/" element={ <Coins/> } /> */}
         <Route path="portfolio" element={ <Portfolio/> } />
         {/* <Route path="contact" element={ <Contact/> } /> */}
-        <Route path="coin" element={ <Coin/> } />
       </Routes>
     </div>
     </div>

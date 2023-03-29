@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCoinData } from "../../redux/Coin/action";
 import { Wrapper } from "../Coins/Coins.styles";
 import { IncOrDecArrow } from "../../utils/incOrDecArrow";
+import { formatToUnits } from "../../utils/formatToUnits";
 import {
   YourSummaryWrapper,
   LeftSummary,
@@ -22,9 +23,8 @@ import {
   FillerColumn,
   FillerHead,
   FillerText,
-  DataPointWrapper,
-  BoldedDataHeader,
   DataPoint,
+  BlueIcon
 } from "./Coin.styles";
 
 const Coin = () => {
@@ -89,36 +89,48 @@ const Coin = () => {
             </MiddleSummary>
 
             <RightSummary>
-              <DataPointWrapper>
-                <BoldedDataHeader>Market cap:</BoldedDataHeader>
                 <DataPoint>
-                  {coinData.data.market_data.market_cap.usd}
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Market cap:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
                 </DataPoint>
-              </DataPointWrapper>
-              <DataPointWrapper>
-                <BoldedDataHeader>Market cap:</BoldedDataHeader>
+
                 <DataPoint>
-                  {coinData.data.market_data.market_cap.usd}
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Fully diluted valuation:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
                 </DataPoint>
-              </DataPointWrapper>
-              <DataPointWrapper>
-                <BoldedDataHeader>Market cap:</BoldedDataHeader>
+
                 <DataPoint>
-                  {coinData.data.market_data.market_cap.usd}
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Volume 24h:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
                 </DataPoint>
-              </DataPointWrapper>
-              <DataPointWrapper>
-                <BoldedDataHeader>Market cap:</BoldedDataHeader>
+
+                <DataPoint style={{marginBottom: 50}}>
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Volume / Market:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                </DataPoint>
+
                 <DataPoint>
-                  {coinData.data.market_data.market_cap.usd}
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Total Volume:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
                 </DataPoint>
-              </DataPointWrapper>
-              <DataPointWrapper>
-                <BoldedDataHeader>Market cap:</BoldedDataHeader>
+
                 <DataPoint>
-                  {coinData.data.market_data.market_cap.usd}
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Circulating Supply:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
                 </DataPoint>
-              </DataPointWrapper>
+
+                <DataPoint>
+                  <BlueIcon>+</BlueIcon>
+                <strong style={{marginRight: '.5em'}}>Max Supply:</strong>
+                ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                </DataPoint>
+        
             </RightSummary>
           </YourSummaryWrapper>
         </>

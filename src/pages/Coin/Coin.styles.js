@@ -7,7 +7,7 @@ export const YourSummaryWrapper = styled.div`
   padding-left: 2em;
   padding-right: 2em;
   border-radius: 3%;
-  width: 77%;
+  width: 97%;
 `;
 
 export const LeftSummary = styled.div`
@@ -19,6 +19,7 @@ export const LeftSummary = styled.div`
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
+  width: 25%
 `;
 
 export const MiddleSummary = styled.div`
@@ -30,18 +31,22 @@ export const MiddleSummary = styled.div`
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
+
+
 `;
 
 export const RightSummary = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding-left: 6em;
-  padding-right: 6em;
-  margin-right: 2em;
+  align-items: left;
+  padding-left: 1em;
+  padding-right: 1em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
+  width: 45%;
+  font-size: .8em
+
 `;
 
 export const DescriptionWrapper = styled.div`
@@ -77,7 +82,6 @@ export const TopUrls = styled.div`
 export const BottomUrl = styled.div`
   display: flex;
   justify-content: center;
-  padding: 2em;
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
@@ -85,7 +89,7 @@ export const BottomUrl = styled.div`
 
 export const CoinImageWrapper = styled.div`
   background-color: ${(props) => props.theme.colours.grey};
-  padding: 2em;
+  padding: .5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,7 +99,7 @@ export const CoinImageWrapper = styled.div`
 export const CoinImageContainer = styled.img``;
 
 export const CoinName = styled.h3`
-  padding: 1em;
+  padding: .5em;
 `;
 
 export const CoinUrl = styled.div`
@@ -107,13 +111,12 @@ export const CoinUrl = styled.div`
     Change names later. */
 export const MiddleTop = styled.h2`
   background-color: ${(props) => props.theme.colours.grey};
-  padding: 0.5em;
+  padding: 0.2em;
   font-weight: bold;
 `;
 
 export const MiddleSub = styled.div`
   color: ${(props) => props.theme.colours.green};
-  padding: 1em;
 `;
 
 export const FillerColumn = styled.div`
@@ -127,12 +130,17 @@ export const FillerColumn = styled.div`
 export const FillerHead = styled.div``;
 export const FillerText = styled.div``;
 
-export const DataPointWrapper = styled.div`
-  display: flex;
+
+export const DataPoint = styled.span`
+margin-left: 2em;
+margin-bottom: 1em;
 `;
 
-export const BoldedDataHeader = styled.span`
-  font-weight: bold;
+export const BlueIcon = styled.span`
+background-color: #2172e5;
+padding-left: .3em;
+padding-right: .3em;
+padding-bottom: .1em;
+border-radius: 25%;
+margin-right: .5em
 `;
-
-export const DataPoint = styled.span``;
