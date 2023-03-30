@@ -26,7 +26,7 @@ export const getCoinData = (coinId) => async (dispatch, getState) => {
     dispatch({ type: FETCH_COIN_PENDING });
     const data = mockCoinData
     // server down - uncomment soon
-    // const data = await axios(
+    // const {data} = await axios(
     //   `https://api.coingecko.com/api/v3/coins/${coinId.coinId}?localization=false`)
     dispatch({
       type: FETCH_COIN_SUCCESS,

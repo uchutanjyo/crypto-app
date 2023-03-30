@@ -5,7 +5,7 @@ export const SET_COIN_ID = "SET_COIN_ID"
 
 const initialState = {
     data: [],
-    coinId: '',
+    coinId: 'shiba-inu',
     isLoading: false,
     error: null,
     hasError: false,
