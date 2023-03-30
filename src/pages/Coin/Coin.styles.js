@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const PageWrapper = styled.div`
+  width: 98%;
+`;
+
 export const YourSummaryWrapper = styled.div`
   display: flex;
   padding-bottom: 0.5em;
@@ -7,7 +11,7 @@ export const YourSummaryWrapper = styled.div`
   padding-left: 2em;
   padding-right: 2em;
   border-radius: 3%;
-  width: 97%;
+  width: 98%;
 `;
 
 export const LeftSummary = styled.div`
@@ -57,7 +61,7 @@ export const DescriptionWrapper = styled.div`
   padding-left: 2em;
   padding-right: 2em;
   border-radius: 3%;
-  width: 97%;
+  width: 100%;
 `;
 
 export const Description = styled.div`
@@ -71,20 +75,28 @@ export const Description = styled.div`
 `;
 
 export const TopUrls = styled.div`
+margin-top:1em;
   display: flex;
-  justify-content: center;
-  padding: 2em;
-  margin-right: 2em;
-  background-color: ${(props) => props.theme.colours.dark};
+  justify-content: space-evenly;
+
   border-radius: 3%;
+  width: 100%;
+  border-radius: 3%;
+
 `;
 
 export const BottomUrl = styled.div`
   display: flex;
   justify-content: center;
-  margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
+  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-left: 2em;
   border-radius: 3%;
+  padding-top:1em;
+  padding-bottom:1em;
+  width: 98%
+
 `;
 
 export const CoinImageWrapper = styled.div`
@@ -105,6 +117,20 @@ export const CoinName = styled.h3`
 export const CoinUrl = styled.div`
   background-color: ${(props) => props.theme.colours.grey};
   padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UrlWrapper = styled.div`
+  background-color: ${(props) => props.theme.colours.dark};
+  padding: 1em;
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30em
+
 `;
 
 /* Because I don't yet know what the values are supposed to be here.
