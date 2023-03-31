@@ -5,6 +5,7 @@ import {
   TableRow,
   TableHeaderRow,
   TableCol,
+  TableHeader,
   TableBody,
   HeaderRow,
 } from "./Table.styles";
@@ -49,26 +50,32 @@ export default function TableSetup({ columns, data }) {
                 <th
                   key={i}
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  {...column.getHeaderProps({style: { paddingRight: column.paddingRight, minWidth: column.minWidth, width: column.width }})}
-
-                  
+                  {...column.getHeaderProps({
+                    style: {
+                      paddingRight: column.paddingRight,
+                      minWidth: column.minWidth,
+                      width: column.width,
+                    },
+                  })}
                 >
-                  {column.render("Header")}
-                  {column.isSorted ? (
-                    column.isSortedDesc ? (
-                      <FontAwesomeIcon
-                        icon={faSortUp}
-                        style={{ marginLeft: 8 }}
-                      />
+                  <TableHeader>
+                    {column.render("Header")}
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <FontAwesomeIcon
+                          icon={faSortUp}
+                          style={{ marginLeft: 8 }}
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faSortDown}
+                          style={{ marginLeft: 8 }}
+                        />
+                      )
                     ) : (
-                      <FontAwesomeIcon
-                        icon={faSortDown}
-                        style={{ marginLeft: 8 }}
-                      />
-                    )
-                  ) : (
-                    ""
-                  )}
+                      ""
+                    )}
+                  </TableHeader>
                 </th>
               ))}
             </HeaderRow>

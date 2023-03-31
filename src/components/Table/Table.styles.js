@@ -22,14 +22,15 @@ export const TableBody = styled.tbody`
 export const TableHeaderRow = styled.thead`
 
 `;
-/* export const TableHeader= styled.thead`
-width: 10%
-`; */
+export const TableHeader= styled.thead`
+padding-left: 1em;
+
+cursor: pointer`; 
 
 
 export const HeaderRow = styled.tr`
   font-size:.6em;
-  padding-left: -7em;
+  /* padding-left: -7em; */
 `;
 
 export const TableRow = styled.tr`
@@ -51,11 +52,18 @@ export const HorizLine = styled.hr`
 `;
 
 export const AbovePercentageBar = styled.div`
-    /* width: ${props => props.width}%; */
     height: 1em;
     display: flex;
     justify-content: space-between;
     margin-bottom: .5em
+`;
+
+export const AbovePercentageBarLeft = styled.span`
+color: ${props => props.color}%;
+`;
+
+export const AbovePercentageBarRight = styled.span`
+color: ${props => props.color}%;
 `;
 
 
@@ -99,3 +107,48 @@ export const CoinNameDiv = styled.div`
 display: flex;
 align-items: center;
 `;
+
+export const PercentageBarColours = [
+  {
+    background: '#fee158',
+    bar: '#ffb528',
+  },
+  {
+    background: '#8a92b2',
+    bar: '#474c77',
+  },
+  {
+    background: '#1ba27a',
+    bar: '#1a6c55',
+  },
+  {
+    background: '#e4cd82',
+    bar: '#bb9f33',
+  },
+  {
+    background: '#ffdcce',
+    bar: '#fe7d43',
+  },
+  {
+    background: '#f4b2b0',
+    bar: '#ffb528',
+  },
+  {
+    background: '#f4b2b0',
+    bar: '#b3404a',
+  },
+  {
+    background: '#2775c9',
+    bar: '#1d327d',
+  },
+  {
+    background: '   #f09242',
+    bar: '#83808b',
+  },
+  {
+    background: '#985d9d',
+    bar: '#98009d',
+  },
+  
+   ]
+

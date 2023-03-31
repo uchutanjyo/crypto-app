@@ -7,6 +7,8 @@ import {
   PercentageBarWrapper,
   CoinImageContainer,
   AbovePercentageBar,
+  AbovePercentageBarLeft,
+  AbovePercentageBarRight,
   CoinIdDiv,
   CoinNameDiv
 } from "./Table.styles";
@@ -17,6 +19,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatToUnits } from "../../utils/formatToUnits";
 import { IncOrDecArrow } from "../../utils/incOrDecArrow";
+import { PercentageBarColours } from "./Table.styles";
+
+const GeneratePercentageBarColour = (index, data, type) => {
+  for (let i=0; i < data; i++) {
+    return type === 'background' ? 
+     PercentageBarColours[ index % PercentageBarColours.length ].background : 
+     PercentageBarColours[ index % PercentageBarColours.length ].bar 
+  }
+}
+
 
 const CoinNameLink = ({ name, id }) => {
   const dispatch = useDispatch();
@@ -43,7 +55,6 @@ function Table() {
             accessor: "",
             maxWidth: 3,
             minWidth: 3,
-            paddingRight:50,
             width: 3,
             Cell: ({ cell: { row } }) => <CoinIdDiv>{parseInt(row.id) + 1} </CoinIdDiv>,
           },
@@ -52,11 +63,10 @@ function Table() {
             accessor: "id",
             // maxWidth: 200,
             // minWidth: 200,
-            paddingRight:100,
             Cell: ({ cell: { row } }) => {
               return (
                   <CoinNameDiv>
-                  <CoinImageContainer src={row.original.image} alt="new" />
+                  <CoinImageContainer src={row.original.image} alt="" />
                    <CoinNameLink name={row.original.name} id={row.original.id} />
                   </CoinNameDiv>
               );
@@ -65,12 +75,10 @@ function Table() {
           {
             Header: "Price",
             accessor: "current_price",
-            paddingRight:50,
           },
           {
             Header: "1h",
             accessor: "price_change_percentage_1h_in_currency",
-            paddingRight:50,
             Cell: ({ cell: { value } }) => (
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),
@@ -78,7 +86,6 @@ function Table() {
           {
             Header: "24h",
             accessor: "price_change_percentage_24h_in_currency",
-            paddingRight:50,
             Cell: ({ cell: { value } }) => (
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),
@@ -86,7 +93,6 @@ function Table() {
           {
             Header: "7d",
             accessor: "price_change_percentage_7d_in_currency",
-            paddingRight:50,
             Cell: ({ cell: { value } }) => (
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),
@@ -96,17 +102,22 @@ function Table() {
             accessor: "vol_over_market_cap",
             Cell: ({ cell: { row } }) => {
               const width = (
-                (row.original.circulating_supply / row.original.total_supply) *
+                (row.original.total_volume / row.original.market_cap) *
                 100
               ).toString();
               return (
                 <>
                   <AbovePercentageBar>
-                    <span>{formatToUnits(row.original.total_volume)}</span>
-                    <span>{formatToUnits(row.original.market_cap)}</span>
+                    <AbovePercentageBarLeft 
+                    color={GeneratePercentageBarColour(row.id, 50, 'background')}
+                    >{formatToUnits(row.original.total_volume)}</AbovePercentageBarLeft>
+                    <AbovePercentageBarRight
+                    color={GeneratePercentageBarColour(row.id, 50, 'bar')}
+                    >{formatToUnits(row.original.market_cap)}</AbovePercentageBarRight>
                   </AbovePercentageBar>
-                  <PercentageBarWrapper background="grey">
-                    <PercentageBar width={width} background="white">
+                  <PercentageBarWrapper background=                   {GeneratePercentageBarColour(row.id, 50, 'background')}>
+                    <PercentageBar width={width} background=
+                    {GeneratePercentageBarColour(row.id, 50, 'bar')}>
                       &nbsp;
                     </PercentageBar>
                   </PercentageBarWrapper>
@@ -130,8 +141,9 @@ function Table() {
                     </span>
                     <span>{formatToUnits(row.original.total_supply)}</span>
                   </AbovePercentageBar>
-                  <PercentageBarWrapper background="grey">
-                    <PercentageBar width={width} background="white">
+                  <PercentageBarWrapper background=                   {GeneratePercentageBarColour(row.id, 50, 'background')}>
+                    <PercentageBar width={width} background=
+                    {GeneratePercentageBarColour(row.id, 50, 'bar')}>
                       &nbsp;
                     </PercentageBar>
                   </PercentageBarWrapper>
@@ -156,6 +168,8 @@ function Table() {
   }, []);
 
   const coinsData = useSelector((state) => state.coins.data);
+
+
 
   return (
     <TableWrapper>
