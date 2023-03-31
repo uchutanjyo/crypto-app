@@ -89,16 +89,16 @@ const Coin = () => {
                     </MiddleSub>
                     <div style={{ display: "flex" }}>
                       <FillerColumn>
-                        <FillerHead>SDGSDG</FillerHead>
-                        <FillerText>A</FillerText>
-                        <FillerText>B</FillerText>
-                        <FillerText>C</FillerText>
+                        <FillerHead><h3>ATH:</h3></FillerHead>
+                        <FillerText>${coinData.data.market_data.ath.usd}</FillerText>
+                        <FillerText>{parseFloat(coinData.data.market_data.ath_change_percentage.usd)}</FillerText>
+                        <FillerText>{coinData.data.market_data.ath_date.usd.slice(0, 10)}</FillerText>
                       </FillerColumn>
                       <FillerColumn>
-                        <FillerHead>SHSSD</FillerHead>
-                        <FillerText>A</FillerText>
-                        <FillerText>B</FillerText>
-                        <FillerText>C</FillerText>
+                        <FillerHead><h3>ATL:</h3></FillerHead>
+                        <FillerText>${coinData.data.market_data.atl.usd}</FillerText>
+                        <FillerText>{parseFloat(coinData.data.market_data.atl_change_percentage.usd).toFixed(2)}</FillerText>
+                        <FillerText>{coinData.data.market_data.atl_date.usd.slice(0, 10)}</FillerText>
                       </FillerColumn>
                     </div>
                   </>
@@ -121,7 +121,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Fully diluted valuation:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                      ${formatToUnits(coinData.data.market_data.fully_diluted_valuation)}
                     </DataPoint>
 
                     <DataPoint>
@@ -129,7 +129,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Volume 24h:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                      ${formatToUnits(coinData.data.market_data.total_volume.usd)}
                     </DataPoint>
 
                     <DataPoint style={{ marginBottom: 50 }}>
@@ -137,7 +137,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Volume / Market:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                      {formatToUnits(coinData.data.market_data.total_volume.usd / coinData.data.market_data.market_cap.usd)}
                     </DataPoint>
 
                     <DataPoint>
@@ -145,7 +145,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Total Volume:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                      {formatToUnits(coinData.data.market_data.total_volume.usd )}
                     </DataPoint>
 
                     <DataPoint>
@@ -153,7 +153,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Circulating Supply:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                      {formatToUnits(coinData.data.market_data.circulating_supply)}
                     </DataPoint>
 
                     <DataPoint>
@@ -161,7 +161,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Max Supply:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.market_cap.usd)}
+                      {formatToUnits(coinData.data.market_data.max_supply)}
                     </DataPoint>
                   </>
                 )}
@@ -183,7 +183,7 @@ const Coin = () => {
                   to={`${coinData.data.links.blockchain_site[0]}`}
                   target="_blank"
                 >
-                  {coinData.data.links.blockchain_site[0].slice()}
+                  {coinData.data.links.blockchain_site[0].slice(8)}
                 </Link>
               </UrlWrapper>
 
@@ -192,7 +192,7 @@ const Coin = () => {
                   to={`${coinData.data.links.blockchain_site[1]}`}
                   target="_blank"
                 >
-                  {coinData.data.links.blockchain_site[1].slice()}
+                  {coinData.data.links.blockchain_site[1].slice(8)}
                 </Link>
               </UrlWrapper>
             </TopUrls>
@@ -201,7 +201,7 @@ const Coin = () => {
                 to={`${coinData.data.links.blockchain_site[2]}`}
                 target="_blank"
               >
-                {coinData.data.links.blockchain_site[2].slice()}
+                {coinData.data.links.blockchain_site[2].slice(8)}
               </Link>
             </BottomUrl>
           </>

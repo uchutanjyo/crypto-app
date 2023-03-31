@@ -16,7 +16,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: #191b1f;
-    font-family: 'Roboto Mono', monospace;
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: 'Lato', sans-serif;
     display: flex;
     justify-content: center;
     color: white;
