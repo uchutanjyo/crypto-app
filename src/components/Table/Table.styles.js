@@ -1,79 +1,71 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
-  
-  /* background-color: black; */
-  display: flex;
- justify-content: center;
-  padding-bottom: .5em;
+  padding-bottom: 1em;
   padding-top: .5em;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: .5em;
+  padding-right: .5em;
   background-color: ${(props) => props.theme.colours.dark};
-  border-radius: 1%;
-  width: 90%
+  border-radius: 25px 25px 0 0;
+  width: 97%;
 `;
 
 export const CoinsTable = styled.table`
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 50px 75px;
+width: 100%;
+  border-collapse: collapse;
 `;
 
 export const TableBody = styled.tbody`
 
 `;
 
-export const TableHead = styled.thead`
-  
-  /* background-color: black; */
-  display:table-header-group;
+export const TableHeaderRow = styled.thead`
 
-  
 `;
+/* export const TableHeader= styled.thead`
+width: 10%
+`; */
+
 
 export const HeaderRow = styled.tr`
-  
-  /* background-color: black; */
   font-size:.6em;
-  
-`;
-
-export const Span = styled.span`
-  
-  /* background-color: black; */
-
-    border: 1px solid;
-
+  padding-left: -7em;
 `;
 
 export const TableRow = styled.tr`
-  
-  /* background-color: black; */
-  border-top: 1px solid white;
+  border-top: 0.001rem dotted white;
   padding-bottom: 2em;
   padding-top: 2em;
   font-size:.7em;
-
 `;
 
 export const TableCol = styled.td`
-  
-
+  padding-left: 2em;
+  width: 10em;
+  padding-bottom: 2em;
+  padding-top: 2em;
 `;
 
 export const HorizLine = styled.hr`
   width: 10em
-
 `;
+
+export const AbovePercentageBar = styled.div`
+    /* width: ${props => props.width}%; */
+    height: 1em;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5em
+`;
+
 
 export const PercentageBar = styled.div`
     width: ${props => props.width}%;
     height: 1em;
     border-radius: 50px;
     background: ${props => props.background};
+    max-width: 100%
 `;
-
 
 export const PercentageBarWrapper = styled.div`
     max-width: 100px;
@@ -85,9 +77,25 @@ export const PercentageBarWrapper = styled.div`
 
 export const CoinImageContainer = styled.img`
     max-width: 3em;
+    margin-right: 1em;
 `;
 
+export const CoinPrice = styled.div`
+`;
 
+export const IncreaseDiv = styled.div`
+  color: ${(props) => props.theme.colours.green};
+`;
 
+export const DecreaseDiv = styled.div`
+  color: ${(props) => props.theme.colours.red};
 
+`;
 
+export const CoinIdDiv = styled.div`
+`;
+
+export const CoinNameDiv = styled.div`
+display: flex;
+align-items: center;
+`;

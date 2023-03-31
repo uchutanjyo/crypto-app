@@ -1,89 +1,143 @@
-import React, { useMemo, useState, useEffect } from "react";
-
+import React, { useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
 import TableSetup from "./TableSetup";
 import {
   TableWrapper,
   PercentageBar,
   PercentageBarWrapper,
   CoinImageContainer,
+  AbovePercentageBar,
+  CoinIdDiv,
+  CoinNameDiv
 } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
+import { setCoinId } from "../../redux/Coin/action";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatToUnits } from "../../utils/formatToUnits";
+import { IncOrDecArrow } from "../../utils/incOrDecArrow";
+
+const CoinNameLink = ({ name, id }) => {
+  const dispatch = useDispatch();
+  return (
+    <Link to="/coin" onClick={() => dispatch(setCoinId(id))}>
+      {name}
+    </Link>
+  );
+};
 
 const CoinImage = ({ value }) => {
-  return <CoinImageContainer src={value} alt="new" />;
+  return <CoinImageContainer src={value} alt={value} />;
 };
 
-const VolOverMarketCap = ({ value }) => {
-  return (
-    <>
-      <PercentageBarWrapper background="grey">
-        <PercentageBar width={value * 0.3} background="white">
-          &nbsp;
-        </PercentageBar>
-      </PercentageBarWrapper>
-    </>
-  );
-};
-
-const CirculatingSupplyOverTotalSupply = ({ value }) => {
-  return (
-    <>
-      <PercentageBarWrapper background="grey">
-        <PercentageBar width={4.5} background="white">
-          &nbsp;
-        </PercentageBar>
-      </PercentageBarWrapper>
-    </>
-  );
-};
 
 function Table() {
   const columns = useMemo(
     () => [
       {
-        // Second group - Details
         Header: "Top 50 by Volume",
-        // Second group columns
         columns: [
-          { Header: "#", accessor: "1" },
           {
-            Header: "",
-            accessor: "image",
-            Cell: ({ cell: { value } }) => <CoinImage value={value} />,
+            Header: "#",
+            accessor: "",
+            maxWidth: 3,
+            minWidth: 3,
+            paddingRight:50,
+            width: 3,
+            Cell: ({ cell: { row } }) => <CoinIdDiv>{parseInt(row.id) + 1} </CoinIdDiv>,
           },
           {
             Header: "Name",
-            accessor: "name",
+            accessor: "id",
+            // maxWidth: 200,
+            // minWidth: 200,
+            paddingRight:100,
+            Cell: ({ cell: { row } }) => {
+              return (
+                  <CoinNameDiv>
+                  <CoinImageContainer src={row.original.image} alt="new" />
+                   <CoinNameLink name={row.original.name} id={row.original.id} />
+                  </CoinNameDiv>
+              );
+            },
           },
           {
             Header: "Price",
             accessor: "current_price",
+            paddingRight:50,
           },
           {
             Header: "1h",
             accessor: "price_change_percentage_1h_in_currency",
+            paddingRight:50,
+            Cell: ({ cell: { value } }) => (
+              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
+            ),
           },
           {
             Header: "24h",
             accessor: "price_change_percentage_24h_in_currency",
+            paddingRight:50,
+            Cell: ({ cell: { value } }) => (
+              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
+            ),
           },
           {
             Header: "7d",
             accessor: "price_change_percentage_7d_in_currency",
+            paddingRight:50,
+            Cell: ({ cell: { value } }) => (
+              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
+            ),
           },
           {
             Header: "24h vol/Market Cap",
             accessor: "vol_over_market_cap",
-            Cell: ({ cell: { value } }) => <VolOverMarketCap value={value} />,
+            Cell: ({ cell: { row } }) => {
+              const width = (
+                (row.original.circulating_supply / row.original.total_supply) *
+                100
+              ).toString();
+              return (
+                <>
+                  <AbovePercentageBar>
+                    <span>{formatToUnits(row.original.total_volume)}</span>
+                    <span>{formatToUnits(row.original.market_cap)}</span>
+                  </AbovePercentageBar>
+                  <PercentageBarWrapper background="grey">
+                    <PercentageBar width={width} background="white">
+                      &nbsp;
+                    </PercentageBar>
+                  </PercentageBarWrapper>
+                </>
+              );
+            },
           },
           {
             Header: "Circulating / Total Sup",
             accessor: "circ_supply_over_total_supply",
-            Cell: ({ cell: { value } }) => (
-              <CirculatingSupplyOverTotalSupply value={value} />
-            ),
+            Cell: ({ cell: { row } }) => {
+              const width = (
+                (row.original.circulating_supply / row.original.total_supply) *
+                100
+              ).toString();
+              return (
+                <>
+                  <AbovePercentageBar>
+                    <span>
+                      {formatToUnits(row.original.circulating_supply)}
+                    </span>
+                    <span>{formatToUnits(row.original.total_supply)}</span>
+                  </AbovePercentageBar>
+                  <PercentageBarWrapper background="grey">
+                    <PercentageBar width={width} background="white">
+                      &nbsp;
+                    </PercentageBar>
+                  </PercentageBarWrapper>
+                </>
+              );
+            },
           },
           {
             Header: "Last 7d",
