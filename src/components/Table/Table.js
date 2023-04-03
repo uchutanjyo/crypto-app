@@ -10,7 +10,8 @@ import {
   AbovePercentageBarLeft,
   AbovePercentageBarRight,
   CoinIdDiv,
-  CoinNameDiv
+  CoinNameDiv,
+  BarAndTextWrapper,
 } from "./Table.styles";
 
 import { getCoinsData } from "../../redux/Coins/action";
@@ -107,6 +108,7 @@ function Table() {
               ).toString();
               return (
                 <>
+                <BarAndTextWrapper style={{marginRight: 40}}>
                   <AbovePercentageBar>
                     <AbovePercentageBarLeft 
                     color={GeneratePercentageBarColour(row.id, 50, 'background')}
@@ -121,6 +123,7 @@ function Table() {
                       &nbsp;
                     </PercentageBar>
                   </PercentageBarWrapper>
+                  </BarAndTextWrapper>
                 </>
               );
             },
@@ -134,7 +137,7 @@ function Table() {
                 100
               ).toString();
               return (
-                <>
+                 <BarAndTextWrapper style={{marginRight: 40}}>
                   <AbovePercentageBar>
                     <span>
                       {formatToUnits(row.original.circulating_supply)}
@@ -147,7 +150,7 @@ function Table() {
                       &nbsp;
                     </PercentageBar>
                   </PercentageBarWrapper>
-                </>
+                  </BarAndTextWrapper>
               );
             },
           },

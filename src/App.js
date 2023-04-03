@@ -5,6 +5,7 @@ import Coin from './pages/Coin/Coin';
 import Portfolio from "./pages/Portfolio/Portfolio"
 import GlobalStyle from './globalStyle';
 import Navbar from './components/Navbar/Navbar'
+import AppHeader from './components/AppHeader/AppHeader';
 
 import { ThemeProvider } from 'styled-components'
 import { colours }  from './globalStyle';
@@ -20,6 +21,8 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <ThemeProvider theme={theme}>
+              <AppHeader />
+
       <div className="wrapper">
     <div className="App">
     <Navbar/>
