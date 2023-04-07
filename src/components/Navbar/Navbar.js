@@ -15,6 +15,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrency } from "../../redux/Currency/action";
+import { getCoinsData } from "../../redux/Coins/action";
 
 const lowerNavbarHeaders = [
   "Coins",
@@ -26,18 +27,26 @@ const lowerNavbarHeaders = [
   "ETHDom",
 ];
 
-const currencies = ["GBP", "USD", "EUR", "CAD", "JPY"];
+const currencies = ["USD", "GBP", "EUR", "CAD", "JPY"];
 
 const Navbar = () => {
   const ref = useRef()
   const dispatch = useDispatch();
-  const currentCurrency = useSelector((state) => state.currency);
+  const currentCurrency = useSelector((state) => state.currency.currency);
+
 
 
   const setCurrentCurrency = (currency) => {
     ref.current = currency
     dispatch(setCurrency(ref.current))
+    // dispatch(getCoinsData(currentCurrency))
+
   }
+
+  // useEffect(() => {
+  //   if (currentCurrency !== 'usd') {
+  //   }
+  // }, [currentCurrency])
 
   return (
     <Nav>

@@ -169,14 +169,21 @@ function Table() {
   useEffect(() => {
     dispatch(getCoinsData());
   }, []);
-
+  
   const coinsData = useSelector((state) => state.coins.data);
 
-
+  useEffect(() => {
+console.log(coinsData)
+  }, [coinsData]);
 
   return (
     <TableWrapper>
+      {coinsData === undefined && 
+      <div>Loading...</div>
+      }
+      {coinsData !== undefined &&
       <TableSetup columns={columns} data={coinsData} />
+}
     </TableWrapper>
   );
 }

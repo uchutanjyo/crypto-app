@@ -1,10 +1,6 @@
-import axios from "axios";
-
 import {
   SET_CURRENCY
 } from "./reducers.js";
-
-const currencies = ["GBP", "USD", "EUR", "CAD", "JPY"];
 
 
 export const setCurrency = (currency) => async (dispatch, getState) => {

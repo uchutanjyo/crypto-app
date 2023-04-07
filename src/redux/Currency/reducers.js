@@ -2,9 +2,6 @@ export const SET_CURRENCY = "SET_CURRENCY"
 
 const initialState = {
     currency: 'USD',
-    isLoading: false,
-    error: null,
-    hasError: false,
 }
 
 function currencyReducer(state = initialState, action) {
