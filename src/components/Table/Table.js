@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatToUnits } from "../../utils/formatToUnits";
 import { IncOrDecArrow } from "../../utils/incOrDecArrow";
 import { PercentageBarColours } from "./Table.styles";
+import { current } from "@reduxjs/toolkit";
 
 const GeneratePercentageBarColour = (index, data, type) => {
   for (let i=0; i < data; i++) {
@@ -165,11 +166,14 @@ function Table() {
   );
 
   const dispatch = useDispatch();
+  const currentCurrency = useSelector((state) => state.currency.currency);
+
 
   useEffect(() => {
-    dispatch(getCoinsData());
-  }, []);
-  
+    console.log(currentCurrency, 'ccc')
+    dispatch(getCoinsData(currentCurrency));
+  }, [currentCurrency]);
+
   const coinsData = useSelector((state) => state.coins.data);
 
   useEffect(() => {
