@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import React, { useRef, useEffect } from "react";
-// import { useSelector, useDispatch } from 'react-redux'
 import {
   Nav,
   TopNav,
@@ -34,19 +33,10 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const currentCurrency = useSelector((state) => state.currency.currency);
 
-
-
   const setCurrentCurrency = (currency) => {
     ref.current = currency
     dispatch(setCurrency(ref.current))
-    // dispatch(getCoinsData(currentCurrency))
-
   }
-
-  // useEffect(() => {
-  //   if (currentCurrency !== 'usd') {
-  //   }
-  // }, [currentCurrency])
 
   return (
     <Nav>
@@ -73,7 +63,6 @@ const Navbar = () => {
             );
           })}
         </CurrencyChange>
-        {/* <Link to="portfolio">Click to view our portfolio page</Link> */}
         <Container></Container>
       </TopNav>
 

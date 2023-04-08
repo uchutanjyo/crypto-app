@@ -170,7 +170,7 @@ function Table() {
 
 
   useEffect(() => {
-    console.log(currentCurrency, 'ccc')
+    console.log(currentCurrency)
     dispatch(getCoinsData(currentCurrency));
   }, [currentCurrency]);
 
