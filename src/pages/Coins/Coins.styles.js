@@ -14,7 +14,6 @@ export const Wrapper = styled.section`
 
 `;
 
-
 export const Container = styled.div`
   padding: 1em;
   background-color: black;
@@ -22,29 +21,3 @@ export const Container = styled.div`
   border-radius: 5%;
   width: 20%
 `;
-
-// export const NavbarLink = styled.button`
-//   /* padding: 4em; */
-//   /* background-color: black; */
-//   color: whitesmoke;
-//   text-decoration: none;
-// `;
-
-// export const Search = styled.input`
-//   padding: .5em;
-//   background-color: #5A5A5A;
-//   width: 25%;
-//   height: 70%;
-//   color: whitesmoke;
-//   border: none;
-
-// `;
-
-// export const CurrencyChange = styled.select`
-//   padding: .5em;
-//   background-color: #5A5A5A;
-//   width: 10%;
-//   height: 70%;
-//   color: whitesmoke;
-//   border: none;
-// `;

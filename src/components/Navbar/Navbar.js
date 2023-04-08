@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import React from "react";
-// import { useSelector, useDispatch } from 'react-redux'
+import React, { useRef, useEffect } from "react";
 import {
   Nav,
   TopNav,
@@ -13,6 +12,10 @@ import {
   CurrencyChange,
 } from "./Navbar.styles";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrency } from "../../redux/Currency/action";
+import { getCoinsData } from "../../redux/Coins/action";
+
 const lowerNavbarHeaders = [
   "Coins",
   "Exchange",
@@ -23,9 +26,18 @@ const lowerNavbarHeaders = [
   "ETHDom",
 ];
 
-const currencys = ["GBP", "USD", "EUR", "CAD", "JPY"];
+const currencies = ["USD", "GBP", "EUR", "CAD", "JPY"];
 
 const Navbar = () => {
+  const ref = useRef()
+  const dispatch = useDispatch();
+  const currentCurrency = useSelector((state) => state.currency.currency);
+
+  const setCurrentCurrency = (currency) => {
+    ref.current = currency
+    dispatch(setCurrency(ref.current))
+  }
+
   return (
     <Nav>
       <TopNav>
@@ -41,15 +53,16 @@ const Navbar = () => {
         </Container>
         <Search placeholder="Search" />
         <CurrencyChange>
-          {currencys.map((currency, i) => {
+          {currencies.map((currency, i) => {
             return (
-              <option key={i} value={currency}>
+              <option key={i} value={currency}
+              onClick={()=> setCurrentCurrency(currency)}
+              >
                 {currency}
               </option>
             );
           })}
         </CurrencyChange>
-        {/* <Link to="portfolio">Click to view our portfolio page</Link> */}
         <Container></Container>
       </TopNav>
 

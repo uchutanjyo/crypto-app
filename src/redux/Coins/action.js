@@ -1,10 +1,4 @@
 import axios from "axios";
-import {
-  mockCoinsData
-} from "../MockCoinsData.js";
-import {
-  roundNumbersAndDivide
-} from "../../utils/formatToUnits.js";
 
 import {
   GET_COINS_SUCCESS,
@@ -12,18 +6,23 @@ import {
   GET_COINS_ERROR,
 } from "./reducers.js";
 
+import store from "../store.js";
 
-export const getCoinsData = () => async (dispatch, getState) => {
+console.log(store.getState().currency.currency.toLowerCase())
+
+
+export const getCoinsData = (currency) => async (dispatch, getState) => {
   const state = getState();
+  const currentCurrency = store.getState().currency.currency
   try {
     dispatch({
       type: GET_COINS_PENDING
     });
-    const data = mockCoinsData
-    // await axios(
-    //   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-    // );
-    // roundNumbersAndDivide(data);
+    const { data } = 
+    // mockCoinsData
+    await axios(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currentCurrency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
+    );
     dispatch({
       type: GET_COINS_SUCCESS,
       payload: data,
