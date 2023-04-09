@@ -5,10 +5,9 @@ import { CategoryScale } from "chart.js";
 import PriceChart from "./PriceChart";
 import VolumeChart from "./VolumeChart";
 import { ChartsWrapper, ChartWrapper } from "./Charts.styles";
-import { getPricesData } from "../../redux/Charts/action";
+import { getChartsData } from "../../redux/Charts/action";
 import { useSelector, useDispatch } from "react-redux";
 
-import { mockPricesData } from "../../redux/MockPricesData";
 
 Chart.register(CategoryScale);
 
@@ -16,13 +15,14 @@ const Charts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPricesData());
+    dispatch(getChartsData());
   }, []);
 
-  const pricesData = useSelector((state) => state.prices.data);
+  const chartsData = useSelector((state) => state.charts.data);
+
   const PricesChartDataOptions = {
-    labels: pricesData.prices
-      ? pricesData.prices.map((date) => {
+    labels: chartsData.prices
+      ? chartsData.prices.map((date) => {
           return new Date(date[0]).toLocaleString(undefined, {
             month: "short",
             day: "numeric",
@@ -32,8 +32,8 @@ const Charts = () => {
     datasets: [
       {
         label: "Price",
-        data: pricesData.prices
-          ? pricesData.prices.map((data) => {
+        data: chartsData.prices
+          ? chartsData.prices.map((data) => {
               return data[1];
             })
           : [],
@@ -44,8 +44,8 @@ const Charts = () => {
   };
 
   const VolumeChartDataOptions = {
-    labels: pricesData.market_caps
-      ? pricesData.market_caps.map((date) => {
+    labels: chartsData.total_volumes
+      ? chartsData.total_volumes.map((date) => {
           return new Date(date[0]).toLocaleString(undefined, {
             month: "short",
             day: "numeric",
@@ -55,8 +55,8 @@ const Charts = () => {
     datasets: [
       {
         label: "Volume",
-        data: pricesData.market_caps
-          ? pricesData.prices.map((data) => {
+        data: chartsData.total_volumes
+          ? chartsData.total_volumes.map((data) => {
               return data[1];
             })
           : [],
@@ -70,10 +70,10 @@ const Charts = () => {
     <>
       <ChartsWrapper>
         <ChartWrapper>
-        {pricesData.prices && <PriceChart chartData={PricesChartDataOptions} />}
+        {chartsData.prices && <PriceChart chartData={PricesChartDataOptions} />}
         </ChartWrapper>
         <ChartWrapper>
-        {pricesData.market_caps && (
+        {chartsData.total_volumes && (
           <VolumeChart chartData={VolumeChartDataOptions} />
         )}
         </ChartWrapper>

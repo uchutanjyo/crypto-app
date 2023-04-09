@@ -9,7 +9,7 @@ const initialState = {
     hasError: false,
 }
 
-function pricesReducer(state = initialState, action) {
+function chartsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRICES_ERROR:
       return {
@@ -38,4 +38,4 @@ function pricesReducer(state = initialState, action) {
     }
 }
 
-export default pricesReducer;
+export default chartsReducer;
