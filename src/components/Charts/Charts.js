@@ -20,6 +20,11 @@ const Charts = () => {
 
   const chartsData = useSelector((state) => state.charts.data);
 
+  useEffect(() => {
+    console.log(chartsData)
+  }, [chartsData]);
+
+
   const PricesChartDataOptions = {
     labels: chartsData.prices
       ? chartsData.prices.map((date) => {
@@ -61,7 +66,7 @@ const Charts = () => {
             })
           : [],
         backgroundColor: ["rgba(240, 255, 24, 0.6)"],
-        borderWidth: 1,
+        
       },
     ],
   };
@@ -70,7 +75,9 @@ const Charts = () => {
     <>
       <ChartsWrapper>
         <ChartWrapper>
-        {chartsData.prices && <PriceChart chartData={PricesChartDataOptions} />}
+        {chartsData.prices === undefined && <div>Loading..</div>}
+
+        {chartsData.prices !== undefined && <PriceChart chartData={PricesChartDataOptions} />}
         </ChartWrapper>
         <ChartWrapper>
         {chartsData.total_volumes && (
