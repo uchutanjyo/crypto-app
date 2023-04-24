@@ -170,18 +170,22 @@ function Table() {
 
   const coinsData = useSelector((state) => state.coins.data);
 
+  // on initial render
   useEffect(() => {
     console.log(currentCurrency, coinsData)
     if (!coinsData) {
       console.log('fetcing coins')
     dispatch(getCoinsData(currentCurrency));
     }
-  }, [currentCurrency]);
+  }, []);
 
-
+// on currency change
   useEffect(() => {
-console.log(coinsData)
-  }, [coinsData]);
+    if (coinsData) {
+    dispatch(getCoinsData(currentCurrency));
+    console.log(currentCurrency)
+    }
+  }, [currentCurrency]);
 
   return (
     <>
