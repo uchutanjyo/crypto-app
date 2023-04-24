@@ -19,6 +19,16 @@ function PriceChart({ chartData }) {
             legend: {
               display: false,
             },
+            maintainAspectRatio: false,
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
+            elements: {
+              point: {
+                radius: 0,
+              },
+            },
             
             
           },

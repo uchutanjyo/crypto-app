@@ -182,12 +182,12 @@ console.log(coinsData)
 
   return (
     <TableWrapper>
-      {/* {coinsData === undefined && 
+      {coinsData === undefined && 
       <div>Loading...</div>
       }
       {coinsData !== undefined &&
       <TableSetup columns={columns} data={coinsData} />
-} */}
+}
     </TableWrapper>
   );
 }

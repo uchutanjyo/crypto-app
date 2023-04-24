@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
@@ -14,77 +14,100 @@ Chart.register(CategoryScale);
 const Charts = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getChartsData());
-  }, []);
-
   const chartsData = useSelector((state) => state.charts.data);
 
   useEffect(() => {
-    console.log(chartsData)
+    console.log('sdfdsf')
+    dispatch(getChartsData());
+  }, []);
+
+
+  const [pricesChartDataOptions, setPricesChartDataOptions] = useState([])
+  const [volumeChartDataOptions, setVolumeChartDataOptions] = useState([])
+
+
+  useEffect(() => {
+    if (chartsData !== undefined) {
+    console.log(chartsData.data, 'ok')
+    setVolumeChartDataOptions({
+      labels: chartsData.data.prices !== undefined
+        ? chartsData.data.prices.map((date) => {
+            return new Date(date[0]).toLocaleString(undefined, {
+              month: "short",
+              day: "numeric",
+            });
+          })
+        : [],
+      datasets: [
+        {
+          label: "Price",
+          data: chartsData.data.prices !== undefined
+            ? chartsData.data.prices.map((data) => {
+                return data[1];
+              })
+            : [],
+          backgroundColor: ["rgba(5, 255, 255, 0.6)"],
+          borderWidth: '20px',
+          borderColor: 'red',
+          fill: true,
+        },
+      ],
+    });
+
+    setPricesChartDataOptions({
+      labels: chartsData.data.total_volumes !== undefined
+        ? chartsData.data.total_volumes.map((date) => {
+            return new Date(date[0]).toLocaleString(undefined, {
+              month: "short",
+              day: "numeric",
+            });
+          })
+        : [],
+      datasets: [
+        {
+          label: "Volume",
+          data: chartsData.data.total_volumes !== undefined
+            ? chartsData.data.total_volumes.map((data) => {
+                return data[1];
+              })
+            : [],
+          backgroundColor: ["rgba(240, 255, 24, 0.6)"],
+          
+        },
+      ],
+    });
+
+    }
   }, [chartsData]);
 
+  useEffect(() => {
+    console.log(volumeChartDataOptions, pricesChartDataOptions)
 
-  const PricesChartDataOptions = {
-    labels: chartsData.prices
-      ? chartsData.prices.map((date) => {
-          return new Date(date[0]).toLocaleString(undefined, {
-            month: "short",
-            day: "numeric",
-          });
-        })
-      : [],
-    datasets: [
-      {
-        label: "Price",
-        data: chartsData.prices
-          ? chartsData.prices.map((data) => {
-              return data[1];
-            })
-          : [],
-        backgroundColor: ["rgba(5, 255, 255, 0.6)"],
-        borderWidth: 1,
-      },
-    ],
-  };
+  }, [volumeChartDataOptions])
 
-  const VolumeChartDataOptions = {
-    labels: chartsData.total_volumes
-      ? chartsData.total_volumes.map((date) => {
-          return new Date(date[0]).toLocaleString(undefined, {
-            month: "short",
-            day: "numeric",
-          });
-        })
-      : [],
-    datasets: [
-      {
-        label: "Volume",
-        data: chartsData.total_volumes
-          ? chartsData.total_volumes.map((data) => {
-              return data[1];
-            })
-          : [],
-        backgroundColor: ["rgba(240, 255, 24, 0.6)"],
-        
-      },
-    ],
-  };
+
+ 
 
   return (
     <>
+          {chartsData !== undefined && 
+
       <ChartsWrapper>
         <ChartWrapper>
-        {chartsData.prices === undefined && <div>Loading..</div>}
+        
+        {!pricesChartDataOptions.datasets && <div>Loading..</div>}
 
-        {chartsData.prices !== undefined && <PriceChart chartData={PricesChartDataOptions} />}
+        {pricesChartDataOptions.datasets && <PriceChart chartData={pricesChartDataOptions} />}
         </ChartWrapper>
         <ChartWrapper>
-        {chartsData.total_volumes && (
-          <VolumeChart chartData={VolumeChartDataOptions} />
+        {volumeChartDataOptions.datasets && (
+          <VolumeChart chartData={volumeChartDataOptions} />
         )}
+       
         </ChartWrapper>
+         
       </ChartsWrapper>
+      }
     </>
   );
 };

@@ -1,6 +1,6 @@
-export const GET_PRICES_PENDING = "GET_PRICES_PENDING";
-export const GET_PRICES_SUCCESS = "GET_PRICES_SUCCESS";
-export const GET_PRICES_ERROR = "GET_PRICES_ERROR";
+export const GET_CHARTSDATA_PENDING = "GET_CHARTSDATA_PENDING";
+export const GET_CHARTSDATA_SUCCESS = "GET_CHARTSDATA_SUCCESS";
+export const GET_CHARTSDATA_ERROR = "GET_CHARTSDATA_ERROR";
 
 const initialState = {
     data: [],
@@ -11,14 +11,14 @@ const initialState = {
 
 function chartsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_PRICES_ERROR:
+    case GET_CHARTSDATA_ERROR:
       return {
         ...state,
         isLoading: false,
         hasError: true,
         error: action.payload,
       };
-    case GET_PRICES_PENDING:
+    case GET_CHARTSDATA_PENDING:
       return {
         ...state,
         data: action.payload,
@@ -26,7 +26,7 @@ function chartsReducer(state = initialState, action) {
         hasError: false,
         error: null,
       };
-    case GET_PRICES_SUCCESS:
+    case GET_CHARTSDATA_SUCCESS:
       return {
         ...state,
         data: action.payload,
