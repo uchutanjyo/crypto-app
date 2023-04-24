@@ -17,7 +17,6 @@ const Charts = () => {
   const chartsData = useSelector((state) => state.charts.data);
 
   useEffect(() => {
-    console.log('sdfdsf')
     dispatch(getChartsData());
   }, []);
 
@@ -28,7 +27,7 @@ const Charts = () => {
 
   useEffect(() => {
     if (chartsData !== undefined) {
-    console.log(chartsData.data, 'ok')
+    // console.log(chartsData.data, 'ok')
     setVolumeChartDataOptions({
       labels: chartsData.data.prices !== undefined
         ? chartsData.data.prices.map((date) => {
@@ -80,10 +79,10 @@ const Charts = () => {
     }
   }, [chartsData]);
 
-  useEffect(() => {
-    console.log(volumeChartDataOptions, pricesChartDataOptions)
+  // useEffect(() => {
+  //   console.log(volumeChartDataOptions, pricesChartDataOptions)
 
-  }, [volumeChartDataOptions])
+  // }, [volumeChartDataOptions])
 
 
  

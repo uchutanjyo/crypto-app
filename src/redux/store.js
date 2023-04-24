@@ -8,6 +8,14 @@ import currencyReducer from './Currency/reducers';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
+import {
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER,
+} from 'redux-persist';
 
 const persistConfig = {
     key: "root",
@@ -27,7 +35,12 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = configureStore({
     reducer: persistedReducer,
-    middleware: [thunk]
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+    })
       
 },
 applyMiddleware(thunk)
