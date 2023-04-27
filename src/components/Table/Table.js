@@ -168,27 +168,38 @@ function Table() {
   const dispatch = useDispatch();
   const currentCurrency = useSelector((state) => state.currency.currency);
 
-
-  useEffect(() => {
-    console.log(currentCurrency)
-    dispatch(getCoinsData(currentCurrency));
-  }, [currentCurrency]);
-
   const coinsData = useSelector((state) => state.coins.data);
 
+  // on initial render
   useEffect(() => {
-console.log(coinsData)
-  }, [coinsData]);
+    console.log(currentCurrency, coinsData)
+    if (!coinsData) {
+      console.log('fetcing coins')
+    dispatch(getCoinsData(currentCurrency));
+    }
+  }, []);
+
+// on currency change
+  useEffect(() => {
+    if (coinsData) {
+    dispatch(getCoinsData(currentCurrency));
+    console.log(currentCurrency)
+    }
+  }, [currentCurrency]);
 
   return (
+    <>
+    {coinsData !== undefined &&
     <TableWrapper>
-      {coinsData === undefined && 
+      {!coinsData[1] && 
       <div>Loading...</div>
       }
-      {coinsData !== undefined &&
+      {coinsData[1] &&
       <TableSetup columns={columns} data={coinsData} />
 }
     </TableWrapper>
+}
+</>
   );
 }
 export default Table;

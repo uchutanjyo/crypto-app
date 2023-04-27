@@ -1,28 +1,28 @@
 import axios from "axios";
 import {
-  GET_PRICES_SUCCESS,
-  GET_PRICES_PENDING,
-  GET_PRICES_ERROR,
+  GET_CHARTSDATA_SUCCESS,
+  GET_CHARTSDATA_PENDING,
+  GET_CHARTSDATA_ERROR,
 } from "./reducers.js";
 import { mockPricesData } from "../MockPricesData.js";
 
-export const getPricesData = () => async (dispatch, getState) => {
+export const getChartsData = () => async (dispatch, getState) => {
   const state = getState();
   try {
     dispatch({
-      type: GET_PRICES_PENDING
+      type: GET_CHARTSDATA_PENDING
     });
-    const data = mockPricesData
-    // } = await axios(
-    //   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
-    // );
+    const   data  =  
+  await axios(
+      `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily`
+    );
     dispatch({
-      type: GET_PRICES_SUCCESS,
+      type: GET_CHARTSDATA_SUCCESS,
       payload: data,
     });
   } catch (err) {
     dispatch({
-      type: GET_PRICES_ERROR,
+      type: GET_CHARTSDATA_ERROR,
       payload: err,
     });
   }

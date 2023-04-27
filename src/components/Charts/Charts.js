@@ -1,83 +1,112 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import PriceChart from "./PriceChart";
 import VolumeChart from "./VolumeChart";
 import { ChartsWrapper, ChartWrapper } from "./Charts.styles";
-import { getPricesData } from "../../redux/Charts/action";
+import { getChartsData } from "../../redux/Charts/action";
 import { useSelector, useDispatch } from "react-redux";
 
-import { mockPricesData } from "../../redux/MockPricesData";
 
 Chart.register(CategoryScale);
 
 const Charts = () => {
   const dispatch = useDispatch();
 
+  const chartsData = useSelector((state) => state.charts.data);
+
   useEffect(() => {
-    dispatch(getPricesData());
+    dispatch(getChartsData());
   }, []);
 
-  const pricesData = useSelector((state) => state.prices.data);
-  const PricesChartDataOptions = {
-    labels: pricesData.prices
-      ? pricesData.prices.map((date) => {
-          return new Date(date[0]).toLocaleString(undefined, {
-            month: "short",
-            day: "numeric",
-          });
-        })
-      : [],
-    datasets: [
-      {
-        label: "Price",
-        data: pricesData.prices
-          ? pricesData.prices.map((data) => {
-              return data[1];
-            })
-          : [],
-        backgroundColor: ["rgba(5, 255, 255, 0.6)"],
-        borderWidth: 1,
-      },
-    ],
-  };
 
-  const VolumeChartDataOptions = {
-    labels: pricesData.market_caps
-      ? pricesData.market_caps.map((date) => {
-          return new Date(date[0]).toLocaleString(undefined, {
-            month: "short",
-            day: "numeric",
-          });
-        })
-      : [],
-    datasets: [
-      {
-        label: "Volume",
-        data: pricesData.market_caps
-          ? pricesData.prices.map((data) => {
-              return data[1];
-            })
-          : [],
-        backgroundColor: ["rgba(240, 255, 24, 0.6)"],
-        borderWidth: 1,
-      },
-    ],
-  };
+  const [pricesChartDataOptions, setPricesChartDataOptions] = useState([])
+  const [volumeChartDataOptions, setVolumeChartDataOptions] = useState([])
+
+
+  useEffect(() => {
+    if (chartsData !== undefined) {
+    // console.log(chartsData.data, 'ok')
+    setVolumeChartDataOptions({
+      labels: chartsData.data.prices !== undefined
+        ? chartsData.data.prices.map((date) => {
+            return new Date(date[0]).toLocaleString(undefined, {
+              month: "short",
+              day: "numeric",
+            });
+          })
+        : [],
+      datasets: [
+        {
+          label: "Price",
+          data: chartsData.data.prices !== undefined
+            ? chartsData.data.prices.map((data) => {
+                return data[1];
+              })
+            : [],
+          backgroundColor: ["rgba(5, 255, 255, 0.6)"],
+          borderWidth: '20px',
+          borderColor: 'red',
+          fill: true,
+        },
+      ],
+    });
+
+    setPricesChartDataOptions({
+      labels: chartsData.data.total_volumes !== undefined
+        ? chartsData.data.total_volumes.map((date) => {
+            return new Date(date[0]).toLocaleString(undefined, {
+              month: "short",
+              day: "numeric",
+            });
+          })
+        : [],
+      datasets: [
+        {
+          label: "Volume",
+          data: chartsData.data.total_volumes !== undefined
+            ? chartsData.data.total_volumes.map((data) => {
+                return data[1];
+              })
+            : [],
+          backgroundColor: ["rgba(240, 255, 24, 0.6)"],
+          
+        },
+      ],
+    });
+
+    }
+  }, [chartsData]);
+
+  // useEffect(() => {
+  //   console.log(volumeChartDataOptions, pricesChartDataOptions)
+
+  // }, [volumeChartDataOptions])
+
+
+ 
 
   return (
     <>
+          {chartsData !== undefined && 
+
       <ChartsWrapper>
         <ChartWrapper>
-        {pricesData.prices && <PriceChart chartData={PricesChartDataOptions} />}
+        
+        {!pricesChartDataOptions.datasets && <div>Loading..</div>}
+
+        {pricesChartDataOptions.datasets && <PriceChart chartData={pricesChartDataOptions} />}
         </ChartWrapper>
         <ChartWrapper>
-        {pricesData.market_caps && (
-          <VolumeChart chartData={VolumeChartDataOptions} />
+        {volumeChartDataOptions.datasets && (
+          <VolumeChart chartData={volumeChartDataOptions} />
         )}
+       
         </ChartWrapper>
+         
       </ChartsWrapper>
+      }
     </>
   );
 };
