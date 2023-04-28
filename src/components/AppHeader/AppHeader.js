@@ -7,7 +7,7 @@ Header
 const AppHeader = () => {
   return (
     <Header>
-      Crypto-Tracker&nbsp; <i>2023</i>
+      crypto-tracker&nbsp; <i>2023</i>
     </Header>
   );
 };
