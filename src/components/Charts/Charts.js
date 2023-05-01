@@ -26,6 +26,7 @@ const Charts = () => {
 
 
   useEffect(() => {
+    console.log(chartsData)
     if (chartsData !== undefined) {
     // console.log(chartsData.data, 'ok')
     setVolumeChartDataOptions({

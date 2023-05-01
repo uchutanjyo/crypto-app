@@ -8,7 +8,7 @@ function currencyReducer(state = initialState, action) {
   switch (action.type) {
     case SET_CURRENCY:
       return {
-        ...state,
+        state,
         currency: action.payload,
       };
       default: return state

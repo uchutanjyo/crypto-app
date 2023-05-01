@@ -13,14 +13,14 @@ function coinsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_COINS_ERROR:
       return {
-        ...state,
+        state,
         isLoading: false,
         hasError: true,
         error: action.payload,
       };
     case GET_COINS_PENDING:
       return {
-        ...state,
+        state,
         data: action.payload,
         isLoading: true,
         hasError: false,
@@ -28,7 +28,7 @@ function coinsReducer(state = initialState, action) {
       };
     case GET_COINS_SUCCESS:
       return {
-        ...state,
+        state,
         data: action.payload,
         isLoading: false,
         hasError: true,
