@@ -13,22 +13,25 @@ function chartsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CHARTSDATA_ERROR:
       return {
-        state,
+        ...state,
         isLoading: false,
         hasError: true,
         error: action.payload,
       };
     case GET_CHARTSDATA_PENDING:
       return {
-        state,
+        ...state,
         data: action.payload,
         isLoading: true,
         hasError: false,
         error: null,
       };
     case GET_CHARTSDATA_SUCCESS:
+      if (action.payload === undefined) {
+        action.payload = []
+      }
       return {
-        state,
+        ...state,
         data: action.payload,
         isLoading: false,
         hasError: true,

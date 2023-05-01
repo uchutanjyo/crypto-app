@@ -12,12 +12,18 @@ export const getChartsData = () => async (dispatch, getState) => {
     dispatch({
       type: GET_CHARTSDATA_PENDING
     });
-    console.log(state, 'GS-charts')
-    // if (state.charts.data === undefined) {
-    const { data }  =  
+    console.log(state.charts.data, 'GS-charts')
+    let data
+    if (state.charts.data === undefined) {
+     data =  
   await axios(
       `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=180&interval=daily`
     );
+    console.log(data, 'newdata')
+  } else {
+    data = state.charts.data
+    console.log(data, 'LS data')
+  }
   
     dispatch({
       type: GET_CHARTSDATA_SUCCESS,

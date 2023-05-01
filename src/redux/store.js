@@ -19,7 +19,7 @@ import {
 
 const persistConfig = {
     key: "root",
-    version: 1,
+    // version: 1,
     storage,
     whitelist: ['charts', 'coins', 'currency', 'counter', 'charts']
 }
@@ -40,8 +40,9 @@ const store = configureStore({
     // middleware: [thunk]
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+        thunk: true,
         serializableCheck: {
-            ignoredActions: [thunk, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
     })
       

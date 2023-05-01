@@ -15,12 +15,18 @@ export const getCoinsData = (currency) => async (dispatch, getState) => {
     dispatch({
       type: GET_COINS_PENDING
     });
-    console.log(state, 'GS')
-    if (state.coins.data === undefined) {
-    const  {data}  =  
+    console.log(state.coins.data.data, 'GS')
+    let data;
+    if (!state.coins.data.data[1] || state.coins.data.data === undefined) {
+    data =  
     await axios(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currentCurrency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
     );
+    console.log(data, 'newcoindata')
+
+    } else {
+      data = state.coins.data
+      console.log(data, 'LS coins data')
     }
     dispatch({
       type: GET_COINS_SUCCESS,
