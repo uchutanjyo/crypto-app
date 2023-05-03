@@ -26,7 +26,6 @@ const Charts = () => {
 
 
   useEffect(() => {
-    console.log(chartsData)
     if (chartsData !== undefined) {
     // console.log(chartsData.data, 'ok')
     setVolumeChartDataOptions({
@@ -94,7 +93,6 @@ const Charts = () => {
 
       <ChartsWrapper>
         <ChartWrapper>
-        
         {!pricesChartDataOptions.datasets && <div>Loading..</div>}
 
         {pricesChartDataOptions.datasets && <PriceChart chartData={pricesChartDataOptions} />}

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import TableSetup from "./TableSetup";
 import {
@@ -197,19 +197,32 @@ function Table() {
     []
   );
 
+  const useIsMount = () => {
+    const isMountRef = useRef(true);
+    useEffect(() => {
+      isMountRef.current = false;
+    }, []);
+    return isMountRef.current;
+  };
+
+  const isMount = useIsMount();
+
   const dispatch = useDispatch();
   const currentCurrency = useSelector((state) => state.currency.currency);
 
   const coinsData = useSelector((state) => state.coins.data);
 
   useEffect(() => {
-    console.log(currentCurrency, coinsData);
-    if (!coinsData[1]) {
-      console.log("fetcing coins first time", coinsData.data);
+    if (coinsData === undefined) {
       dispatch(getCoinsData(currentCurrency));
-    } else {
+      console.log("fetcing coins first time", coinsData);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isMount) {
       dispatch(getCoinsData(currentCurrency));
-      console.log("fetching coins after currency change", coinsData.data);
+      console.log(currentCurrency, "currencyone");
     }
   }, [currentCurrency]);
 
@@ -218,7 +231,9 @@ function Table() {
       {coinsData !== undefined && (
         <TableWrapper>
           {!coinsData.data[1] && <div>Loading...</div>}
-          {coinsData.data[1] && <TableSetup columns={columns} data={coinsData.data} />}
+          {coinsData.data[1] && (
+            <TableSetup columns={columns} data={coinsData.data} />
+          )}
         </TableWrapper>
       )}
     </>

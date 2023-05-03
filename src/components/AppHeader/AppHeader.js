@@ -8,6 +8,8 @@ const AppHeader = () => {
   return (
     <Header>
       crypto-tracker&nbsp; <i>2023</i>
+      <br/>
+
     </Header>
   );
 };
