@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, { useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TableSetup from "./TableSetup";
 import {
@@ -14,6 +14,7 @@ import {
   BarAndTextWrapper,
 } from "./Table.styles";
 
+import { useIsMount } from "../../utils/useIsMount";
 import { getCoinsData } from "../../redux/Coins/action";
 import { setCoinId } from "../../redux/Coin/action";
 import { useSelector, useDispatch } from "react-redux";
@@ -197,32 +198,25 @@ function Table() {
     []
   );
 
-  const useIsMount = () => {
-    const isMountRef = useRef(true);
-    useEffect(() => {
-      isMountRef.current = false;
-    }, []);
-    return isMountRef.current;
-  };
-
   const isMount = useIsMount();
 
   const dispatch = useDispatch();
+
   const currentCurrency = useSelector((state) => state.currency.currency);
 
   const coinsData = useSelector((state) => state.coins.data);
 
   useEffect(() => {
     if (coinsData === undefined) {
+      console.log("No coins saved in LocalStorage. Fetch by currency.", coinsData);
       dispatch(getCoinsData(currentCurrency));
-      console.log("fetcing coins first time", coinsData);
     }
   }, []);
 
   useEffect(() => {
     if (!isMount) {
+      console.log(currentCurrency, "Currency changed, fetch coins by currency.");
       dispatch(getCoinsData(currentCurrency));
-      console.log(currentCurrency, "currencyone");
     }
   }, [currentCurrency]);
 
@@ -230,10 +224,9 @@ function Table() {
     <>
       {coinsData !== undefined && (
         <TableWrapper>
-          {!coinsData.data[1] && <div>Loading...</div>}
-          {coinsData.data[1] && (
+          {!coinsData.data[1] ? <div>Loading...</div> :
             <TableSetup columns={columns} data={coinsData.data} />
-          )}
+          }
         </TableWrapper>
       )}
     </>
