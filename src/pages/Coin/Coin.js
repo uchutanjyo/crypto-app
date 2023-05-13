@@ -33,7 +33,7 @@ const Coin = () => {
   const dispatch = useDispatch();
   const coinData = useSelector((state) => state.coin);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     dispatch(getCoinData(coinData));
@@ -41,9 +41,9 @@ const Coin = () => {
 
   useEffect(() => {
     if (coinData.data !== undefined) {
-      setLoading(false);
-      console.log("o");
-      console.log(coinData), "cd";
+    setLoading(false)
+    console.log('o')
+    console.log(coinData), "cd";
     }
   }, [coinData]);
 
@@ -95,36 +95,16 @@ const Coin = () => {
                     </MiddleSub>
                     <div style={{ display: "flex" }}>
                       <FillerColumn>
-                        <FillerHead>
-                          <h3>ATH:</h3>
-                        </FillerHead>
-                        <FillerText>
-                          ${coinData.data.market_data.ath.usd}
-                        </FillerText>
-                        <FillerText>
-                          {parseFloat(
-                            coinData.data.market_data.ath_change_percentage.usd
-                          )}
-                        </FillerText>
-                        <FillerText>
-                          {coinData.data.market_data.ath_date.usd.slice(0, 10)}
-                        </FillerText>
+                        <FillerHead><h3>ATH:</h3></FillerHead>
+                        <FillerText>${coinData.data.market_data.ath.usd}</FillerText>
+                        <FillerText>{parseFloat(coinData.data.market_data.ath_change_percentage.usd)}</FillerText>
+                        <FillerText>{coinData.data.market_data.ath_date.usd.slice(0, 10)}</FillerText>
                       </FillerColumn>
                       <FillerColumn>
-                        <FillerHead>
-                          <h3>ATL:</h3>
-                        </FillerHead>
-                        <FillerText>
-                          ${coinData.data.market_data.atl.usd}
-                        </FillerText>
-                        <FillerText>
-                          {parseFloat(
-                            coinData.data.market_data.atl_change_percentage.usd
-                          ).toFixed(2)}
-                        </FillerText>
-                        <FillerText>
-                          {coinData.data.market_data.atl_date.usd.slice(0, 10)}
-                        </FillerText>
+                        <FillerHead><h3>ATL:</h3></FillerHead>
+                        <FillerText>${coinData.data.market_data.atl.usd}</FillerText>
+                        <FillerText>{parseFloat(coinData.data.market_data.atl_change_percentage.usd).toFixed(2)}</FillerText>
+                        <FillerText>{coinData.data.market_data.atl_date.usd.slice(0, 10)}</FillerText>
                       </FillerColumn>
                     </div>
                   </>
@@ -147,10 +127,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Fully diluted valuation:
                       </strong>
-                      $
-                      {formatToUnits(
-                        coinData.data.market_data.fully_diluted_valuation
-                      )}
+                      ${formatToUnits(coinData.data.market_data.fully_diluted_valuation)}
                     </DataPoint>
 
                     <DataPoint>
@@ -158,10 +135,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Volume 24h:
                       </strong>
-                      $
-                      {formatToUnits(
-                        coinData.data.market_data.total_volume.usd
-                      )}
+                      ${formatToUnits(coinData.data.market_data.total_volume.usd)}
                     </DataPoint>
 
                     <DataPoint style={{ marginBottom: 50 }}>
@@ -169,10 +143,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Volume / Market:
                       </strong>
-                      {formatToUnits(
-                        coinData.data.market_data.total_volume.usd /
-                          coinData.data.market_data.market_cap.usd
-                      )}
+                      {formatToUnits(coinData.data.market_data.total_volume.usd / coinData.data.market_data.market_cap.usd)}
                     </DataPoint>
 
                     <DataPoint>
@@ -180,9 +151,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Total Volume:
                       </strong>
-                      {formatToUnits(
-                        coinData.data.market_data.total_volume.usd
-                      )}
+                      {formatToUnits(coinData.data.market_data.total_volume.usd )}
                     </DataPoint>
 
                     <DataPoint>
@@ -190,9 +159,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Circulating Supply:
                       </strong>
-                      {formatToUnits(
-                        coinData.data.market_data.circulating_supply
-                      )}
+                      {formatToUnits(coinData.data.market_data.circulating_supply)}
                     </DataPoint>
 
                     <DataPoint>
@@ -206,44 +173,43 @@ const Coin = () => {
                 )}
               </RightSummary>
             </YourSummaryWrapper>
+          </>
+        )}
+        <h2>Description</h2>
+        <DescriptionWrapper>
+          {/* {coinData.data.description && (
+            <Description>{coinData.data.description.en}</Description>
+          )} */}
+        </DescriptionWrapper>
+        {coinData.data.links && (
+          <>
+            <TopUrls>
+              <UrlWrapper>
+                <Link
+                  to={`${coinData.data.links.blockchain_site[0]}`}
+                  target="_blank"
+                >
+                  {coinData.data.links.blockchain_site[0].slice(8)}
+                </Link>
+              </UrlWrapper>
 
-            <h2>Description</h2>
-            <DescriptionWrapper>
-              {coinData.data.description && (
-                <Description>{coinData.data.description.en}</Description>
-              )}
-            </DescriptionWrapper>
-            {coinData.data.links && (
-              <>
-                <TopUrls>
-                  <UrlWrapper>
-                    <Link
-                      to={`${coinData.data.links.blockchain_site[0]}`}
-                      target="_blank"
-                    >
-                      {coinData.data.links.blockchain_site[0].slice(8)}
-                    </Link>
-                  </UrlWrapper>
-
-                  <UrlWrapper>
-                    <Link
-                      to={`${coinData.data.links.blockchain_site[1]}`}
-                      target="_blank"
-                    >
-                      {coinData.data.links.blockchain_site[1].slice(8)}
-                    </Link>
-                  </UrlWrapper>
-                </TopUrls>
-                <BottomUrl>
-                  <Link
-                    to={`${coinData.data.links.blockchain_site[2]}`}
-                    target="_blank"
-                  >
-                    {coinData.data.links.blockchain_site[2].slice(8)}
-                  </Link>
-                </BottomUrl>
-              </>
-            )}
+              <UrlWrapper>
+                <Link
+                  to={`${coinData.data.links.blockchain_site[1]}`}
+                  target="_blank"
+                >
+                  {coinData.data.links.blockchain_site[1].slice(8)}
+                </Link>
+              </UrlWrapper>
+            </TopUrls>
+            <BottomUrl>
+              <Link
+                to={`${coinData.data.links.blockchain_site[2]}`}
+                target="_blank"
+              >
+                {coinData.data.links.blockchain_site[2].slice(8)}
+              </Link>
+            </BottomUrl>
           </>
         )}
       </PageWrapper>
