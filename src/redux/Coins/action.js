@@ -8,9 +8,6 @@ import {
 
 import store from "../store.js";
 
-console.log(store.getState().currency.currency.toLowerCase())
-
-
 export const getCoinsData = (currency) => async (dispatch, getState) => {
   const state = getState();
   const currentCurrency = store.getState().currency.currency
@@ -18,7 +15,7 @@ export const getCoinsData = (currency) => async (dispatch, getState) => {
     dispatch({
       type: GET_COINS_PENDING
     });
-    const  {data}  =  
+    const data =  
     await axios(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currentCurrency}&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
     );

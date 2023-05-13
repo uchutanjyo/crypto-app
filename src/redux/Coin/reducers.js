@@ -36,9 +36,8 @@ function coinReducer(state = initialState, action) {
           error: action.payload,
         };
       case SET_COIN_ID:
-        console.log('ok')
         return {
-          ...state,
+          state,
           coinId: action.payload,
         };
       default: return state

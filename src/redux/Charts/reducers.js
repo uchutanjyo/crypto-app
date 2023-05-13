@@ -27,6 +27,9 @@ function chartsReducer(state = initialState, action) {
         error: null,
       };
     case GET_CHARTSDATA_SUCCESS:
+      if (action.payload === undefined) {
+        action.payload = []
+      }
       return {
         ...state,
         data: action.payload,

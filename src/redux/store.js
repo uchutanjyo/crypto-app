@@ -1,11 +1,11 @@
 import { configureStore, applyMiddleware } from '@reduxjs/toolkit'
-import thunk from 'redux-thunk'
 import counterReducer from "./Counter/reducers/counterSlice";
 import coinsReducer from "./Coins/reducers";
 import chartsReducer from './Charts/reducers';
 import coinReducer from './Coin/reducers';
 import currencyReducer from './Currency/reducers';
 import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk'
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import {
@@ -19,8 +19,9 @@ import {
 
 const persistConfig = {
     key: "root",
-    version: 1,
-    storage
+    // version: 1,
+    storage,
+    whitelist: ['charts', 'coins', 'currency', 'counter', 'charts']
 }
 
 const reducer = combineReducers({
@@ -31,19 +32,25 @@ const reducer = combineReducers({
     currency: currencyReducer
 })
 
+
 const persistedReducer = persistReducer(persistConfig, reducer)
 
 const store = configureStore({
     reducer: persistedReducer,
+    // middleware: [thunk]
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-        serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
+        thunk: true,
+        immutableCheck: false,
+        serializableCheck: false,
+        // serializableCheck: {
+        //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            
+        // },
     })
       
 },
-applyMiddleware(thunk)
+// applyMiddleware(thunk)
     );
 
 export default store;

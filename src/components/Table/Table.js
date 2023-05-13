@@ -14,6 +14,7 @@ import {
   BarAndTextWrapper,
 } from "./Table.styles";
 
+import { useIsMount } from "../../utils/useIsMount";
 import { getCoinsData } from "../../redux/Coins/action";
 import { setCoinId } from "../../redux/Coin/action";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,13 +25,12 @@ import { PercentageBarColours } from "./Table.styles";
 import { current } from "@reduxjs/toolkit";
 
 const GeneratePercentageBarColour = (index, data, type) => {
-  for (let i=0; i < data; i++) {
-    return type === 'background' ? 
-     PercentageBarColours[ index % PercentageBarColours.length ].background : 
-     PercentageBarColours[ index % PercentageBarColours.length ].bar 
+  for (let i = 0; i < data; i++) {
+    return type === "background"
+      ? PercentageBarColours[index % PercentageBarColours.length].background
+      : PercentageBarColours[index % PercentageBarColours.length].bar;
   }
-}
-
+};
 
 const CoinNameLink = ({ name, id }) => {
   const dispatch = useDispatch();
@@ -45,7 +45,6 @@ const CoinImage = ({ value }) => {
   return <CoinImageContainer src={value} alt={value} />;
 };
 
-
 function Table() {
   const columns = useMemo(
     () => [
@@ -58,7 +57,9 @@ function Table() {
             maxWidth: 3,
             minWidth: 3,
             width: 3,
-            Cell: ({ cell: { row } }) => <CoinIdDiv>{parseInt(row.id) + 1} </CoinIdDiv>,
+            Cell: ({ cell: { row } }) => (
+              <CoinIdDiv>{parseInt(row.id) + 1} </CoinIdDiv>
+            ),
           },
           {
             Header: "Name",
@@ -67,10 +68,10 @@ function Table() {
             // minWidth: 200,
             Cell: ({ cell: { row } }) => {
               return (
-                  <CoinNameDiv>
+                <CoinNameDiv>
                   <CoinImageContainer src={row.original.image} alt="" />
-                   <CoinNameLink name={row.original.name} id={row.original.id} />
-                  </CoinNameDiv>
+                  <CoinNameLink name={row.original.name} id={row.original.id} />
+                </CoinNameDiv>
               );
             },
           },
@@ -109,21 +110,41 @@ function Table() {
               ).toString();
               return (
                 <>
-                <BarAndTextWrapper style={{marginRight: 40}}>
-                  <AbovePercentageBar>
-                    <AbovePercentageBarLeft 
-                    color={GeneratePercentageBarColour(row.id, 50, 'background')}
-                    >{formatToUnits(row.original.total_volume)}</AbovePercentageBarLeft>
-                    <AbovePercentageBarRight
-                    color={GeneratePercentageBarColour(row.id, 50, 'bar')}
-                    >{formatToUnits(row.original.market_cap)}</AbovePercentageBarRight>
-                  </AbovePercentageBar>
-                  <PercentageBarWrapper background=                   {GeneratePercentageBarColour(row.id, 50, 'background')}>
-                    <PercentageBar width={width} background=
-                    {GeneratePercentageBarColour(row.id, 50, 'bar')}>
-                      &nbsp;
-                    </PercentageBar>
-                  </PercentageBarWrapper>
+                  <BarAndTextWrapper style={{ marginRight: 40 }}>
+                    <AbovePercentageBar>
+                      <AbovePercentageBarLeft
+                        color={GeneratePercentageBarColour(
+                          row.id,
+                          50,
+                          "background"
+                        )}
+                      >
+                        {formatToUnits(row.original.total_volume)}
+                      </AbovePercentageBarLeft>
+                      <AbovePercentageBarRight
+                        color={GeneratePercentageBarColour(row.id, 50, "bar")}
+                      >
+                        {formatToUnits(row.original.market_cap)}
+                      </AbovePercentageBarRight>
+                    </AbovePercentageBar>
+                    <PercentageBarWrapper
+                      background={GeneratePercentageBarColour(
+                        row.id,
+                        50,
+                        "background"
+                      )}
+                    >
+                      <PercentageBar
+                        width={width}
+                        background={GeneratePercentageBarColour(
+                          row.id,
+                          50,
+                          "bar"
+                        )}
+                      >
+                        &nbsp;
+                      </PercentageBar>
+                    </PercentageBarWrapper>
                   </BarAndTextWrapper>
                 </>
               );
@@ -138,20 +159,32 @@ function Table() {
                 100
               ).toString();
               return (
-                 <BarAndTextWrapper style={{marginRight: 40}}>
+                <BarAndTextWrapper style={{ marginRight: 40 }}>
                   <AbovePercentageBar>
                     <span>
                       {formatToUnits(row.original.circulating_supply)}
                     </span>
                     <span>{formatToUnits(row.original.total_supply)}</span>
                   </AbovePercentageBar>
-                  <PercentageBarWrapper background=                   {GeneratePercentageBarColour(row.id, 50, 'background')}>
-                    <PercentageBar width={width} background=
-                    {GeneratePercentageBarColour(row.id, 50, 'bar')}>
+                  <PercentageBarWrapper
+                    background={GeneratePercentageBarColour(
+                      row.id,
+                      50,
+                      "background"
+                    )}
+                  >
+                    <PercentageBar
+                      width={width}
+                      background={GeneratePercentageBarColour(
+                        row.id,
+                        50,
+                        "bar"
+                      )}
+                    >
                       &nbsp;
                     </PercentageBar>
                   </PercentageBarWrapper>
-                  </BarAndTextWrapper>
+                </BarAndTextWrapper>
               );
             },
           },
@@ -165,41 +198,38 @@ function Table() {
     []
   );
 
+  const isMount = useIsMount();
+
   const dispatch = useDispatch();
+
   const currentCurrency = useSelector((state) => state.currency.currency);
 
   const coinsData = useSelector((state) => state.coins.data);
 
-  // on initial render
   useEffect(() => {
-    console.log(currentCurrency, coinsData)
-    if (!coinsData) {
-      console.log('fetcing coins')
-    dispatch(getCoinsData(currentCurrency));
+    if (coinsData === undefined) {
+      console.log("No coins saved in LocalStorage. Fetch by currency.", coinsData);
+      dispatch(getCoinsData(currentCurrency));
     }
   }, []);
 
-// on currency change
   useEffect(() => {
-    if (coinsData) {
-    dispatch(getCoinsData(currentCurrency));
-    console.log(currentCurrency)
+    if (!isMount) {
+      console.log(currentCurrency, "Currency changed, fetch coins by currency.");
+      dispatch(getCoinsData(currentCurrency));
     }
   }, [currentCurrency]);
 
   return (
     <>
-    {coinsData !== undefined &&
-    <TableWrapper>
-      {!coinsData[1] && 
-      <div>Loading...</div>
-      }
-      {coinsData[1] &&
-      <TableSetup columns={columns} data={coinsData} />
-}
-    </TableWrapper>
-}
-</>
+      {coinsData !== undefined && (
+        <TableWrapper>
+          {!coinsData.data[1] ? <div>Loading...</div> :
+            <TableSetup columns={columns} data={coinsData.data} />
+          }
+        </TableWrapper>
+      )}
+    </>
   );
 }
 export default Table;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCoinData } from "../../redux/Coin/action";
 import { Wrapper } from "../Coins/Coins.styles";
@@ -33,19 +33,25 @@ const Coin = () => {
   const dispatch = useDispatch();
   const coinData = useSelector((state) => state.coin);
 
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     dispatch(getCoinData(coinData));
   }, []);
 
   useEffect(() => {
+    if (coinData.data !== undefined) {
+    setLoading(false)
+    console.log('o')
     console.log(coinData), "cd";
+    }
   }, [coinData]);
 
   // refactor this later for readability (destructure etc.)
   return (
     <Wrapper>
       <PageWrapper>
-        {coinData.data === undefined ? (
+        {loading ? (
           <div>Loading...</div>
         ) : (
           <>
@@ -171,9 +177,9 @@ const Coin = () => {
         )}
         <h2>Description</h2>
         <DescriptionWrapper>
-          {coinData.data.description && (
+          {/* {coinData.data.description && (
             <Description>{coinData.data.description.en}</Description>
-          )}
+          )} */}
         </DescriptionWrapper>
         {coinData.data.links && (
           <>

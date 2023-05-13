@@ -1,6 +1,4 @@
 import axios from "axios";
-import { mockCoinsData } from "../MockCoinsData.js";
-import { mockCoinData } from "../MockCoinData.js";
 
 import {
   FETCH_COIN_SUCCESS,
@@ -19,15 +17,12 @@ export const setCoinId = (coinId) => async (dispatch, getState) => {
 
 export const getCoinData = (coinId) => async (dispatch, getState) => {
   const state = getState();
+  console.log(state.coin, 'coin')
   try {
-    // const filteredCoin = mockCoinsData.filter((coin) => {
-    //   return coin.id === coinId.coinId 
-    //  })
+
     dispatch({ type: FETCH_COIN_PENDING });
-    const data = mockCoinData
-    // mock data being used currently to reduce  number of api calls
-    // const {data} = await axios(
-    //   `https://api.coingecko.com/api/v3/coins/${coinId.coinId}?localization=false`)
+    const {data} = await axios(
+      `https://api.coingecko.com/api/v3/coins/${coinId.coinId}?localization=false`)
     dispatch({
       type: FETCH_COIN_SUCCESS,
       payload: data,

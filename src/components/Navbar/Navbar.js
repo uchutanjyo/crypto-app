@@ -38,6 +38,10 @@ const Navbar = () => {
     dispatch(setCurrency(ref.current))
   }
 
+  useEffect(()=> {
+    console.log(currentCurrency)
+  },[currentCurrency])
+  
   return (
     <Nav>
       <TopNav>
@@ -55,7 +59,7 @@ const Navbar = () => {
         <CurrencyChange>
           {currencies.map((currency, i) => {
             return (
-              <option key={i} value={currency}
+              <option key={i} value={currency} selected={currentCurrency}
               onClick={()=> setCurrentCurrency(currency)}
               >
                 {currency}
