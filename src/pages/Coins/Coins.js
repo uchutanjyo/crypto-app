@@ -11,12 +11,12 @@ const Coins = () => {
     <Wrapper>
       <div style={{padding: 20}}>
         {" "}
-        <b>Notice to users:</b> please only change the currency a maximum of{" "}
+        <b>Notice to users:</b> please change the currency a maximum of{" "}
         <i>2 (two)</i> times per session to avoid overloading our servers. Thank
         you!
       </div>
 
-      <Charts></Charts>
+      <Charts/>
       <Table />
     </Wrapper>
   );

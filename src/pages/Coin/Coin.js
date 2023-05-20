@@ -42,7 +42,8 @@ const Coin = () => {
   useEffect(() => {
     if (coinData.data !== undefined) {
     setLoading(false)
-    console.log('o')
+    console.log('o', loading 
+  )
     console.log(coinData), "cd";
     }
   }, [coinData]);
@@ -181,9 +182,9 @@ const Coin = () => {
             <Description>{coinData.data.description.en}</Description>
           )} */}
         </DescriptionWrapper>
-        {coinData.data.links && (
+        {/* {coinData.data.links && ( */}
           <>
-            <TopUrls>
+            {/* <TopUrls>
               <UrlWrapper>
                 <Link
                   to={`${coinData.data.links.blockchain_site[0]}`}
@@ -201,17 +202,17 @@ const Coin = () => {
                   {coinData.data.links.blockchain_site[1].slice(8)}
                 </Link>
               </UrlWrapper>
-            </TopUrls>
+            </TopUrls> */}
             <BottomUrl>
-              <Link
+              {/* <Link
                 to={`${coinData.data.links.blockchain_site[2]}`}
                 target="_blank"
               >
                 {coinData.data.links.blockchain_site[2].slice(8)}
-              </Link>
+              </Link> */}
             </BottomUrl>
           </>
-        )}
+        {/* )} */}
       </PageWrapper>
     </Wrapper>
   );

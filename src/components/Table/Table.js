@@ -207,11 +207,15 @@ function Table() {
   const coinsData = useSelector((state) => state.coins.data);
 
   useEffect(() => {
-    if (coinsData === undefined) {
-      console.log("No coins saved in LocalStorage. Fetch by currency.", coinsData);
+    if (coinsData.data === undefined) {
+      console.log(currentCurrency, "No coins saved in LocalStorage. Fetch by currency.");
       dispatch(getCoinsData(currentCurrency));
     }
   }, []);
+
+  useEffect(() => {
+   console.log( coinsData)
+  }, [coinsData]);
 
   useEffect(() => {
     if (!isMount) {
@@ -222,9 +226,9 @@ function Table() {
 
   return (
     <>
-      {coinsData !== undefined && (
+      {coinsData === undefined ? ( <div>Loading...</div> ) : (
         <TableWrapper>
-          {!coinsData.data[1] ? <div>Loading...</div> :
+          {coinsData.data &&
             <TableSetup columns={columns} data={coinsData.data} />
           }
         </TableWrapper>
