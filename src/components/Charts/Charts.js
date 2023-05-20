@@ -17,13 +17,14 @@ const Charts = () => {
 
   useEffect(() => {
     dispatch(getChartsData());
+    console.log(chartsData)
   }, []);
 
   const [pricesChartDataOptions, setPricesChartDataOptions] = useState([]);
   const [volumeChartDataOptions, setVolumeChartDataOptions] = useState([]);
 
   useEffect(() => {
-    if (chartsData !== undefined) {
+    if (chartsData !== undefined && chartsData.data !== undefined) {
       setVolumeChartDataOptions({
         labels:
           chartsData.data.prices !== undefined
@@ -74,12 +75,13 @@ const Charts = () => {
           },
         ],
       });
+      console.log(chartsData)
     }
   }, [chartsData]);
 
   return (
     <>
-      {chartsData !== undefined && (
+  
         <ChartsWrapper>
           <ChartWrapper>
             {!pricesChartDataOptions.datasets ? (
@@ -96,7 +98,7 @@ const Charts = () => {
             )}
           </ChartWrapper>
         </ChartsWrapper>
-      )}
+      
     </>
   );
 };
