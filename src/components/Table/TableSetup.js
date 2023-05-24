@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import {
   CoinsTable,
@@ -14,20 +14,63 @@ import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function TableSetup({ columns, data }) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [hiddenCols, setHiddenCols] = useState('');
+
+  const ref = useRef()
+
+  
+  const getHiddenColumns = () => {
+    if (windowWidth < 900) {
+      console.log(windowWidth, hiddenCols)
+      setHiddenCols('Last 7d')
+    }
+    
+    else {
+      console.log(windowWidth, hiddenCols)
+      setHiddenCols('')
+    }
+  }
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleWindowResize);
+    console.log(windowWidth)
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  });
+  
+useEffect(()=> {
+  getHiddenColumns()
+}, [windowWidth])
+
   const {
     getTableProps,
     getTableBodyProps, 
     headerGroups, 
     rows, 
     prepareRow, 
+    setHiddenColumns
   } = useTable(
     {
       columns,
       data,
+      initialState: {
+        hiddenColumns: 
+        [hiddenCols],
+        
+      }
     },
     useFilters,
-    useSortBy
+    useSortBy,
   );
+
+  useEffect(() => {
+    setHiddenColumns(hiddenCols)
+  }, [hiddenCols])
 
   const [filterInput, setFilterInput] = useState("");
 

@@ -191,6 +191,7 @@ function Table() {
           {
             Header: "Last 7d",
             accessor: "",
+            show: false
           },
         ],
       },

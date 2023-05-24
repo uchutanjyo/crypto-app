@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
-  padding-bottom: 1em;
-  padding-top: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 1em;
   margin-top: 1em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 25px 25px 0 0;
   width: 97%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    border-radius: 0;
+  }
 `;
 
 export const CoinsTable = styled.table`
@@ -19,6 +21,7 @@ export const CoinsTable = styled.table`
 export const TableBody = styled.tbody``;
 
 export const TableHeaderRow = styled.thead``;
+
 export const TableHeader = styled.thead`
   cursor: pointer;
 `;
@@ -29,19 +32,31 @@ export const HeaderRow = styled.tr`
 
 export const TableRow = styled.tr`
   border-top: 0.001rem dotted white;
-  padding-bottom: 2em;
-  padding-top: 2em;
+  padding: 2em 0;
   font-size: 0.7em;
+
+  @media (max-width: 768px) {
+    display: block;
+    padding: 1em 0;
+  }
 `;
 
 export const TableCol = styled.td`
   width: 10em;
-  padding-bottom: 2em;
-  padding-top: 2em;
+  padding: 2em 0;
+
+  @media (max-width: 768px) {
+    width: auto;
+    padding: 1em 0;
+  }
 `;
 
 export const HorizLine = styled.hr`
   width: 10em;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const AbovePercentageBar = styled.div`
@@ -71,10 +86,15 @@ export const PercentageBar = styled.div`
 export const PercentageBarWrapper = styled.div`
   max-width: 120px;
   min-width: 120px;
-
   height: 1em;
   border-radius: 50px;
   background: ${(props) => props.background};
+
+  @media (max-width: 768px) {
+    max-width: none;
+    min-width: none;
+    width: 100%;
+  }
 `;
 
 export const BarAndTextWrapper = styled.div``;
@@ -110,36 +130,4 @@ export const PercentageBarColours = [
     background: "#8a92b2",
     bar: "#474c77",
   },
-  {
-    background: "#1ba27a",
-    bar: "#1a6c55",
-  },
-  {
-    background: "#e4cd82",
-    bar: "#bb9f33",
-  },
-  {
-    background: "#ffdcce",
-    bar: "#fe7d43",
-  },
-  {
-    background: "#f4b2b0",
-    bar: "#ffb528",
-  },
-  {
-    background: "#f4b2b0",
-    bar: "#b3404a",
-  },
-  {
-    background: "#2775c9",
-    bar: "#1d327d",
-  },
-  {
-    background: "   #f09242",
-    bar: "#83808b",
-  },
-  {
-    background: "#985d9d",
-    bar: "#98009d",
-  },
-];
+]
