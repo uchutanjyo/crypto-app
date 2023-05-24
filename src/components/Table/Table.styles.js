@@ -3,12 +3,14 @@ import styled from "styled-components";
 export const TableWrapper = styled.div`
   padding: 1em;
   margin-top: 1em;
+  margin-bottom: 1em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 25px 25px 0 0;
   width: 97%;
 
   @media (max-width: 768px) {
- 
+    width: 100%;
+    padding: 0.5em
   }
 `;
 
@@ -104,7 +106,6 @@ export const CoinNameDiv = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export const PercentageBarColours = [
   {
     background: "#fee158",
@@ -114,4 +115,36 @@ export const PercentageBarColours = [
     background: "#8a92b2",
     bar: "#474c77",
   },
-]
+  {
+    background: "#1ba27a",
+    bar: "#1a6c55",
+  },
+  {
+    background: "#e4cd82",
+    bar: "#bb9f33",
+  },
+  {
+    background: "#ffdcce",
+    bar: "#fe7d43",
+  },
+  {
+    background: "#f4b2b0",
+    bar: "#ffb528",
+  },
+  {
+    background: "#f4b2b0",
+    bar: "#b3404a",
+  },
+  {
+    background: "#2775c9",
+    bar: "#1d327d",
+  },
+  {
+    background: "   #f09242",
+    bar: "#83808b",
+  },
+  {
+    background: "#985d9d",
+    bar: "#98009d",
+  },
+];

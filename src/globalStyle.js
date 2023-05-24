@@ -29,6 +29,9 @@ const GlobalStyle = createGlobalStyle`
     @media (max-width: 1400px) {
     width: 98vw;
   }
+  @media (max-width: 700px) {
+    width: 100vw;
+  }
   }
   a {
     text-decoration: none;

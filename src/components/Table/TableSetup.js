@@ -51,6 +51,7 @@ export default function TableSetup({ columns, data }) {
     useSortBy,
   );
   
+  // setHiddenColumns on resize
   useEffect(() => {
     let hiddenColumns = [];
     if (windowWidth <= 1000 && windowWidth > 800) {
@@ -62,7 +63,12 @@ export default function TableSetup({ columns, data }) {
     else if (windowWidth <= 600 && windowWidth > 500) {
       hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
     }
-    
+    else if (windowWidth <= 500 && windowWidth > 410) {
+      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+    }
+    else if (windowWidth <= 410 && windowWidth > 0) {
+      hiddenColumns = ["#", "vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+    }
     else {
       hiddenColumns = [];
     }  

@@ -10,6 +10,9 @@ export const ChartsWrapper = styled.div`
   @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
+    padding: 0.0em;
+    width: 100%;
+
   }
 `;
 
@@ -22,8 +25,14 @@ export const ChartWrapper = styled.div`
   border-radius: 3%;
   width: 90%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     margin-right: 0;
     margin-bottom: 2em;
+    
+  }
+  @media (max-width: 600px) {
+    margin-right: 0;
+    margin-bottom: 2em;
+    width: 100%
   }
 `;
