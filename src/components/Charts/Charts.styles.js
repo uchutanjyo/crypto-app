@@ -7,7 +7,7 @@ export const ChartsWrapper = styled.div`
   border-radius: 3%;
   width: 90%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
   }

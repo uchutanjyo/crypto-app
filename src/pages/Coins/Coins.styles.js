@@ -19,5 +19,10 @@ export const Container = styled.div`
   background-color: black;
   margin-right: 2em;
   border-radius: 5%;
-  width: 20%
+  width: 20%;
+  
+
 `;
+
+
+

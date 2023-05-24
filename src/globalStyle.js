@@ -26,6 +26,9 @@ const GlobalStyle = createGlobalStyle`
   }
   .wrapper {
     width: 65vw;
+    @media (max-width: 1400px) {
+    width: 98vw;
+  }
   }
   a {
     text-decoration: none;

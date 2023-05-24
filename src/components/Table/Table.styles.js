@@ -8,8 +8,7 @@ export const TableWrapper = styled.div`
   width: 97%;
 
   @media (max-width: 768px) {
-    width: 100%;
-    border-radius: 0;
+ 
   }
 `;
 
@@ -35,28 +34,17 @@ export const TableRow = styled.tr`
   padding: 2em 0;
   font-size: 0.7em;
 
-  @media (max-width: 768px) {
-    display: block;
-    padding: 1em 0;
-  }
 `;
 
 export const TableCol = styled.td`
   width: 10em;
   padding: 2em 0;
 
-  @media (max-width: 768px) {
-    width: auto;
-    padding: 1em 0;
-  }
 `;
 
 export const HorizLine = styled.hr`
   width: 10em;
 
-  @media (max-width: 768px) {
-    width: 100%;
-  }
 `;
 
 export const AbovePercentageBar = styled.div`
@@ -90,11 +78,7 @@ export const PercentageBarWrapper = styled.div`
   border-radius: 50px;
   background: ${(props) => props.background};
 
-  @media (max-width: 768px) {
-    max-width: none;
-    min-width: none;
-    width: 100%;
-  }
+
 `;
 
 export const BarAndTextWrapper = styled.div``;

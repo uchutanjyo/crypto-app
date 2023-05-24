@@ -15,22 +15,8 @@ import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function TableSetup({ columns, data }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [hiddenCols, setHiddenCols] = useState('');
 
   const ref = useRef()
-
-  
-  const getHiddenColumns = () => {
-    if (windowWidth < 900) {
-      console.log(windowWidth, hiddenCols)
-      setHiddenCols('Last 7d')
-    }
-    
-    else {
-      console.log(windowWidth, hiddenCols)
-      setHiddenCols('')
-    }
-  }
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -43,10 +29,6 @@ export default function TableSetup({ columns, data }) {
     };
   });
   
-useEffect(()=> {
-  getHiddenColumns()
-}, [windowWidth])
-
   const {
     getTableProps,
     getTableBodyProps, 
@@ -60,17 +42,32 @@ useEffect(()=> {
       data,
       initialState: {
         hiddenColumns: 
-        [hiddenCols],
+        [],
         
-      }
+      },
+      autoResetHiddenColumns: true
     },
     useFilters,
     useSortBy,
   );
-
+  
   useEffect(() => {
-    setHiddenColumns(hiddenCols)
-  }, [hiddenCols])
+    let hiddenColumns = [];
+    if (windowWidth <= 1000 && windowWidth > 800) {
+      hiddenColumns= ["Last 7d"]
+    }
+    else if (windowWidth <= 800 && windowWidth > 600) {
+      hiddenColumns = ["circ_supply_over_total_supply", "Last 7d",]
+    }
+    else if (windowWidth <= 600 && windowWidth > 500) {
+      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+    }
+    
+    else {
+      hiddenColumns = [];
+    }  
+    setHiddenColumns(hiddenColumns)
+  }, [windowWidth])
 
   const [filterInput, setFilterInput] = useState("");
 

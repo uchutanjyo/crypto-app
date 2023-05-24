@@ -64,8 +64,6 @@ function Table() {
           {
             Header: "Name",
             accessor: "id",
-            // maxWidth: 200,
-            // minWidth: 200,
             Cell: ({ cell: { row } }) => {
               return (
                 <CoinNameDiv>
@@ -151,8 +149,9 @@ function Table() {
             },
           },
           {
-            Header: "Circulating / Total Sup",
+            Header: "Circulating / Total Supply",
             accessor: "circ_supply_over_total_supply",
+            show: true,
             Cell: ({ cell: { row } }) => {
               const width = (
                 (row.original.circulating_supply / row.original.total_supply) *
@@ -191,8 +190,44 @@ function Table() {
           {
             Header: "Last 7d",
             accessor: "",
-            show: false
+            show: false,
+            Cell: ({ cell: { row } }) => {
+              const width = (
+                (row.original.circulating_supply / row.original.total_supply) *
+                100
+              ).toString();
+              return (
+                <BarAndTextWrapper style={{ marginRight: 40 }}>
+                  <AbovePercentageBar>
+                    <span>
+                      {formatToUnits(row.original.circulating_supply)}
+                    </span>
+                    <span>{formatToUnits(row.original.total_supply)}</span>
+                  </AbovePercentageBar>
+                  <PercentageBarWrapper
+                    background={GeneratePercentageBarColour(
+                      row.id,
+                      50,
+                      "background"
+                    )}
+                  >
+                    <PercentageBar
+                      width={width}
+                      background={GeneratePercentageBarColour(
+                        row.id,
+                        50,
+                        "bar"
+                      )}
+                    >
+                      &nbsp;
+                    </PercentageBar>
+                  </PercentageBarWrapper>
+                </BarAndTextWrapper>
+              );
+            },
+          
           },
+          
         ],
       },
     ],
