@@ -10,4 +10,9 @@ export const Header = styled.div`
   padding-bottom: 0.5em;
   padding-top: 0.5em;
   font-size: 1.5em;
+
+  @media (max-width: 1000px) {
+    font-size: 1em;
+
+  }
 `;

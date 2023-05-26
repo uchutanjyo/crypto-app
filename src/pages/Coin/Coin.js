@@ -56,7 +56,7 @@ const Coin = () => {
           <div>Loading...</div>
         ) : (
           <>
-            <h2>Your Summary</h2>
+            <h2>{coinData.data.name} Summary</h2>
             <YourSummaryWrapper>
               <LeftSummary>
                 <CoinImageWrapper>

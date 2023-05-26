@@ -72,9 +72,9 @@ const Navbar = () => {
 
       <BottomNav>
         <InnerBottomNav>
-          {lowerNavbarHeaders.map((header, i) => {
+          {/* {lowerNavbarHeaders.map((header, i) => {
             return <BottomNavHeader key={i}>{header}: 40 </BottomNavHeader>;
-          })}
+          })} */}
         </InnerBottomNav>
       </BottomNav>
     </Nav>
