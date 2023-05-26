@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTable, useFilters, useSortBy } from "react-table";
 import {
   CoinsTable,
@@ -14,20 +14,66 @@ import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function TableSetup({ columns, data }) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const ref = useRef()
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleWindowResize);
+    console.log(windowWidth)
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  });
+  
   const {
     getTableProps,
     getTableBodyProps, 
     headerGroups, 
     rows, 
     prepareRow, 
+    setHiddenColumns
   } = useTable(
     {
       columns,
       data,
+      initialState: {
+        hiddenColumns: 
+        [],
+        
+      },
+      autoResetHiddenColumns: true
     },
     useFilters,
-    useSortBy
+    useSortBy,
   );
+  
+  // setHiddenColumns on resize
+  useEffect(() => {
+    let hiddenColumns = [];
+    if (windowWidth <= 1000 && windowWidth > 800) {
+      hiddenColumns= ["Last 7d"]
+    }
+    else if (windowWidth <= 800 && windowWidth > 600) {
+      hiddenColumns = ["circ_supply_over_total_supply", "Last 7d",]
+    }
+    else if (windowWidth <= 600 && windowWidth > 500) {
+      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+    }
+    else if (windowWidth <= 500 && windowWidth > 410) {
+      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+    }
+    else if (windowWidth <= 410 && windowWidth > 0) {
+      hiddenColumns = ["#", "vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+    }
+    else {
+      hiddenColumns = [];
+    }  
+    setHiddenColumns(hiddenColumns)
+  }, [windowWidth])
 
   const [filterInput, setFilterInput] = useState("");
 

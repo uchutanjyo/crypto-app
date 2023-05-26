@@ -2,6 +2,13 @@ import styled from "styled-components";
 
 export const PageWrapper = styled.div`
   width: 98%;
+    @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+
+  }
 `;
 
 export const YourSummaryWrapper = styled.div`
@@ -12,6 +19,15 @@ export const YourSummaryWrapper = styled.div`
   padding-right: 2em;
   border-radius: 3%;
   width: 98%;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+    border-radius: 0%;
+
+  }
 `;
 
 export const LeftSummary = styled.div`
@@ -23,7 +39,16 @@ export const LeftSummary = styled.div`
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
-  width: 25%
+  width: 25%;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+    border-radius: 0%;
+    margin-right: 0em;
+
+  }
 `;
 
 export const MiddleSummary = styled.div`
@@ -35,7 +60,13 @@ export const MiddleSummary = styled.div`
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
-
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+    margin-right: 0em;
+  }
 
 `;
 
@@ -49,8 +80,14 @@ export const RightSummary = styled.div`
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
   width: 45%;
-  font-size: .8em
-
+  font-size: .8em;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+    border-radius: 0%;
+  }
 `;
 
 export const DescriptionWrapper = styled.div`
@@ -62,6 +99,13 @@ export const DescriptionWrapper = styled.div`
   padding-right: 2em;
   border-radius: 3%;
   width: 100%;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+
+  }
 `;
 
 export const Description = styled.div`

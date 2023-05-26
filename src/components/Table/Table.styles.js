@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 export const TableWrapper = styled.div`
-  padding-bottom: 1em;
-  padding-top: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 1em;
   margin-top: 1em;
+  margin-bottom: 1em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 25px 25px 0 0;
   width: 97%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.5em
+  }
 `;
 
 export const CoinsTable = styled.table`
@@ -19,6 +22,7 @@ export const CoinsTable = styled.table`
 export const TableBody = styled.tbody``;
 
 export const TableHeaderRow = styled.thead``;
+
 export const TableHeader = styled.thead`
   cursor: pointer;
 `;
@@ -29,19 +33,20 @@ export const HeaderRow = styled.tr`
 
 export const TableRow = styled.tr`
   border-top: 0.001rem dotted white;
-  padding-bottom: 2em;
-  padding-top: 2em;
+  padding: 2em 0;
   font-size: 0.7em;
+
 `;
 
 export const TableCol = styled.td`
   width: 10em;
-  padding-bottom: 2em;
-  padding-top: 2em;
+  padding: 2em 0;
+
 `;
 
 export const HorizLine = styled.hr`
   width: 10em;
+
 `;
 
 export const AbovePercentageBar = styled.div`
@@ -71,10 +76,11 @@ export const PercentageBar = styled.div`
 export const PercentageBarWrapper = styled.div`
   max-width: 120px;
   min-width: 120px;
-
   height: 1em;
   border-radius: 50px;
   background: ${(props) => props.background};
+
+
 `;
 
 export const BarAndTextWrapper = styled.div``;
@@ -100,7 +106,6 @@ export const CoinNameDiv = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export const PercentageBarColours = [
   {
     background: "#fee158",

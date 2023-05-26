@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  /* padding: 4em; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +10,10 @@ export const Wrapper = styled.section`
   padding-left: 3em;
   padding-right: 3em;
   padding-top: 3em;
-
+  @media (max-width: 768px) {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+  }
 `;
 
 export const Container = styled.div`
@@ -19,5 +21,10 @@ export const Container = styled.div`
   background-color: black;
   margin-right: 2em;
   border-radius: 5%;
-  width: 20%
+  width: 20%;
+  
+
 `;
+
+
+
