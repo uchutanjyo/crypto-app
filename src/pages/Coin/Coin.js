@@ -71,10 +71,10 @@ const Coin = () => {
                 <CoinUrl>
                   {coinData.data.links && (
                     <Link
-                      to={`${coinData.data.links.homepage}`}
+                      to={`${coinData.data.links.homepage[0]}`}
                       target="_blank"
                     >
-                      {coinData.data.links.homepage}
+                      {coinData.data.links.homepage[0]}
                     </Link>
                   )}
                 </CoinUrl>
@@ -178,13 +178,13 @@ const Coin = () => {
         )}
         <h2>Description</h2>
         <DescriptionWrapper>
-          {/* {coinData.data.description && (
-            <Description>{coinData.data.description.en}</Description>
-          )} */}
+          {coinData.data && (
+            <Description >{coinData.data.description.en}</Description>
+          )}
         </DescriptionWrapper>
-        {/* {coinData.data.links && ( */}
+        {coinData.data && (
           <>
-            {/* <TopUrls>
+            <TopUrls>
               <UrlWrapper>
                 <Link
                   to={`${coinData.data.links.blockchain_site[0]}`}
@@ -202,17 +202,17 @@ const Coin = () => {
                   {coinData.data.links.blockchain_site[1].slice(8)}
                 </Link>
               </UrlWrapper>
-            </TopUrls> */}
+            </TopUrls>
             <BottomUrl>
-              {/* <Link
+              <Link
                 to={`${coinData.data.links.blockchain_site[2]}`}
                 target="_blank"
               >
                 {coinData.data.links.blockchain_site[2].slice(8)}
-              </Link> */}
+              </Link>
             </BottomUrl>
           </>
-        {/* )} */}
+        )} 
       </PageWrapper>
     </Wrapper>
   );

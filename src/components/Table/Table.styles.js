@@ -9,7 +9,7 @@ export const TableWrapper = styled.div`
   width: 97%;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 96%;
     padding: 0.5em
   }
 `;

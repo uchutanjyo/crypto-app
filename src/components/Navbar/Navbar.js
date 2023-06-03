@@ -46,14 +46,14 @@ const Navbar = () => {
     <Nav>
       <TopNav>
         <Container>
-          <NavbarLink as="a" href="#">
+          {/* <NavbarLink as="a" href="#">
             Coins
           </NavbarLink>
         </Container>
         <Container>
           <NavbarLink as="a" href="#">
             Portfolio
-          </NavbarLink>
+          </NavbarLink> */}
         </Container>
         <Search placeholder="Search" />
         <CurrencyChange>
@@ -82,3 +82,10 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// use later
+  //  <div style={{display: 'flex', alignItems: 'center', width: 300, height: 40, fontSize: 15}}>
+  //       <div>*Search coming soon. </div>
+  //       <Search placeholder="Search" />
+  //       </div>
+  //       <div style={{display: 'flex', alignItems: 'center', width: 300, height: 40, fontSize: 15}}>
+  //       <div>Select currency: </div>

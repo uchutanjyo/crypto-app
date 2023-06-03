@@ -18,13 +18,13 @@ export const YourSummaryWrapper = styled.div`
   padding-left: 2em;
   padding-right: 2em;
   border-radius: 3%;
-  width: 98%;
+  width: 97%;
 
   @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
     padding: 0.0em;
-    width: 100%;
+    width: 97%;
     border-radius: 0%;
 
   }
@@ -112,6 +112,7 @@ export const Description = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 2em;
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
@@ -122,9 +123,12 @@ export const TopUrls = styled.div`
 margin-top:1em;
   display: flex;
   justify-content: space-evenly;
-
+  align-items: center;
   border-radius: 3%;
   width: 100%;
+  padding-right: 2em;
+  padding-left: 2em;
+
   border-radius: 3%;
 
 `;
@@ -139,7 +143,7 @@ export const BottomUrl = styled.div`
   border-radius: 3%;
   padding-top:1em;
   padding-bottom:1em;
-  width: 98%
+  width: 97%
 
 `;
 
@@ -169,11 +173,26 @@ export const CoinUrl = styled.div`
 export const UrlWrapper = styled.div`
   background-color: ${(props) => props.theme.colours.dark};
   padding: 1em;
-  margin: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-left: 3em;
+  margin-right: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30em
+  min-width: 27.5em;
+  max-width: 27.5em;
+
+  border-radius: 3%;
+  @media (max-width: 756px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.0em;
+    width: 100%;
+    min-width: 0em;
+  max-width: 0em;
+
+  }
 
 `;
 

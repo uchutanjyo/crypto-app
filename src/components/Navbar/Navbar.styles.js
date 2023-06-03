@@ -66,7 +66,7 @@ export const Search = styled.input`
 export const CurrencyChange = styled.select`
   padding: .5em;
   background-color: ${(props) => props.theme.colours.grey};
-  width: 10%;
+  width: 40%;
   height: 70%;
   color: white;
   border: none;
