@@ -190,7 +190,9 @@ const Coin = () => {
                   to={`${coinData.data.links.blockchain_site[0]}`}
                   target="_blank"
                 >
-                  {coinData.data.links.blockchain_site[0].slice(8)}
+                  {coinData.data.links.blockchain_site[1].length > 30 ?
+                  coinData.data.links.blockchain_site[1].slice(8, 30)
+                  : coinData.data.links.blockchain_site[1].slice(8)}
                 </Link>
               </UrlWrapper>
 
@@ -199,17 +201,21 @@ const Coin = () => {
                   to={`${coinData.data.links.blockchain_site[1]}`}
                   target="_blank"
                 >
-                  {coinData.data.links.blockchain_site[1].slice(8)}
+                  {coinData.data.links.blockchain_site[1].length > 30 ?
+                  coinData.data.links.blockchain_site[1].slice(8, 30)
+                  : coinData.data.links.blockchain_site[1].slice(8)}
                 </Link>
               </UrlWrapper>
             </TopUrls>
             <BottomUrl>
-              <Link
-                to={`${coinData.data.links.blockchain_site[2]}`}
-                target="_blank"
-              >
-                {coinData.data.links.blockchain_site[2].slice(8)}
-              </Link>
+            <Link
+                  to={`${coinData.data.links.blockchain_site[2]}`}
+                  target="_blank"
+                >
+                  {coinData.data.links.blockchain_site[2].length > 30 ?
+                  coinData.data.links.blockchain_site[2].slice(8, 30)
+                  : coinData.data.links.blockchain_site[2].slice(8)}
+                </Link>
             </BottomUrl>
           </>
         )} 

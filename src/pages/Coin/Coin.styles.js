@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PageWrapper = styled.div`
   width: 98%;
     @media (max-width: 1000px) {
+      display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0.0em;
@@ -23,10 +24,10 @@ export const YourSummaryWrapper = styled.div`
   @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0.0em;
     width: 97%;
     border-radius: 0%;
-
   }
 `;
 
@@ -83,10 +84,11 @@ export const RightSummary = styled.div`
   font-size: .8em;
   @media (max-width: 1000px) {
     flex-direction: column;
-    align-items: center;
+    margin-bottom: 1em;
     padding: 0.0em;
     width: 100%;
     border-radius: 0%;
+    align-items: center;
   }
 `;
 
@@ -102,9 +104,9 @@ export const DescriptionWrapper = styled.div`
   @media (max-width: 1000px) {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0.0em;
-    width: 100%;
-
+    width: 98%;
   }
 `;
 
@@ -117,6 +119,10 @@ export const Description = styled.div`
   margin-right: 2em;
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 3%;
+  @media (max-width: 1000px) {
+    width: 90%;
+    margin-right: 0em;
+  }
 `;
 
 export const TopUrls = styled.div`
@@ -130,7 +136,12 @@ margin-top:1em;
   padding-left: 2em;
 
   border-radius: 3%;
+  @media (max-width: 756px) {
+    flex-direction: column;
+    padding: 0.0em;
+    background-color: ${(props) => props.theme.colours.dark};
 
+  }
 `;
 
 export const BottomUrl = styled.div`
@@ -143,8 +154,13 @@ export const BottomUrl = styled.div`
   border-radius: 3%;
   padding-top:1em;
   padding-bottom:1em;
-  width: 97%
-
+  width: 97%;
+  @media (max-width: 756px) {
+    margin-left: 0em;
+    margin-top:0em;
+    padding-top:0em;
+  padding-bottom:0em;
+  }
 `;
 
 export const CoinImageWrapper = styled.div`
@@ -154,6 +170,11 @@ export const CoinImageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 4em;
+  @media (max-width: 756px) {
+ margin-top: 1em;
+ background-color: ${(props) => props.theme.colours.dark};
+
+  }
 `;
 
 export const CoinImageContainer = styled.img``;
@@ -168,6 +189,15 @@ export const CoinUrl = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 756px) {
+    flex-direction: column;
+    padding: 0.0em;
+    width: 100%;
+    min-width: 0em;
+  max-width: 0em;
+  margin-right: 0em;
+  margin-left: 0em;
+  }
 `;
 
 export const UrlWrapper = styled.div`
@@ -186,12 +216,12 @@ export const UrlWrapper = styled.div`
   border-radius: 3%;
   @media (max-width: 756px) {
     flex-direction: column;
-    align-items: center;
     padding: 0.0em;
     width: 100%;
     min-width: 0em;
   max-width: 0em;
-
+  margin-right: 0em;
+  margin-left: 0em;
   }
 
 `;
