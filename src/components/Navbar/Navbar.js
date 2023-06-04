@@ -42,19 +42,21 @@ const Navbar = () => {
     console.log(currentCurrency)
   },[currentCurrency])
   
+// All commented out sections represent features that have not been created yet (portfolio, etc)
+
   return (
     <Nav>
       <TopNav>
-        <Container>
-          {/* <NavbarLink as="a" href="#">
+        {/* <Container>
+          <NavbarLink as="a" href="#">
             Coins
           </NavbarLink>
         </Container>
         <Container>
           <NavbarLink as="a" href="#">
             Portfolio
-          </NavbarLink> */}
-        </Container>
+          </NavbarLink>
+        </Container> */}
         <Search placeholder="Search" />
         <CurrencyChange>
           {currencies.map((currency, i) => {
@@ -67,7 +69,7 @@ const Navbar = () => {
             );
           })}
         </CurrencyChange>
-        <Container></Container>
+        {/* <Container></Container> */}
       </TopNav>
 
       <BottomNav>

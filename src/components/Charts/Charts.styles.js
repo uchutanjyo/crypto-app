@@ -33,6 +33,6 @@ export const ChartWrapper = styled.div`
   @media (max-width: 600px) {
     margin-right: 0;
     margin-bottom: 2em;
-    width: 100%
+    width: 85%;
   }
 `;
