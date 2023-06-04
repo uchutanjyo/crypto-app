@@ -42,10 +42,12 @@ const Navbar = () => {
     console.log(currentCurrency)
   },[currentCurrency])
   
+// All commented out sections represent features that have not been created yet (portfolio, etc)
+
   return (
     <Nav>
       <TopNav>
-        <Container>
+        {/* <Container>
           <NavbarLink as="a" href="#">
             Coins
           </NavbarLink>
@@ -54,7 +56,7 @@ const Navbar = () => {
           <NavbarLink as="a" href="#">
             Portfolio
           </NavbarLink>
-        </Container>
+        </Container> */}
         <Search placeholder="Search" />
         <CurrencyChange>
           {currencies.map((currency, i) => {
@@ -67,7 +69,7 @@ const Navbar = () => {
             );
           })}
         </CurrencyChange>
-        <Container></Container>
+        {/* <Container></Container> */}
       </TopNav>
 
       <BottomNav>
@@ -82,3 +84,10 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// use later
+  //  <div style={{display: 'flex', alignItems: 'center', width: 300, height: 40, fontSize: 15}}>
+  //       <div>*Search coming soon. </div>
+  //       <Search placeholder="Search" />
+  //       </div>
+  //       <div style={{display: 'flex', alignItems: 'center', width: 300, height: 40, fontSize: 15}}>
+  //       <div>Select currency: </div>

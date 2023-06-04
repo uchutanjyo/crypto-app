@@ -1,19 +1,19 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
 export const Nav = styled.section`
   /* padding: 4em; */
   display: flex;
   flex-direction: column;
   height: 25%;
-  
 `;
 
 export const TopNav = styled.section`
   /* padding: 4em; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /* Make space-between again when other navbar items added */
+  /* justify-content: space-between; */
   background-color: ${(props) => props.theme.colours.dark};
   padding-top: 1.5em;
   padding-bottom: 1em;
@@ -34,14 +34,14 @@ export const InnerBottomNav = styled.div`
   background-color: ${(props) => props.theme.colours.dark};
   border-radius: 0 0 25px 25px;
   width: 67%;
-  font-size: .8em
+  font-size: 0.8em;
 `;
 
 export const Container = styled.div`
   /* padding: 4em; */
   /* background-color: black; */
-  padding-bottom: .5em;
-  padding-top: .5em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
   padding-left: 2em;
   padding-right: 2em;
   background-color: ${(props) => props.theme.colours.grey};
@@ -51,22 +51,22 @@ export const Container = styled.div`
 
 export const NavbarLink = styled(Link)`
   color: white;
-  `;
+`;
 
 export const Search = styled.input`
-  padding: .5em;
+  padding: 0.5em;
+  margin-right: 3em;
   background-color: ${(props) => props.theme.colours.grey};
-  width: 25%;
+  width: 30%;
   height: 70%;
-  color: white ;
+  color: white;
   border: none;
-
 `;
 
 export const CurrencyChange = styled.select`
-  padding: .5em;
+  padding: 0.5em;
   background-color: ${(props) => props.theme.colours.grey};
-  width: 10%;
+  width: 20%;
   height: 70%;
   color: white;
   border: none;
@@ -75,6 +75,4 @@ export const CurrencyChange = styled.select`
 export const BottomNavHeader = styled.div`
   margin-right: 1em;
   color: white;
-
 `;
-
