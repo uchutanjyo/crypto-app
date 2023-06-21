@@ -23,6 +23,7 @@ import { formatToUnits } from "../../utils/formatToUnits";
 import { IncOrDecArrow } from "../../utils/incOrDecArrow";
 import { PercentageBarColours } from "./Table.styles";
 import { current } from "@reduxjs/toolkit";
+import Sparkline from "../Sparkline/Sparkline";
 
 const GeneratePercentageBarColour = (index, data, type) => {
   for (let i = 0; i < data; i++) {
@@ -192,37 +193,66 @@ function Table() {
             accessor: "",
             show: false,
             Cell: ({ cell: { row } }) => {
-              const width = (
-                (row.original.circulating_supply / row.original.total_supply) *
-                100
-              ).toString();
+              const chartData = row.original.sparkline_in_7d.price
+              // const width = (
+              //   (row.original.circulating_supply / row.original.total_supply) *
+              //   100
+              // ).toString();
               return (
-                <BarAndTextWrapper style={{ marginRight: 40 }}>
-                  <AbovePercentageBar>
-                    <span>
-                      {formatToUnits(row.original.circulating_supply)}
-                    </span>
-                    <span>{formatToUnits(row.original.total_supply)}</span>
-                  </AbovePercentageBar>
-                  <PercentageBarWrapper
-                    background={GeneratePercentageBarColour(
-                      row.id,
-                      50,
-                      "background"
-                    )}
-                  >
-                    <PercentageBar
-                      width={width}
-                      background={GeneratePercentageBarColour(
-                        row.id,
-                        50,
-                        "bar"
-                      )}
-                    >
-                      &nbsp;
-                    </PercentageBar>
-                  </PercentageBarWrapper>
-                </BarAndTextWrapper>
+                <Sparkline chartData={{
+                  // labels:
+                  //   chartData !== undefined
+                  //     ? chartData.map((date) => {
+                  //         return new Date(date[0]).toLocaleString(undefined, {
+                  //           month: "short",
+                  //           day: "numeric",
+                  //         });
+                  //       })
+                  //     : [],
+                  datasets: [
+                    {
+                      // label: "Price",
+                      data:
+                        chartData !== undefined
+                          ? chartData.map((data) => {
+                              return data;
+                            })
+                          : [],
+                      backgroundColor: ["rgba(5, 255, 255, 0.6)"],
+                      borderWidth: "20px",
+                      borderColor: "red",
+                      fill: true,
+                    }
+                  ]
+                }}
+                
+              />
+                // <BarAndTextWrapper style={{ marginRight: 40 }}>
+                //   <AbovePercentageBar>
+                //     <span>
+                //       {formatToUnits(row.original.circulating_supply)}
+                //     </span>
+                //     <span>{formatToUnits(row.original.total_supply)}</span>
+                //   </AbovePercentageBar>
+                //   <PercentageBarWrapper
+                //     background={GeneratePercentageBarColour(
+                //       row.id,
+                //       50,
+                //       "background"
+                //     )}
+                //   >
+                //     <PercentageBar
+                //       width={width}
+                //       background={GeneratePercentageBarColour(
+                //         row.id,
+                //         50,
+                //         "bar"
+                //       )}
+                //     >
+                //       &nbsp;
+                //     </PercentageBar>
+                //   </PercentageBarWrapper>
+                // </BarAndTextWrapper>
               );
             },
           
