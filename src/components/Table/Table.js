@@ -190,41 +190,38 @@ function Table() {
           },
           {
             Header: "Last 7d",
-            accessor: "",
-            show: false,
+            accessor: "sparkline_in_7d",
+            show: true,
             Cell: ({ cell: { row } }) => {
-              const chartData = row.original.sparkline_in_7d.price
+              const sparklineData = row.original.sparkline_in_7d.price
+
+              const chartData = 
+                { 
+                label: "sparky",
+                datasets: [
+                  {
+                    data:
+                    sparklineData ?
+                        sparklineData.map((data) => {
+                            return data;
+                          })
+                        : [],
+                    backgroundColor: ["rgba(5, 255, 5, 1)"],
+                    borderWidth: "20px",
+                    borderColor: "red",
+                    fill: true,
+                  }
+                  
+                ]
+              }
+              
+              
               // const width = (
               //   (row.original.circulating_supply / row.original.total_supply) *
               //   100
               // ).toString();
               return (
-                <Sparkline chartData={{
-                  // labels:
-                  //   chartData !== undefined
-                  //     ? chartData.map((date) => {
-                  //         return new Date(date[0]).toLocaleString(undefined, {
-                  //           month: "short",
-                  //           day: "numeric",
-                  //         });
-                  //       })
-                  //     : [],
-                  datasets: [
-                    {
-                      // label: "Price",
-                      data:
-                        chartData !== undefined
-                          ? chartData.map((data) => {
-                              return data;
-                            })
-                          : [],
-                      backgroundColor: ["rgba(5, 255, 255, 0.6)"],
-                      borderWidth: "20px",
-                      borderColor: "red",
-                      fill: true,
-                    }
-                  ]
-                }}
+                <Sparkline chartData={chartData}
                 
               />
                 // <BarAndTextWrapper style={{ marginRight: 40 }}>

@@ -7,7 +7,7 @@ import { CategoryScale } from "chart.js";
 Chart.register(CategoryScale);
 
 const Sparkline = ({chartData}) => {
-  
+  // console.log(chartData)
 //   const [pricesChartDataOptions, setPricesChartDataOptions] = useState([]);
 //   const [volumeChartDataOptions, setVolumeChartDataOptions] = useState([]);
 
@@ -46,7 +46,6 @@ const Sparkline = ({chartData}) => {
   return (
     <>
       <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Price</h2>
       <Line
         data={chartData}
         options={{
@@ -92,6 +91,7 @@ const Sparkline = ({chartData}) => {
               }
             }
           }
+        
         }}
       />
     </div>
