@@ -179,7 +179,9 @@ const Coin = () => {
         <h2>Description</h2>
         <DescriptionWrapper>
           {coinData.data && (
-            <Description >{coinData.data.description.en}</Description>
+            <Description >
+              <div dangerouslySetInnerHTML={{ __html: coinData.data.description.en }} />
+              </Description>
           )}
         </DescriptionWrapper>
         {coinData.data && (
