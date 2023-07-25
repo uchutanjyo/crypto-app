@@ -15,5 +15,6 @@ export const Header = styled.div`
     font-size: 1em;
     flex-direction: column;
     align-items: center;
+    margin-left: .8em;
   }
 `;
