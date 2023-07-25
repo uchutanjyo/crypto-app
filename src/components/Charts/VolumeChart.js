@@ -5,7 +5,7 @@ import { Bar } from "react-chartjs-2";
 function VolumeChart({ chartData }) {
   return (
     <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Volume</h2>
+      <h2 style={{ textAlign: "center" }}>Bitcoin Volume</h2>
       <Bar
         data={chartData}
         options={{

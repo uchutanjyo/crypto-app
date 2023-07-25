@@ -50,7 +50,6 @@ export const Container = styled.div`
 `;
 
 export const NavbarLink = styled(Link)`
-  color: white;
 `;
 
 export const Search = styled.input`
@@ -68,11 +67,11 @@ export const CurrencyChange = styled.select`
   background-color: ${(props) => props.theme.colours.grey};
   width: 20%;
   height: 70%;
-  color: white;
+  min-height: 70%;
+  color: #D3D3D3;
   border: none;
 `;
 
 export const BottomNavHeader = styled.div`
   margin-right: 1em;
-  color: white;
 `;

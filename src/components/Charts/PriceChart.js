@@ -5,7 +5,7 @@ import { Line } from "react-chartjs-2";
 function PriceChart({ chartData }) {
   return (
     <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Price</h2>
+      <h2 style={{ textAlign: "center" }}>Bitcoin Price</h2>
       <Line
         data={chartData}
         options={{
