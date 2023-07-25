@@ -1,10 +1,5 @@
-import {
-  Link
-} from "react-router-dom";
-import React, {
-  useRef,
-  useEffect
-} from "react";
+import { Link } from "react-router-dom";
+import React, { useRef, useEffect } from "react";
 import {
   Nav,
   TopNav,
@@ -17,16 +12,9 @@ import {
   CurrencyChange,
 } from "./Navbar.styles";
 
-import {
-  useDispatch,
-  useSelector
-} from "react-redux";
-import {
-  setCurrency
-} from "../../redux/Currency/action";
-import {
-  getCoinsData
-} from "../../redux/Coins/action";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrency } from "../../redux/Currency/action";
+import { getCoinsData } from "../../redux/Coins/action";
 
 const lowerNavbarHeaders = [
   "Coins",
@@ -41,26 +29,26 @@ const lowerNavbarHeaders = [
 const currencies = ["USD", "GBP", "EUR", "CAD", "JPY"];
 
 const Navbar = () => {
-  const ref = useRef()
+  const ref = useRef();
   const dispatch = useDispatch();
   const currentCurrency = useSelector((state) => state.currency.currency);
 
   const setCurrentCurrency = (currency) => {
-    ref.current = currency
-    dispatch(setCurrency(ref.current))
-  }
+    ref.current = currency;
+    dispatch(setCurrency(ref.current));
+  };
 
   useEffect(() => {
-    (currentCurrency)
-  }, [currentCurrency])
+    currentCurrency;
+  }, [currentCurrency]);
 
   // All commented out sections represent features that have not been created yet (portfolio, etc)
 
-  return ( <
-    Nav >
-    <
-    TopNav > {
-      /* <Container>
+  return (
+    <Nav>
+      <TopNav>
+        {" "}
+        {/* <Container>
                 <NavbarLink as="a" href="#">
                   Coins
                 </NavbarLink>
@@ -69,47 +57,34 @@ const Navbar = () => {
                 <NavbarLink as="a" href="#">
                   Portfolio
                 </NavbarLink>
-              </Container> */
-    } <
-    Search placeholder = "Search" / >
-    <
-    CurrencyChange > {
-      currencies.map((currency, i) => {
-        return ( <
-          option key = {
-            i
-          }
-          value = {
-            currency
-          }
-          selected = {
-            currentCurrency
-          }
-          onClick = {
-            () => setCurrentCurrency(currency)
-          } >
-          {
-            currency
-          } <
-          /option>
-        );
-      })
-    } <
-    /CurrencyChange> {
-      /* <Container></Container> */ } <
-    /TopNav>
-
-    <
-    BottomNav >
-    <
-    InnerBottomNav > {
-      /* {lowerNavbarHeaders.map((header, i) => {
+              </Container> */}{" "}
+        <Search placeholder="Search" />
+        <CurrencyChange>
+          {" "}
+          {currencies.map((currency, i) => {
+            return (
+              <option
+                key={i}
+                value={currency}
+                selected={currentCurrency}
+                onClick={() => setCurrentCurrency(currency)}
+              >
+                {currency}{" "}
+              </option>
+            );
+          })}{" "}
+        </CurrencyChange>{" "}
+        {/* <Container></Container> */}{" "}
+      </TopNav>
+      <BottomNav>
+        <InnerBottomNav>
+          {" "}
+          {/* {lowerNavbarHeaders.map((header, i) => {
                   return <BottomNavHeader key={i}>{header}: 40 </BottomNavHeader>;
-                })} */
-    } <
-    /InnerBottomNav> <
-    /BottomNav> <
-    /Nav>
+                })} */}{" "}
+        </InnerBottomNav>{" "}
+      </BottomNav>{" "}
+    </Nav>
   );
 };
 

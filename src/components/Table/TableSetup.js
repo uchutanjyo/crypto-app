@@ -54,19 +54,19 @@ export default function TableSetup({ columns, data }) {
   useEffect(() => {
     let hiddenColumns = [];
     if (windowWidth <= 1000 && windowWidth > 800) {
-      hiddenColumns= ["Last 7d"]
+      hiddenColumns= ["sparkline_in_7d"]
     }
     else if (windowWidth <= 800 && windowWidth > 600) {
-      hiddenColumns = ["circ_supply_over_total_supply", "Last 7d",]
+      hiddenColumns = ["circ_supply_over_total_supply", "sparkline_in_7d",]
     }
     else if (windowWidth <= 600 && windowWidth > 500) {
-      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "sparkline_in_7d",]
     }
     else if (windowWidth <= 500 && windowWidth > 410) {
-      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+      hiddenColumns = ["vol_over_market_cap", "circ_supply_over_total_supply", "sparkline_in_7d",]
     }
     else if (windowWidth <= 410 && windowWidth > 0) {
-      hiddenColumns = ["#", "vol_over_market_cap", "circ_supply_over_total_supply", "Last 7d",]
+      hiddenColumns = ["#", "vol_over_market_cap", "circ_supply_over_total_supply", "sparkline_in_7d",]
     }
     else {
       hiddenColumns = [];
