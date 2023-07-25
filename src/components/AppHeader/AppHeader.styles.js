@@ -6,7 +6,6 @@ export const Header = styled.div`
   display: flex;
   justify-content: center;
   font-weight: bold;
-  border-bottom: 1px dotted;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
   font-size: 1.7em;

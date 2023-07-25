@@ -43,7 +43,7 @@ export const LeftSummary = styled.div`
   width: 25%;
   @media (max-width: 1000px) {
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     padding: 0.0em;
     width: 100%;
     border-radius: 0%;
@@ -63,7 +63,7 @@ export const MiddleSummary = styled.div`
   border-radius: 3%;
   @media (max-width: 1000px) {
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     padding: 0.0em;
     width: 100%;
     margin-right: 0em;
@@ -88,7 +88,7 @@ export const RightSummary = styled.div`
     padding: 0.0em;
     width: 100%;
     border-radius: 0%;
-    align-items: center;
+    align-items: left;
   }
 `;
 
