@@ -1,5 +1,5 @@
 export const formatToUnits = (number, precision) => {
-    if (number === NaN || number === undefined) {
+    if (number === NaN|| number === undefined) {
       return '∞'
     } else {
     const abbrev = ['', 'k', 'm', 'b', 't'];

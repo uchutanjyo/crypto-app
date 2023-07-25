@@ -128,7 +128,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Fully diluted valuation:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.fully_diluted_valuation)}
+                      ${formatToUnits(coinData.data.market_data.fully_diluted_valuation.usd)}
                     </DataPoint>
 
                     <DataPoint>
@@ -179,7 +179,9 @@ const Coin = () => {
         <h2>Description</h2>
         <DescriptionWrapper>
           {coinData.data && (
-            <Description >{coinData.data.description.en}</Description>
+            <Description >
+              <div dangerouslySetInnerHTML={{ __html: coinData.data.description.en }} />
+              </Description>
           )}
         </DescriptionWrapper>
         {coinData.data && (

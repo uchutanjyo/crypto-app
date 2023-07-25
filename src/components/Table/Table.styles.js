@@ -40,6 +40,7 @@ export const TableRow = styled.tr`
 
 export const TableCol = styled.td`
   width: 10em;
+  max-width: 10em;
   padding: 2em 0;
 
 `;

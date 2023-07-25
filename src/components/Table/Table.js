@@ -23,6 +23,7 @@ import { formatToUnits } from "../../utils/formatToUnits";
 import { IncOrDecArrow } from "../../utils/incOrDecArrow";
 import { PercentageBarColours } from "./Table.styles";
 import { current } from "@reduxjs/toolkit";
+import Sparkline from "../Sparkline/Sparkline";
 
 const GeneratePercentageBarColour = (index, data, type) => {
   for (let i = 0; i < data; i++) {
@@ -33,6 +34,7 @@ const GeneratePercentageBarColour = (index, data, type) => {
 };
 
 const CoinNameLink = ({ name, id }) => {
+  
   const dispatch = useDispatch();
   return (
     <Link to="/coin" onClick={() => dispatch(setCoinId(id))}>
@@ -187,42 +189,44 @@ function Table() {
               );
             },
           },
+          
           {
             Header: "Last 7d",
-            accessor: "",
-            show: false,
+            accessor: "sparkline_in_7d",
+            show: true,
             Cell: ({ cell: { row } }) => {
-              const width = (
-                (row.original.circulating_supply / row.original.total_supply) *
-                100
-              ).toString();
+              const sparklineData = row.original.sparkline_in_7d.price
+              let bdColour = ""
+              if (row.original.sparkline_in_7d.price[0] > row.original.sparkline_in_7d.price[row.original.sparkline_in_7d.price.length - 1]) {
+                bdColour = "rgba(254, 16, 64, 1)";
+              } else {
+                bdColour = "rgba(0, 255, 95, 1)";
+              }
+              const chartData = 
+                { 
+                labels: "sparky",
+                datasets: [
+                  {
+                    data:
+                    sparklineData ?
+                        sparklineData.map((data) => {
+                            return data;
+                          })
+                        : [],
+                    // borderWidth: "20px",
+                    borderColor: bdColour,
+                    fill: false,
+               
+                  }
+                  
+                ]
+              }
+            
               return (
-                <BarAndTextWrapper style={{ marginRight: 40 }}>
-                  <AbovePercentageBar>
-                    <span>
-                      {formatToUnits(row.original.circulating_supply)}
-                    </span>
-                    <span>{formatToUnits(row.original.total_supply)}</span>
-                  </AbovePercentageBar>
-                  <PercentageBarWrapper
-                    background={GeneratePercentageBarColour(
-                      row.id,
-                      50,
-                      "background"
-                    )}
-                  >
-                    <PercentageBar
-                      width={width}
-                      background={GeneratePercentageBarColour(
-                        row.id,
-                        50,
-                        "bar"
-                      )}
-                    >
-                      &nbsp;
-                    </PercentageBar>
-                  </PercentageBarWrapper>
-                </BarAndTextWrapper>
+                <Sparkline chartData={chartData}
+                
+              />
+               
               );
             },
           
