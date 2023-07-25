@@ -13,6 +13,7 @@ export const Header = styled.div`
 
   @media (max-width: 1000px) {
     font-size: 1em;
-
+    flex-direction: column;
+    align-items: center;
   }
 `;
