@@ -128,7 +128,7 @@ const Coin = () => {
                       <strong style={{ marginRight: ".5em" }}>
                         Fully diluted valuation:
                       </strong>
-                      ${formatToUnits(coinData.data.market_data.fully_diluted_valuation)}
+                      ${formatToUnits(coinData.data.market_data.fully_diluted_valuation.usd)}
                     </DataPoint>
 
                     <DataPoint>

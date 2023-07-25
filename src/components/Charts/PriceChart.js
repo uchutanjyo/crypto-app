@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 
 
 function PriceChart({ chartData }) {
-  console.log(chartData)
+  console.log(chartData, "CDDD")
   return (
     <div className="chart-container">
       <h2 style={{ textAlign: "center" }}>Price</h2>

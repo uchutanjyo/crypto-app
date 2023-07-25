@@ -34,6 +34,7 @@ const GeneratePercentageBarColour = (index, data, type) => {
 };
 
 const CoinNameLink = ({ name, id }) => {
+  
   const dispatch = useDispatch();
   return (
     <Link to="/coin" onClick={() => dispatch(setCoinId(id))}>
@@ -188,16 +189,22 @@ function Table() {
               );
             },
           },
+          
           {
             Header: "Last 7d",
             accessor: "sparkline_in_7d",
             show: true,
             Cell: ({ cell: { row } }) => {
               const sparklineData = row.original.sparkline_in_7d.price
-
+              let bdColour = ""
+              if (row.original.sparkline_in_7d.price[0] > row.original.sparkline_in_7d.price[row.original.sparkline_in_7d.price.length - 1]) {
+                bdColour = "rgba(254, 16, 64, 1)";
+              } else {
+                bdColour = "rgba(0, 255, 95, 1)";
+              }
               const chartData = 
                 { 
-                label: "sparky",
+                labels: "sparky",
                 datasets: [
                   {
                     data:
@@ -206,50 +213,20 @@ function Table() {
                             return data;
                           })
                         : [],
-                    backgroundColor: ["rgba(5, 255, 5, 1)"],
-                    borderWidth: "20px",
-                    borderColor: "red",
-                    fill: true,
+                    // borderWidth: "20px",
+                    borderColor: bdColour,
+                    fill: false,
+               
                   }
                   
                 ]
               }
-              
-              
-              // const width = (
-              //   (row.original.circulating_supply / row.original.total_supply) *
-              //   100
-              // ).toString();
+            
               return (
                 <Sparkline chartData={chartData}
                 
               />
-                // <BarAndTextWrapper style={{ marginRight: 40 }}>
-                //   <AbovePercentageBar>
-                //     <span>
-                //       {formatToUnits(row.original.circulating_supply)}
-                //     </span>
-                //     <span>{formatToUnits(row.original.total_supply)}</span>
-                //   </AbovePercentageBar>
-                //   <PercentageBarWrapper
-                //     background={GeneratePercentageBarColour(
-                //       row.id,
-                //       50,
-                //       "background"
-                //     )}
-                //   >
-                //     <PercentageBar
-                //       width={width}
-                //       background={GeneratePercentageBarColour(
-                //         row.id,
-                //         50,
-                //         "bar"
-                //       )}
-                //     >
-                //       &nbsp;
-                //     </PercentageBar>
-                //   </PercentageBarWrapper>
-                // </BarAndTextWrapper>
+               
               );
             },
           
