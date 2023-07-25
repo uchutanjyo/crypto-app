@@ -42,9 +42,6 @@ const Coin = () => {
   useEffect(() => {
     if (coinData.data !== undefined) {
     setLoading(false)
-    console.log('o', loading 
-  )
-    console.log(coinData), "cd";
     }
   }, [coinData]);
 

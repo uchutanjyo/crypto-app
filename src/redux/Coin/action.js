@@ -17,9 +17,7 @@ export const setCoinId = (coinId) => async (dispatch, getState) => {
 
 export const getCoinData = (coinId) => async (dispatch, getState) => {
   const state = getState();
-  console.log(state.coin, 'coin')
   try {
-
     dispatch({ type: FETCH_COIN_PENDING });
     const {data} = await axios(
       `https://api.coingecko.com/api/v3/coins/${coinId.coinId}?localization=false`)

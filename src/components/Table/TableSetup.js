@@ -23,7 +23,6 @@ export default function TableSetup({ columns, data }) {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleWindowResize);
-    console.log(windowWidth)
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
