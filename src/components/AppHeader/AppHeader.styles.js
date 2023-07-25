@@ -9,10 +9,10 @@ export const Header = styled.div`
   border-bottom: 1px dotted;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
-  font-size: 1.5em;
+  font-size: 1.7em;
 
   @media (max-width: 1000px) {
-    font-size: 1em;
+    font-size: 1.2em;
     flex-direction: column;
     align-items: center;
   }

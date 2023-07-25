@@ -22,15 +22,15 @@ export const Container = styled.div`
   margin-right: 2em;
   border-radius: 5%;
   width: 20%;
-  
-
 `;
 
 export const Blurb = styled.div`
 font-size: 1em;
-padding-bottom: 10;
- padding-left: 5;
- padding-right: 5;
+padding-top: 1.5em;
+padding-bottom: 1em;
+ padding-left: 1em;
+ padding-right: 1em;
+
 @media (max-width: 768px) {
 font-size:.8em
   }
