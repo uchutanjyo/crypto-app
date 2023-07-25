@@ -17,7 +17,6 @@ const Charts = () => {
 
   useEffect(() => {
     dispatch(getChartsData());
-    console.log(chartsData)
   }, []);
 
   const [pricesChartDataOptions, setPricesChartDataOptions] = useState([]);
@@ -75,7 +74,6 @@ const Charts = () => {
           },
         ],
       });
-      console.log(chartsData)
     }
   }, [chartsData]);
 
