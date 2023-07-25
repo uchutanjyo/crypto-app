@@ -12,7 +12,7 @@ export const Header = styled.div`
   font-size: 1.7em;
 
   @media (max-width: 1000px) {
-    font-size: 1.2em;
+    font-size: 1em;
     flex-direction: column;
     align-items: center;
   }
