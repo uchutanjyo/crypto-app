@@ -93,13 +93,14 @@ function Table() {
               <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
             ),
           },
-          {
-            Header: "7d",
-            accessor: "price_change_percentage_7d_in_currency",
-            Cell: ({ cell: { value } }) => (
-              <IncOrDecArrow value={parseFloat(value).toFixed(2)} />
-            ),
-          },
+          // {
+          //   Header: "7d",
+          //   accessor: "price_change_percentage_7d_in_currency",
+          //   Cell: ({ cell: { value } }) =>  (
+          //     value === undefined ? 
+          //    <div>N/A</div>
+          //    :  <IncOrDecArrow value={parseFloat(value).toFixed(2)} /> ),
+          // },
           {
             Header: "24h vol/Market Cap",
             accessor: "vol_over_market_cap",

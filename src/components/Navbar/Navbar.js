@@ -66,7 +66,7 @@ const Navbar = () => {
               <option
                 key={i}
                 value={currency}
-                selected={currentCurrency}
+                defaultValue={currentCurrency}
                 onClick={() => setCurrentCurrency(currency)}
               >
                 {currency}{" "}

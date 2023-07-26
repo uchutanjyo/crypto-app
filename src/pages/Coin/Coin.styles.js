@@ -67,6 +67,8 @@ export const MiddleSummary = styled.div`
     padding: 0.0em;
     width: 100%;
     margin-right: 0em;
+    border-radius: 0%;
+
   }
 
 `;
@@ -89,6 +91,7 @@ export const RightSummary = styled.div`
     width: 100%;
     border-radius: 0%;
     align-items: left;
+    padding-bottom: 1em;
   }
 `;
 
@@ -106,7 +109,9 @@ export const DescriptionWrapper = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0.0em;
-    width: 98%;
+    width: 90%;
+    border-radius: 0%;
+
   }
 `;
 
@@ -122,6 +127,8 @@ export const Description = styled.div`
   @media (max-width: 1000px) {
     width: 90%;
     margin-right: 0em;
+    border-radius: 0%;
+
   }
 `;
 
@@ -134,12 +141,14 @@ margin-top:1em;
   width: 100%;
   padding-right: 2em;
   padding-left: 2em;
-
   border-radius: 3%;
   @media (max-width: 756px) {
     flex-direction: column;
     padding: 0.0em;
     background-color: ${(props) => props.theme.colours.dark};
+    border-radius: 0%;
+    padding-top: 1em;
+
 
   }
 `;
@@ -160,6 +169,10 @@ export const BottomUrl = styled.div`
     margin-top:0em;
     padding-top:0em;
   padding-bottom:0em;
+  border-radius: 0%;
+  width: 100%;
+  padding-bottom: 1em;
+
   }
 `;
 
